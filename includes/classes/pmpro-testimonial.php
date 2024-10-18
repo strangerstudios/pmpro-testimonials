@@ -77,7 +77,7 @@ class PMPro_Testimonial {
 		if ( empty( $this->url ) ) {
 			$this->url = get_post_meta( $this->id, '_url', true );
 		}
-		if ( $linked ) {
+		if ( $this->url && $linked ) {
 			if ( $new_window ) {
 				$target = '_blank';
 			} else {

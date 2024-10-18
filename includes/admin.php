@@ -12,6 +12,10 @@ function pmpro_testimonials_activation() {
 		if ( empty( $confirmation_message ) ) {
 			update_option( 'pmpro_testimonials_confirmation_message', __( 'Thank you for submitting your testimonial! It will be reviewed by an administrator.' ) );
 		}
+		$star_color = get_option( 'pmpro_testimonials_star_color' );
+		if ( empty( $star_color ) ) {
+			update_option( 'pmpro_testimonials_star_color', '#ffd700' );
+		}
 	}
 }
 register_activation_hook( PMPRO_TESTIMONIALS_BASENAME, 'pmpro_testimonials_activation' );

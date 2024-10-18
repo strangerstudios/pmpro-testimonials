@@ -43,27 +43,50 @@ add_action( 'plugins_loaded', 'pmpro_testimonials_load_textdomain' );
 /**
  * Enqueue Admin Scripts and Styles
  */
-function pmpro_testimonials_admin_styles( $hook ) {
+function pmpro_testimonials_admin_enqueue( $hook ) {
 	$screen = get_current_screen();
 	if ( ( ! empty( $screen->post_type ) && $screen->post_type == 'pmpro_testimonial' ) ) {
 		wp_enqueue_style( 'pmpro-testimonials-admin', plugins_url( 'css/admin.css', __FILE__ ), '', PMPRO_TESTIMONIALS_VERSION, 'screen' );
 		wp_enqueue_style( 'pmpro-testimonials-stars', plugins_url( 'css/stars.css', __FILE__ ), '', PMPRO_TESTIMONIALS_VERSION, 'screen' );
 		wp_enqueue_script( 'pmpro-testimonials-stars', plugins_url( 'js/stars.js', __FILE__ ), array( 'jquery' ), PMPRO_TESTIMONIALS_VERSION, true );
+		// Set custom star color CSS variable.
+		$star_color = get_option( 'pmpro_testimonials_star_color', '#ffd700' );
+		$star_css   = '
+			:root {
+				--pmpro--testimonials--star: ' . esc_attr( $star_color ) . ';
+			}
+		';
+		wp_add_inline_style( 'pmpro-testimonials-stars', $star_css );
+	}
+	if ( $screen->id == 'pmpro_testimonial_page_pmpro-testimonials-settings' ) {
+		wp_enqueue_style( 'wp-color-picker' );
+		wp_enqueue_script( 'wp-color-picker' );
+
 	}
 }
-add_action( 'admin_enqueue_scripts', 'pmpro_testimonials_admin_styles' );
+add_action( 'admin_enqueue_scripts', 'pmpro_testimonials_admin_enqueue' );
 
 /**
  * Enqueue Frontend Scripts and Styles
  */
-function pmpro_testimonials_frontend_styles() {
+function pmpro_testimonials_frontend_enqueue() {
 	global $post;
 	if ( $post && has_shortcode( $post->post_content, 'pmpro_testimonials_form' ) ) {
 		pmpro_enqueue_scripts();
-		wp_enqueue_style( 'pmpro-courses-styles', plugins_url( 'css/stars.css', __FILE__ ) );
-		wp_enqueue_script( 'pmpro-courses-scripts', plugins_url( 'js/stars.js', __FILE__ ), array( 'jquery' ) );
+
+		wp_enqueue_style( 'pmpro-testimonials-stars', plugins_url( 'css/stars.css', __FILE__ ), '', PMPRO_TESTIMONIALS_VERSION, 'screen' );
+		// Set custom star color CSS variable.
+		$star_color = get_option( 'pmpro_testimonials_star_color', '#ffd700' );
+		$star_css   = '
+			:root {
+				--pmpro--testimonials--star: ' . esc_attr( $star_color ) . ';
+			}
+		';
+		wp_add_inline_style( 'pmpro-testimonials-stars', $star_css );
+
+		wp_enqueue_script( 'pmpro-testimonials-scripts', plugins_url( 'js/stars.js', __FILE__ ), array( 'jquery' ), PMPRO_TESTIMONIALS_VERSION );
 		wp_enqueue_style( 'select2', PMPRO_URL . '/css/select2.min.css', '', '4.1.0-beta.0', 'screen' );
 		wp_enqueue_script( 'select2', PMPRO_URL . '/js/select2.min.js', array( 'jquery' ), '4.1.0-beta.0' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'pmpro_testimonials_frontend_styles' );
+add_action( 'wp_enqueue_scripts', 'pmpro_testimonials_frontend_enqueue' );

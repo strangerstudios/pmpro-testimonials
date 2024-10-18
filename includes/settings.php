@@ -1,7 +1,6 @@
 <?php
 /**
  * Admin settings page for testimonials for Membership Add On.
- *
  */
 
 /**
@@ -28,6 +27,7 @@ function pmpro_register_settings() {
 	register_setting( 'pmpro_testimonials_settings', 'pmpro_testimonials_confirmation_type' );
 	register_setting( 'pmpro_testimonials_settings', 'pmpro_testimonials_redirect_page' );
 	register_setting( 'pmpro_testimonials_settings', 'pmpro_testimonials_confirmation_message' );
+	register_setting( 'pmpro_testimonials_settings', 'pmpro_testimonials_star_color' );
 }
 
 add_action( 'admin_init', 'pmpro_register_settings' );
@@ -43,17 +43,15 @@ function pmpro_testimonials_settings_save() {
 		return;
 	}
 
-
-
 	// Save module specific settings.
 	do_action( 'pmpro_testimonials_settings_save' );
 
 }
-//add_action( 'admin_init', 'pmpro_testimonials_settings_save' );
+// add_action( 'admin_init', 'pmpro_testimonials_settings_save' );
 
 function pmpro_testimonials_save_notice() {
 	if ( isset( $_REQUEST['pmpro_testimonials_save_settings'] ) ) {
-		echo sprintf( "<div class='updated'><p>%s</p></div>", esc_html__( 'Settings saved successfully.', 'pmpro-testimonials') );
+		echo sprintf( "<div class='updated'><p>%s</p></div>", esc_html__( 'Settings saved successfully.', 'pmpro-testimonials' ) );
 	}
 }
-//add_action( 'admin_notices', 'pmpro_testimonials_save_notice', 10 );
+// add_action( 'admin_notices', 'pmpro_testimonials_save_notice', 10 );

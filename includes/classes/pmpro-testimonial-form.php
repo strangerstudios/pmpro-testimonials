@@ -43,11 +43,12 @@ class PMPro_Testimonial_Form {
 	}
 
 	public function display( $echo = true ) {
+		global $current_user;
 
 		// Process it here so we can change what we output based on the result.
 		$this->process();
 
-		// If we are on the success message page, show it.
+		// If we are on the success message page, show it and bail.
 		if ( isset( $_GET['testimonial_success'] ) ) {
 			$message = get_option( 'pmpro_testimonials_confirmation_message' );
 
@@ -89,13 +90,12 @@ class PMPro_Testimonial_Form {
 									<?php
 									// Title field
 									$title_field = new PMPro_Field(
-										'title',
+										'testimonial_title',
 										'text',
 										array(
 											'label'        => 'Title',
 											'required'     => in_array( 'title', $this->required_fields ),
 											'showrequired' => 'label',
-											'default'      => isset( $_POST['pmprorhprefix_title'] ) ? sanitize_text_field( $_POST['pmprorhprefix_title'] ) : '',
 										)
 									);
 									$title_field->displayAtCheckout();
@@ -108,7 +108,6 @@ class PMPro_Testimonial_Form {
 											'label'        => 'Testimonial',
 											'required'     => true,
 											'showrequired' => 'label',
-											'default'      => isset( $_POST['testimonial'] ) ? sanitize_text_field( $_POST['testimonial'] ) : '',
 										)
 									);
 									$title_field->displayAtCheckout();
@@ -128,20 +127,19 @@ class PMPro_Testimonial_Form {
 									echo '<input type="hidden" name="rating" value="' . esc_attr( $rating_value ) . '">';
 									echo '</div>';
 
-									// Name field
+									// Name field.
 									$name_field = new PMPro_Field(
-										'name',
+										'display_name',
 										'text',
 										array(
 											'label'        => 'Name',
 											'required'     => in_array( 'name', $this->required_fields ),
 											'showrequired' => 'label',
-											'default'      => isset( $_POST['pmprorhprefix_name'] ) ? sanitize_text_field( $_POST['pmprorhprefix_name'] ) : '',
 										)
 									);
 									$name_field->displayAtCheckout();
 
-									// Job Title field
+									// Job Title field.
 									$job_title_field = new PMPro_Field(
 										'job_title',
 										'text',
@@ -149,12 +147,11 @@ class PMPro_Testimonial_Form {
 											'label'        => 'Job Title',
 											'required'     => in_array( 'job_title', $this->required_fields ),
 											'showrequired' => 'label',
-											'default'      => isset( $_POST['job_title'] ) ? sanitize_text_field( $_POST['job_title'] ) : '',
 										)
 									);
 									$job_title_field->displayAtCheckout();
 
-									// Company field
+									// Company field.
 									$company_field = new PMPro_Field(
 										'company',
 										'text',
@@ -162,25 +159,23 @@ class PMPro_Testimonial_Form {
 											'label'        => 'Company',
 											'required'     => in_array( 'company', $this->required_fields ),
 											'showrequired' => 'label',
-											'default'      => isset( $_POST['company'] ) ? sanitize_text_field( $_POST['company'] ) : '',
 										)
 									);
 									$company_field->displayAtCheckout();
 
-									// Email field
+									// Email field.
 									$email_field = new PMPro_Field(
-										'email',
+										'user_email',
 										'text',
 										array(
 											'label'        => 'Email',
 											'required'     => in_array( 'email', $this->required_fields ),
 											'showrequired' => 'label',
-											'default'      => isset( $_POST['email'] ) ? sanitize_text_field( $_POST['email'] ) : '',
 										)
 									);
 									$email_field->displayAtCheckout();
 
-									// URL field
+									// URL field.
 									$url_field = new PMPro_Field(
 										'url',
 										'text',
@@ -188,12 +183,11 @@ class PMPro_Testimonial_Form {
 											'label'        => 'Website URL',
 											'required'     => in_array( 'url', $this->required_fields ),
 											'showrequired' => 'label',
-											'default'      => isset( $_POST['url'] ) ? sanitize_text_field( $_POST['url'] ) : '',
 										)
 									);
 									$url_field->displayAtCheckout();
 
-									// Category Dropdown (if enabled)
+									// Category Dropdown (if enabled).
 									if ( filter_var( $this->category_dropdown, FILTER_VALIDATE_BOOLEAN ) ) {
 										$selected_category = isset( $_POST['testimonial_category'] ) ? intval( $_POST['testimonial_category'] ) : '';
 										$category_field    = new PMPro_Field(
@@ -217,7 +211,7 @@ class PMPro_Testimonial_Form {
 										$category_field->displayAtCheckout();
 									}
 
-									// Tag Dropdown (if enabled, allows multiple selection)
+									// Tag Dropdown (if enabled, allows multiple selection).
 									if ( filter_var( $this->tag_dropdown, FILTER_VALIDATE_BOOLEAN ) ) {
 										$selected_tags = isset( $_POST['testimonial_tags'] ) ? array_map( 'intval', $_POST['testimonial_tags'] ) : array();
 										$tag_field     = new PMPro_Field(
@@ -235,7 +229,7 @@ class PMPro_Testimonial_Form {
 													'name',
 													'term_id'
 												),
-												'default' => $selected_category,
+												'default' => $selected_tags,
 											)
 										);
 										$tag_field->displayAtCheckout();
@@ -278,7 +272,7 @@ class PMPro_Testimonial_Form {
 			}
 
 			// Check if required fields are present.
-			if ( in_array( 'title', $this->required_fields ) && empty( $_POST['pmprorhprefix_title'] ) ) {
+			if ( in_array( 'title', $this->required_fields ) && empty( $_POST['testimonial_title'] ) ) {
 				$this->errors[] = esc_html__( 'Title is required', 'pmpro-testimonials' );
 			}
 			if ( empty( $_POST['testimonial'] ) ) {
@@ -287,7 +281,7 @@ class PMPro_Testimonial_Form {
 			if ( empty( $_POST['rating'] ) ) {
 				$this->errors[] = esc_html__( 'Rating is required', 'pmpro-testimonials' );
 			}
-			if ( in_array( 'name', $this->required_fields ) && empty( $_POST['pmprorhprefix_name'] ) ) {
+			if ( in_array( 'name', $this->required_fields ) && empty( $_POST['display_name'] ) ) {
 				$this->errors[] = esc_html__( 'Name is required', 'pmpro-testimonials' );
 			}
 			if ( in_array( 'email', $this->required_fields ) && empty( $_POST['email'] ) ) {
@@ -306,13 +300,13 @@ class PMPro_Testimonial_Form {
 			// If there are errors, show them.
 			if ( empty( $this->errors ) ) {
 
-				// Sanitize form input
-				$title       = sanitize_text_field( $_POST['pmprorhprefix_title'] );
+				// Sanitize form input.
+				$title       = sanitize_text_field( $_POST['testimonial_title'] );
 				$testimonial = sanitize_textarea_field( $_POST['testimonial'] );
-				$name        = sanitize_text_field( $_POST['pmprorhprefix_name'] );
+				$name        = sanitize_text_field( $_POST['display_name'] );
 				$job_title   = sanitize_text_field( $_POST['job_title'] );
 				$company     = sanitize_text_field( $_POST['company'] );
-				$email       = sanitize_email( $_POST['email'] );
+				$email       = sanitize_email( $_POST['user_email'] );
 				$url         = esc_url_raw( $_POST['url'] );
 				$rating      = intval( $_POST['rating'] );
 
@@ -327,23 +321,27 @@ class PMPro_Testimonial_Form {
 					}
 				}
 
-				// Create new testimonial post in 'pending' status.
-				$post_id = wp_insert_post(
-					array(
-						'post_title'   => $title,
-						'post_content' => $gutenberg_content,
-						'post_type'    => 'pmpro_testimonial',
-						'post_status'  => 'pending', // Set status to 'pending'
-						'meta_input'   => array(
-							'_name'      => $name,
-							'_job_title' => $job_title,
-							'_company'   => $company,
-							'_email'     => $email,
-							'_url'       => $url,
-							'_rating'    => $rating,
-						),
-					)
+				$post_args = array(
+					'post_title'   => $title,
+					'post_content' => $gutenberg_content,
+					'post_type'    => 'pmpro_testimonial',
+					'post_status'  => 'pending', // Set status to 'pending'
+					'meta_input'   => array(
+						'_name'      => $name,
+						'_job_title' => $job_title,
+						'_company'   => $company,
+						'_email'     => $email,
+						'_url'       => $url,
+						'_rating'    => $rating,
+					),
 				);
+
+				if ( is_user_logged_in() ) {
+					$post_args['post_author'] = get_current_user_id();
+				}
+
+				// Create new testimonial post in 'pending' status.
+				$post_id = wp_insert_post( $post_args );
 
 				// Set categories and tags (if provided via shortcode arguments).
 				if ( ! empty( $this->categories ) ) {

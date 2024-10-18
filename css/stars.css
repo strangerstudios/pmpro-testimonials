@@ -5,4 +5,4 @@
 .pmpro_star:hover { fill: none; stroke: #ccc; }
 
 .pmpro_star.filled,
-.pmpro_star:hover { fill: #ffd700; stroke: #ffd700; }
+.pmpro_star:hover { fill: var(--pmpro--testimonials--star); stroke: var(--pmpro--testimonials--star); }

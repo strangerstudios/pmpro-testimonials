@@ -1,4 +1,4 @@
-<?php require_once( PMPRO_DIR . "/adminpages/admin_header.php" ); ?>
+<?php require_once PMPRO_DIR . '/adminpages/admin_header.php'; ?>
 
 	<h1 class="wp-heading-inline">
 		<?php esc_html_e( 'Testimonials', 'pmpro-testimonials' ); ?>
@@ -9,11 +9,12 @@
 		settings_fields( 'pmpro_testimonials_settings' );
 		do_settings_sections( 'pmpro_testimonials_settings' );
 
-		$confirmation_type = get_option( 'pmpro_testimonials_confirmation_type', 'message' );
-		$redirect_page = get_option( 'pmpro_testimonials_redirect_page', 0 );
+		$confirmation_type    = get_option( 'pmpro_testimonials_confirmation_type', 'message' );
+		$redirect_page        = get_option( 'pmpro_testimonials_redirect_page', 0 );
 		$confirmation_message = get_option( 'pmpro_testimonials_confirmation_message', '' );
+		$star_color           = get_option( 'pmpro_testimonials_star_color', '' );
 		?>
-		<h3><?php esc_html_e( 'Submission Settings', 'pmpro-testimonials' );?></h3>
+		<h3><?php esc_html_e( 'Submission Settings', 'pmpro-testimonials' ); ?></h3>
 		<table class="form-table">	
 			<tr valign="top">
 				<th scope="row"><?php esc_html_e( 'Type of Confirmation', 'pmpro' ); ?></th>
@@ -34,12 +35,14 @@
 				<th scope="row"><?php esc_html_e( 'Select Redirect Page', 'pmpro' ); ?></th>
 				<td>
 					<?php
-					wp_dropdown_pages( array(
-						'name'              => 'pmpro_testimonials_redirect_page',
-						'selected'          => $redirect_page,
-						'show_option_none'  => __( 'Select a Page', 'pmpro' ),
-						'option_none_value' => '0',
-					) );
+					wp_dropdown_pages(
+						array(
+							'name'              => 'pmpro_testimonials_redirect_page',
+							'selected'          => $redirect_page,
+							'show_option_none'  => __( 'Select a Page', 'pmpro' ),
+							'option_none_value' => '0',
+						)
+					);
 					?>
 				</td>
 			</tr>
@@ -59,6 +62,15 @@
 					?>
 				</td>
 			</tr>
+
+			<!-- Color Picker -->
+			<tr valign="top">
+				<th scope="row"><?php esc_html_e( 'Star Color', 'pmpro-testimonials' ); ?></th>
+				<td>
+					<input type="text" name="pmpro_testimonials_star_color" value="<?php echo esc_attr( $star_color ); ?>" class="wp-color-picker" />
+				</td>
+			</tr>
+
 		</table>
 		<?php wp_nonce_field( 'pmpro_testimonials_settings', 'pmpro_testimonials_settings' ); ?>
 		<?php submit_button(); ?>
@@ -79,6 +91,9 @@
 				}
 			}).trigger('change');
 		})(jQuery);
+		jQuery(document).ready(function($) {
+			$('.wp-color-picker').wpColorPicker();
+		});
 	</script>
 
-<?php require_once( PMPRO_DIR . "/adminpages/admin_footer.php" ); ?>
+<?php require_once PMPRO_DIR . '/adminpages/admin_footer.php'; ?>
