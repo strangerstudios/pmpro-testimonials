@@ -247,14 +247,10 @@ add_action( 'wp', 'pmpro_testimonials_testimonial_check' );
 function pmpro_testimonials_get_started() {
 	?>
 	<div class="pmpro-testimonials pmpro--cpt-empty">
-		<p align="center"><img src="<?php echo PMPRO_TESTIMONIALS_URL; ?>images/nugget-testimonials.png" width="200" alt="" /></p>
-		<h2><?php _e( 'You do not have any testimonials yet', 'pmpro-testimonials' ); ?></h2>
-		<p>
-			<a href="<?php echo admin_url( 'post-new.php?post_type=pmpro_testimonial' ); ?>" class="button button-primary button-hero"><span class="dashicons dashicons-format-quote"></span> <?php _e( 'Add your first testimonial', 'pmpro-testimonials' ); ?></a>
-			&nbsp;
-			<a href="https://www.youtube.com/embed/HSdju3opDxQ/?KeepThis=true&TB_iframe=true&height=500&width=800" class="thickbox button button-hero" title="<?php esc_attr_e( 'Creating testimonials', 'pmpro-testimonials' ); ?>"><span class="dashicons dashicons-controls-play"></span> <?php _e( 'Watch training video', 'pmpro-testimonials' ); ?></a>
-		</p>
-		<p style="margin-top: 50px;"><a href="https://www.paidmembershipspro.com/add-ons/testimonials/?utm_source=plugin&utm_medium=pmpro-testimonials-admin&utm_campaign=add-ons" target="_blank"><span class="dashicons dashicons-media-document"></span> <?php _e( 'See product help articles', 'pmpro-testimonials' ); ?></a></p>
+		<span class="dashicons dashicons-star-filled" style="font-size: 50px; height: 50px;"></span>
+		<h2><?php esc_html_e( 'You do not have any testimonials yet', 'pmpro-testimonials' ); ?></h2>
+		<a href="<?php echo admin_url( 'post-new.php?post_type=pmpro_testimonial' ); ?>" class="button button-primary button-hero"><?php esc_html_e( 'Add a Testimonial', 'pmpro-testimonials' ); ?></a>
+		<a href="https://www.paidmembershipspro.com/add-ons/testimonials/?utm_source=plugin&utm_medium=pmpro-testimonials-admin&utm_campaign=add-ons" class="button button-hero"><?php esc_html_e( 'Read Testimonials Add On Docs', 'pmpro-testimonials' ); ?></a>
 	</div>
 	<?php
 }
