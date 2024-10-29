@@ -88,7 +88,7 @@ add_action( 'init', 'pmpro_testimonials_cpt', 30 );
  * Define the metaboxes.
  */
 function pmpro_testimonials_define_meta_boxes() {
-	add_meta_box( 'pmpro_testimonials', esc_html__( 'Testimonial Information', 'pmpro-testimonials' ), 'pmpro_testimonials_meta_box', 'pmpro_testimonial', 'side' );
+	add_meta_box( 'pmpro_testimonials', esc_html__( 'Testimonial Information', 'pmpro-testimonials' ), 'pmpro_testimonials_meta_box', 'pmpro_testimonial', 'normal', 'high' );
 }
 add_action( 'admin_menu', 'pmpro_testimonials_define_meta_boxes', 20 );
 
