@@ -28,6 +28,7 @@ function pmpro_register_settings() {
 	register_setting( 'pmpro_testimonials_settings', 'pmpro_testimonials_redirect_page' );
 	register_setting( 'pmpro_testimonials_settings', 'pmpro_testimonials_confirmation_message' );
 	register_setting( 'pmpro_testimonials_settings', 'pmpro_testimonials_star_color' );
+	register_setting( 'pmpro_testimonials_settings', 'pmpro_testimonials_default_image' );
 }
 
 add_action( 'admin_init', 'pmpro_register_settings' );

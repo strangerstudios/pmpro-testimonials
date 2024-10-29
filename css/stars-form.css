@@ -1,8 +1,5 @@
 .pmpro_star_rating { display: inline-flex; }
-
 .pmpro_star { width: 24px; height: 24px; fill: none; stroke: #ccc; cursor: pointer; transition: fill 0.3s; }
-
 .pmpro_star:hover { fill: none; stroke: #ccc; }
-
 .pmpro_star.filled,
 .pmpro_star:hover { fill: var(--pmpro--testimonials--star); stroke: var(--pmpro--testimonials--star); }

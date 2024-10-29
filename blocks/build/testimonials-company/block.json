@@ -1,0 +1,56 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "pmpro/testimonials-company",
+  "version": "0.1.0",
+  "title": "PMPro Testimonials - Company",
+  "ancestor": [
+    "core/query"
+  ],
+  "category": "pmpro-testimonials",
+  "icon": "building",
+  "description": "Person's company",
+  "example": {},
+  "attributes": {
+    "linkEnabled": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "supports": {
+    "html": false,
+    "color": {
+      "gradients": true,
+      "link": true,
+      "__experimentalDefaultControls": {
+        "background": true,
+        "text": true,
+        "link": true
+      }
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalTextDecoration": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalDefaultControls": {
+        "fontSize": true
+      }
+    }
+  },
+  "usesContext": [
+    "postType",
+    "postId"
+  ],
+  "textdomain": "pmpro-testimonials",
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php"
+}

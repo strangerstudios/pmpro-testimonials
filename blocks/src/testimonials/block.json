@@ -1,0 +1,41 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "pmpro/testimonials",
+	"version": "0.1.0",
+	"title": "PMPro Testimonials",
+	"category": "widgets",
+	"icon": "smiley",
+	"description": "Show your PMPro testimonials",
+	"example": {},
+	"attributes": {
+		"limit": {
+			"type": "integer",
+			"default": 3
+		},
+		"categories": {
+			"type": "array",
+			"default": []
+		},
+		"tags": {
+			"type": "array",
+			"default": []
+		}
+	},
+	"supports": {
+		"html": false,
+		"color": {
+			"background": true
+		},
+		"align": ["wide", "full"],
+		"spacing": {
+			"padding": true,
+			"margin": true
+		}
+	},
+	"textdomain": "pmpro-testimonials",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

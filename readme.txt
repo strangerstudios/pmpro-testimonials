@@ -1,9 +1,9 @@
 === Paid Memberships Pro - Testimonials ===
 Contributors: strangerstudios, paidmembershipspro, sccr410
 Tags: membership, pmpro, testimonials, reviews
-Requires at least: 5.4
+Requires at least: 5.2
 Tested up to: 6.6.2
-Stable tag: 0.2
+Stable tag: 0.3
 Requires PHP: 7.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -49,6 +49,15 @@ Please visit [our support site at https://www.paidmembershipspro.com](http://www
 
 
 == Changelog ==
+
+= 0.3 =
+* Remove title field
+* Set Name as post_title, always required
+* Job title after company in shortcode form
+* Testimonials Query Block + Inner blocks (name, content, job title, company, star rating)
+* Default star color in general settings
+* Fallback testimonial image in general settings
+* Filter featured images for testimonials to fallback to gravatar and then settings image
 
 = 0.2 =
 * Add star color setting

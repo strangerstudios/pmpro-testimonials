@@ -43,7 +43,6 @@ class PMPro_Testimonial_Form {
 	}
 
 	public function display( $echo = true ) {
-		global $current_user;
 
 		// Process it here so we can change what we output based on the result.
 		$this->process();
@@ -88,6 +87,7 @@ class PMPro_Testimonial_Form {
 								</legend>
 								<div class="pmpro_form_fields">
 									<?php
+									/*
 									// Title field
 									$title_field = new PMPro_Field(
 										'testimonial_title',
@@ -99,6 +99,7 @@ class PMPro_Testimonial_Form {
 										)
 									);
 									$title_field->displayAtCheckout();
+									*/
 
 									// Testimonial field
 									$title_field = new PMPro_Field(
@@ -133,7 +134,7 @@ class PMPro_Testimonial_Form {
 										'text',
 										array(
 											'label'        => 'Name',
-											'required'     => in_array( 'name', $this->required_fields ),
+											'required'     => true,
 											'showrequired' => 'label',
 										)
 									);
@@ -272,9 +273,11 @@ class PMPro_Testimonial_Form {
 			}
 
 			// Check if required fields are present.
+			/*
 			if ( in_array( 'title', $this->required_fields ) && empty( $_POST['testimonial_title'] ) ) {
 				$this->errors[] = esc_html__( 'Title is required', 'pmpro-testimonials' );
 			}
+			*/
 			if ( empty( $_POST['testimonial'] ) ) {
 				$this->errors[] = esc_html__( 'Testimonial is required', 'pmpro-testimonials' );
 			}
@@ -301,7 +304,7 @@ class PMPro_Testimonial_Form {
 			if ( empty( $this->errors ) ) {
 
 				// Sanitize form input.
-				$title       = sanitize_text_field( $_POST['testimonial_title'] );
+				// $title       = sanitize_text_field( $_POST['testimonial_title'] );
 				$testimonial = sanitize_textarea_field( $_POST['testimonial'] );
 				$name        = sanitize_text_field( $_POST['display_name'] );
 				$job_title   = sanitize_text_field( $_POST['job_title'] );
@@ -322,12 +325,12 @@ class PMPro_Testimonial_Form {
 				}
 
 				$post_args = array(
-					'post_title'   => $title,
+					'post_title'   => $name,
 					'post_content' => $gutenberg_content,
 					'post_type'    => 'pmpro_testimonial',
 					'post_status'  => 'pending', // Set status to 'pending'
 					'meta_input'   => array(
-						'_name'      => $name,
+						// '_name'      => $name,
 						'_job_title' => $job_title,
 						'_company'   => $company,
 						'_email'     => $email,

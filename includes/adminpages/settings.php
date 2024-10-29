@@ -9,10 +9,12 @@
 		settings_fields( 'pmpro_testimonials_settings' );
 		do_settings_sections( 'pmpro_testimonials_settings' );
 
-		$confirmation_type    = get_option( 'pmpro_testimonials_confirmation_type', 'message' );
-		$redirect_page        = get_option( 'pmpro_testimonials_redirect_page', 0 );
-		$confirmation_message = get_option( 'pmpro_testimonials_confirmation_message', '' );
-		$star_color           = get_option( 'pmpro_testimonials_star_color', '' );
+		$confirmation_type     = get_option( 'pmpro_testimonials_confirmation_type', 'message' );
+		$redirect_page         = get_option( 'pmpro_testimonials_redirect_page', 0 );
+		$confirmation_message  = get_option( 'pmpro_testimonials_confirmation_message', '' );
+		$star_color            = get_option( 'pmpro_testimonials_star_color', '' );
+		$testimonial_image_id  = get_option( 'pmpro_testimonials_default_image', '' );
+		$testimonial_image_url = $testimonial_image_id ? wp_get_attachment_url( $testimonial_image_id ) : '';
 		?>
 		<h3><?php esc_html_e( 'Submission Settings', 'pmpro-testimonials' ); ?></h3>
 		<table class="form-table">	
@@ -63,6 +65,11 @@
 				</td>
 			</tr>
 
+		</table>
+		
+		<h3><?php esc_html_e( 'Defaults', 'pmpro-testimonials' ); ?></h3>
+		<table class="form-table">	
+
 			<!-- Color Picker -->
 			<tr valign="top">
 				<th scope="row"><?php esc_html_e( 'Star Color', 'pmpro-testimonials' ); ?></th>
@@ -71,7 +78,24 @@
 				</td>
 			</tr>
 
+			<?php
+			// Retrieve the saved attachment ID for the selected image
+			?>
+
+			<tr valign="top">
+				<th scope="row"><?php esc_html_e( 'Default Testimonial Image', 'pmpro-testimonials' ); ?></th>
+				<td>
+					<div>
+						<img id="pmpro_testimonial_image_preview" src="<?php echo esc_url( $testimonial_image_url ); ?>" style="max-width: 150px; height: auto;" />
+					</div>
+					<input type="hidden" id="pmpro_testimonials_default_image" name="pmpro_testimonials_default_image" value="<?php echo esc_attr( $testimonial_image_id ); ?>" />
+					<button type="button" class="button" id="pmpro_testimonial_image_button"><?php esc_html_e( 'Select Image', 'pmpro-testimonials' ); ?></button>
+					<button type="button" class="button" id="pmpro_testimonial_image_remove"><?php esc_html_e( 'Remove Image', 'pmpro-testimonials' ); ?></button>
+				</td>
+			</tr>
+
 		</table>
+
 		<?php wp_nonce_field( 'pmpro_testimonials_settings', 'pmpro_testimonials_settings' ); ?>
 		<?php submit_button(); ?>
 	</form>
@@ -90,10 +114,42 @@
 					$('.pmpro-confirmation-message').show();
 				}
 			}).trigger('change');
+
+			// Image selection
+			let mediaUploader;
+			$('#pmpro_testimonial_image_button').on('click', function(e) {
+				e.preventDefault();
+				if (mediaUploader) {
+					mediaUploader.open();
+					return;
+				}
+				mediaUploader = wp.media({
+					title: '<?php esc_html_e( 'Choose Default Testimonial Image', 'pmpro-testimonials' ); ?>',
+					button: { text: '<?php esc_html_e( 'Use this image', 'pmpro-testimonials' ); ?>' },
+					multiple: false
+				});
+
+				mediaUploader.on('select', function() {
+					const attachment = mediaUploader.state().get('selection').first().toJSON();
+					$('#pmpro_testimonials_default_image').val(attachment.id);
+					$('#pmpro_testimonial_image_preview').attr('src', attachment.url);
+				});
+				mediaUploader.open();
+			});
+
+			// Image removal
+			$('#pmpro_testimonial_image_remove').on('click', function(e) {
+				e.preventDefault();
+				$('#pmpro_testimonials_default_image').val('');
+				$('#pmpro_testimonial_image_preview').attr('src', '');
+			});
+			
 		})(jQuery);
+
 		jQuery(document).ready(function($) {
 			$('.wp-color-picker').wpColorPicker();
 		});
+
 	</script>
 
 <?php require_once PMPRO_DIR . '/adminpages/admin_footer.php'; ?>

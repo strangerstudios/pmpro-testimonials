@@ -12,7 +12,7 @@ class PMPro_Testimonial {
 	private $email;
 	private $categories;
 	private $tags;
-
+	private $elements = 'all';
 	private $post_data;
 
 	function __construct( $id ) {
@@ -24,19 +24,12 @@ class PMPro_Testimonial {
 
 	}
 
-	function get_title() {
+	function get_name() {
 		return $this->title;
 	}
 
 	function get_testimonial() {
 		return $this->testimonial;
-	}
-
-	function get_name() {
-		if ( empty( $this->name ) ) {
-			$this->name = get_post_meta( $this->id, '_name', true );
-		}
-		return $this->name;
 	}
 
 	function get_rating() {
@@ -46,13 +39,18 @@ class PMPro_Testimonial {
 		return $this->rating;
 	}
 
-	function get_stars() {
+	function get_stars( $color = '' ) {
 		if ( empty( $this->rating ) ) {
 			$this->get_rating();
 		}
 		$stars = '';
-		for ( $i = 0; $i <= $this->rating; $i++ ) {
-			$svg    = pmpro_testimonials_get_star();
+		for ( $i = 1; $i <= $this->rating; $i++ ) {
+			$svg    = pmpro_testimonials_get_star( 'filled', $color );
+			$svg    = apply_filters( 'pmpro_testimonials_star_svg', $svg );
+			$stars .= $svg;
+		}
+		for ( $i = 1; $i <= ( 5 - $this->rating ); $i++ ) {
+			$svg    = pmpro_testimonials_get_star( '', $color );
 			$svg    = apply_filters( 'pmpro_testimonials_star_svg', $svg );
 			$stars .= $svg;
 		}
@@ -116,6 +114,16 @@ class PMPro_Testimonial {
 			$return = join( $separator, $this->tags );
 		}
 		return $return;
+	}
+
+	public function should_show( $element ) {
+		if ( empty( $this->elements ) || $this->elements === 'all' ) {
+			return true;
+		}
+		if ( is_array( $this->elements ) ) {
+			return in_array( $element, $this->elements );
+		}
+		return false;
 	}
 
 }

@@ -48,35 +48,37 @@ function pmpro_testimonials_cpt() {
 		'can_export'          => true,
 		'has_archive'         => false,
 		'exclude_from_search' => true,
-		'publicly_queryable'  => false,
+		'publicly_queryable'  => true,
 		'capability_type'     => 'page',
 		'show_in_rest'        => true,
 	);
 	register_post_type( 'pmpro_testimonial', $args );
 
-	// Register Category Taxonomy
+	// Register Category Taxonomy.
 	register_taxonomy(
 		'pmpro_testimonial_category',
 		'pmpro_testimonial',
 		array(
-			'label'        => esc_html__( 'Categories' ),
-			'hierarchical' => true,
-			'show_in_rest' => true,
-			'public'       => false,
-			'show_ui'      => true,
-			'show_in_menu' => true,
+			'label'              => esc_html__( 'Categories' ),
+			'hierarchical'       => true,
+			'show_in_rest'       => true,
+			'public'             => false,
+			'publicly_queryable' => true,
+			'show_ui'            => true,
+			'show_in_menu'       => true,
 		)
 	);
 	register_taxonomy(
 		'pmpro_testimonial_tag',
 		'pmpro_testimonial',
 		array(
-			'label'        => esc_html__( 'Tags' ),
-			'hierarchical' => false,
-			'show_in_rest' => true,
-			'public'       => false,
-			'show_ui'      => true,
-			'show_in_menu' => true,
+			'label'              => esc_html__( 'Tags' ),
+			'hierarchical'       => false,
+			'show_in_rest'       => true,
+			'public'             => false,
+			'publicly_queryable' => true,
+			'show_ui'            => true,
+			'show_in_menu'       => true,
 		)
 	);
 }
@@ -112,14 +114,6 @@ function pmpro_testimonials_meta_box() {
 
 	<table class="wp-list-table pmpro-metabox-items">
 		<tbody>
-			<tr>
-				<td>
-					<label for="pmpro_testimonials_name"><?php esc_html_e( 'Name', 'pmpro-testimonials' ); ?></label>
-				</td>
-				<td>
-					<input id="pmpro_testimonials_name" name="name" type="text" value="<?php echo esc_attr( $name ); ?>" />
-				</td>
-			</tr>
 			<tr>
 				<td>
 					<label for="pmpro_testimonials_job_title"><?php esc_html_e( 'Job Title', 'pmpro-testimonials' ); ?></label>
@@ -200,11 +194,6 @@ function pmpro_testimonials_save_meta( $post_id, $post ) {
 		return;
 	}
 
-	// Save Name
-	if ( isset( $_POST['name'] ) ) {
-		update_post_meta( $post_id, '_name', sanitize_text_field( $_POST['name'] ) );
-	}
-
 	// Save Job Title
 	if ( isset( $_POST['job_title'] ) ) {
 		update_post_meta( $post_id, '_job_title', sanitize_text_field( $_POST['job_title'] ) );
@@ -275,7 +264,7 @@ function pmpro_testimonials_get_started() {
  */
 function pmpro_testimonials_enter_title_here( $title, $post ) {
 	if ( 'pmpro_testimonial' === $post->post_type ) {
-		return __( 'Testimonial title...', 'pmpro-testimonials' );
+		return __( 'Enter name', 'pmpro-testimonials' );
 	}
 	return $title;
 }

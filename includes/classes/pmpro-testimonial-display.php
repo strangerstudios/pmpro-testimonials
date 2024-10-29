@@ -8,6 +8,8 @@ class PMPro_Testimonial_Display {
 	private $order        = 'rand';
 	private $orderby      = 'ASC';
 	private $layout       = 'default';
+	private $style        = '';
+	private $elements     = 'all';
 
 	function __construct( $atts = array() ) {
 
@@ -54,11 +56,22 @@ class PMPro_Testimonial_Display {
 			$this->layout = $atts['layout'];
 		}
 
+		if ( ! empty( $atts['style'] ) ) {
+			$this->style = $atts['style'];
+		}
+
+		if ( ! empty( $atts['elements'] ) ) {
+			if ( ! is_array( $atts['elements'] ) ) {
+				$atts['elements'] = array_map( 'trim', explode( ',', $atts['elements'] ) );
+			}
+			$this->elements = $atts['elements'];
+		}
+
 	}
 
-	public function display( $echo = true ) {
+	public function get_testimonials() {
 
-		// Query testimonials.
+				// Query testimonials.
 		$args = array(
 			'post_type' => 'pmpro_testimonial',
 			'tax_query' => array(),
@@ -72,13 +85,25 @@ class PMPro_Testimonial_Display {
 				$args['posts_per_page'] = $this->limit;
 			}
 			if ( ! empty( $this->categories ) ) {
+				// If we have integers, look by term_id. Otherwise by slug.
+				if ( is_integer( $this->categories[0] ) ) {
+					$field = 'term_id';
+				} else {
+					$field = 'slug';
+				}
 				$args['tax_query'][] = array(
 					'taxonomy' => 'pmpro_testimonial_category',
-					'field'    => 'slug',
+					'field'    => $field,
 					'terms'    => $this->categories,
 				);
 			}
 			if ( ! empty( $this->tags ) ) {
+				// If we have integers, look by term_id. Otherwise by slug.
+				if ( is_integer( $this->tags[0] ) ) {
+					$field = 'term_id';
+				} else {
+					$field = 'slug';
+				}
 				$args['tax_query'][] = array(
 					'taxonomy' => 'pmpro_testimonial_tag',
 					'field'    => 'slug',
@@ -87,22 +112,35 @@ class PMPro_Testimonial_Display {
 			}
 		}
 
-		$args = apply_filters( 'pmpro_testimonials_query_args', $args );
+		$args         = apply_filters( 'pmpro_testimonials_query_args', $args );
+		$query        = new WP_Query( $args );
+		$testimonials = array();
+		while ( $query->have_posts() ) :
+			$query->the_post();
+			$testimonials[] = new PMPro_Testimonial( get_the_ID() );
+		endwhile;
+		wp_reset_postdata();
+		return $testimonials;
+
+	}
+
+	public function display( $echo = tru ) {
+
+		$testimonials = $this->get_testimonials();
+
+		if ( empty( $testimonials ) ) {
+			return '';
+		}
 
 		$html = '<div class="pmpro_testimonials pmpro_testimonials__' . esc_attr( $this->layout ) . '">';
 
-		$query = new WP_Query( $args );
+		foreach ( $testimonials as $testimonial ) {
 
-		while ( $query->have_posts() ) :
-			$query->the_post();
+			$html .= '<div class="pmpro_testimonial">';
+			$html .= $this->get_layout( $testimonial );
+			$html .= '</div>';
 
-			$testimonial = new PMPro_Testimonial( get_the_ID() );
-			$html       .= '<div class="pmpro_testimonial">';
-			$html       .= $this->get_layout( $testimonial );
-			$html       .= '</div>';
-
-		endwhile;
-		wp_reset_postdata();
+		}
 
 		$html .= '</div>';
 
@@ -121,11 +159,28 @@ class PMPro_Testimonial_Display {
 		$layout_path = PMPRO_TESTIMONIALS_DIR . '/layouts/' . $this->layout . '.php';
 
 		if ( file_exists( $layout_path ) ) {
+			$display = $this;
 			include $layout_path;
 		}
 
 		$output = ob_get_clean();
 		return $output;
+
+	}
+
+	public function should_show( $element ) {
+
+		if ( empty( $this->elements ) ) {
+			return true;
+		} elseif ( is_array( $this->elements ) ) {
+			if ( in_array( 'all', $this->elements ) ) {
+				return true;
+			} else {
+				return in_array( $element, $this->elements );
+			}
+		}
+
+		return false;
 
 	}
 
