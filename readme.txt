@@ -3,7 +3,7 @@ Contributors: strangerstudios, paidmembershipspro, sccr410
 Tags: membership, pmpro, testimonials, reviews
 Requires at least: 5.2
 Tested up to: 6.6.2
-Stable tag: 0.3
+Stable tag: 0.3.1
 Requires PHP: 7.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -49,6 +49,9 @@ Please visit [our support site at https://www.paidmembershipspro.com](http://www
 
 
 == Changelog ==
+
+= 0.3.1 =
+* Change: Empty testimonials landing page in admin
 
 = 0.3 =
 * Remove title field
