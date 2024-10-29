@@ -3,7 +3,7 @@
  * Plugin Name: Paid Memberships Pro - Testimonials
  * Plugin URI: https://www.paidmembershipspro.com/add-ons/testimonials/
  * Description: Adds a testimonials CPT with options for displaying on the frontend of your membership site.
- * Version: 0.3
+ * Version: 0.3.1
  * Author: Paid Memberships Pro
  * Author URI: https://www.paidmembershipspro.com
  * Text Domain: pmpro-testimonials
@@ -12,7 +12,7 @@
 
 defined( 'ABSPATH' ) || die( 'File cannot be accessed directly' );
 
-define( 'PMPRO_TESTIMONIALS_VERSION', '0.3' );
+define( 'PMPRO_TESTIMONIALS_VERSION', '0.3.1' );
 define( 'PMPRO_TESTIMONIALS_DIR', dirname( __FILE__ ) );
 define( 'PMPRO_TESTIMONIALS_BASENAME', plugin_basename( __FILE__ ) );
 define( 'PMPRO_TESTIMONIALS_URL', plugin_dir_url( __FILE__ ) );
