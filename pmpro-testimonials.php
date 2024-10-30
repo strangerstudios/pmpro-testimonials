@@ -3,16 +3,17 @@
  * Plugin Name: Paid Memberships Pro - Testimonials
  * Plugin URI: https://www.paidmembershipspro.com/add-ons/testimonials/
  * Description: Adds a testimonials CPT with options for displaying on the frontend of your membership site.
- * Version: 0.3.1
+ * Version: 0.1
  * Author: Paid Memberships Pro
  * Author URI: https://www.paidmembershipspro.com
  * Text Domain: pmpro-testimonials
  * Domain Path: /languages
+ * License: GPL-3.0
  */
 
 defined( 'ABSPATH' ) || die( 'File cannot be accessed directly' );
 
-define( 'PMPRO_TESTIMONIALS_VERSION', '0.3.1' );
+define( 'PMPRO_TESTIMONIALS_VERSION', '0.1' );
 define( 'PMPRO_TESTIMONIALS_DIR', dirname( __FILE__ ) );
 define( 'PMPRO_TESTIMONIALS_BASENAME', plugin_basename( __FILE__ ) );
 define( 'PMPRO_TESTIMONIALS_URL', plugin_dir_url( __FILE__ ) );
@@ -30,9 +31,8 @@ require_once PMPRO_TESTIMONIALS_DIR . '/includes/shortcodes/display.php';
 require_once PMPRO_TESTIMONIALS_DIR . '/includes/blocks.php';
 require_once PMPRO_TESTIMONIALS_DIR . '/includes/hooks.php';
 
-
 /**
- * Tie into GlotPress
+ * Load the languages folder for translations.
  *
  * @return void
  */

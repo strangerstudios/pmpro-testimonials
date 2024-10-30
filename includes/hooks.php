@@ -26,7 +26,7 @@ function pmpro_testimonial_featured_image_fallback( $html, $post_id, $post_thumb
 			}
 
 			// Our internal fallback image.
-			$fallback_image_url = PMPRO_TESTIMONIALS_URL . 'images/default-user.jpg';
+			$fallback_image_url = PMPRO_TESTIMONIALS_URL . 'images/default-user.png';
 			return '<img src="' . esc_url( $fallback_image_url ) . '" alt="' . esc_attr( $alt ) . '" style="' . esc_attr( $style ) . '" />';
 		}
 	}

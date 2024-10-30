@@ -1,70 +1,31 @@
 === Paid Memberships Pro - Testimonials ===
-Contributors: strangerstudios, paidmembershipspro, sccr410
+Contributors: strangerstudios, sccr410
 Tags: membership, pmpro, testimonials, reviews
-Requires at least: 5.2
+Requires at least: 5.4
 Tested up to: 6.6.2
-Stable tag: 0.3.1
+Stable tag: 0.1
 Requires PHP: 7.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Adds a testimonials CPT with options for displaying on the frontend of your membership site
+Adds a testimonials CPT with options to capture and display testimonials on the frontend of your membership site.
 
 == Description ==
 
+TBD
 
 == Installation ==
 
-Note: You must have [Paid Memberships Pro](https://wordpress.org/plugins/paid-memberships-pro/) installed and activated on your site.
-
-### Install PMPro Courses from within WordPress
-
-1. Visit the plugins page within your dashboard and select "Add New"
-1. Search for "PMPro Testimonials"
-1. Locate this plugin and click "Install"
-1. Activate "Paid Memberships Pro - Testimonials" through the "Plugins" menu in WordPress
-1. Go to "after activation" below.
-
-### Install PMPro Courses Manually
-
-1. Upload the `pmpro-testimonials` folder to the `/wp-content/plugins/` directory
-1. Activate "Paid Memberships Pro - Testimonials" through the "Plugins" menu in WordPress
-1. Go to "after activation" below.
-
-### After Activation: Configure Course Modules
-
-Coming soon!
+1. Upload the `pmpro-testimonials` directory to the `/wp-content/plugins/` directory of your site.
+1. Activate the plugin through the 'Plugins' menu in WordPress.
 
 == Frequently Asked Questions ==
 
 = I found a bug in the plugin. =
 
-Please post it in the issues section of GitHub and we'll fix it as soon as we can. Thanks for helping. [https://github.com/strangerstudios/pmpro-testimonials/issues](https://github.com/strangerstudios/pmpro-testimonials/issues)
-
-= I need help installing, configuring, or customizing the plugin. =
-
-Please visit [our support site at https://www.paidmembershipspro.com](http://www.paidmembershipspro.com/) for more documentation and our support forums.
-
-== Screenshots ==
-
+Please post it in the issues section of GitHub and we'll fix it as soon as we can. Thanks for helping. https://github.com/strangerstudios/pmpro-testimonials/issues
 
 == Changelog ==
 
-= 0.3.1 =
-* Change: Empty testimonials landing page in admin
-
-= 0.3 =
-* Remove title field
-* Set Name as post_title, always required
-* Job title after company in shortcode form
-* Testimonials Query Block + Inner blocks (name, content, job title, company, star rating)
-* Default star color in general settings
-* Fallback testimonial image in general settings
-* Filter featured images for testimonials to fallback to gravatar and then settings image
-
-= 0.2 =
-* Add star color setting
-* Preset user name/email in form submission if user logged in
-
-= 0.1 =
-* Initial plugin setup: Admin settings, form submission, basic view
+= 0.1 - TBD =
+* Initial release.
