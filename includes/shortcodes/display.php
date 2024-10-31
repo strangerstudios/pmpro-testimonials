@@ -80,7 +80,7 @@ add_shortcode( 'pmpro_testimonial_rating', 'pmpro_testimonial_rating_shortcode' 
 function pmpro_testimonial_star_rating_shortcode( $atts ) {
 	$testimonial = $GLOBALS['current_pmpro_testimonial'];
 	$html        = '<div class="pmpro_testimonial__star_rating" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">';
-	$html       .= esc_html( $testimonial->get_stars() );
+	$html       .= $testimonial->get_stars();
 	$html       .= '<meta itemprop="ratingValue" content="' . esc_attr( $testimonial->get_rating() ) . '" />';
 	$html       .= '<meta itemprop="bestRating" content="5" />';
 	$html       .= '<meta itemprop="worstRating" content="1" />';
