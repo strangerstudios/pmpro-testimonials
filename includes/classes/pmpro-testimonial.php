@@ -2,7 +2,6 @@
 class PMPro_Testimonial {
 
 	private $id;
-	private $title;
 	private $testimonial;
 	private $name;
 	private $rating = 0;
@@ -19,13 +18,18 @@ class PMPro_Testimonial {
 
 		$this->id          = intval( $id );
 		$this->post_data   = get_post( $this->id );
-		$this->title       = $this->post_data->post_title;
+		$this->name        = $this->post_data->post_title;
 		$this->testimonial = $this->post_data->post_content;
 
 	}
 
-	function get_name() {
-		return $this->title;
+	function get_name( $link = false ) {
+		if ( $link && $this->name ) {
+			$output = $this->get_url( true, true, $this->name );
+		} else {
+			$output = $this->name;
+		}
+		return $output;
 	}
 
 	function get_testimonial() {
@@ -64,11 +68,16 @@ class PMPro_Testimonial {
 		return $this->job_title;
 	}
 
-	function get_company() {
+	function get_company( $link = false ) {
 		if ( empty( $this->company ) ) {
 			$this->company = get_post_meta( $this->id, '_company', true );
 		}
-		return $this->company;
+		if ( $link && $this->company ) {
+			$output = $this->get_url( true, true, $this->company );
+		} else {
+			$output = $this->company;
+		}
+		return $output;
 	}
 
 	function get_url( $linked = false, $new_window = true, $label = '' ) {
@@ -90,8 +99,12 @@ class PMPro_Testimonial {
 		return $this->url;
 	}
 
-	function get_image() {
-		return 'Coming soon!';
+	function get_image( $size = 'thumbnail' ) {
+		if ( has_post_thumbnail( $this->id ) ) {
+			$image_id = get_post_thumbnail_id( $this->id );
+			return wp_get_attachment_image( $image_id, $size );
+		}
+		return false;
 	}
 
 	function get_categories( $separator = ', ' ) {

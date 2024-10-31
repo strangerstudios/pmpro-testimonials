@@ -51,7 +51,7 @@ function Edit({
 
   // Access specific metadata fields
   const company = meta ? meta._company : '';
-  const companyUrl = meta ? meta._url : '';
+  const url = meta ? meta._url : '';
 
   // Update the toggle control in InspectorControls
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
@@ -59,7 +59,7 @@ function Edit({
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Link Settings', 'pmpro-testimonials'),
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Enable Link to Company URL', 'pmpro-testimonials'),
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Enable Link to URL', 'pmpro-testimonials'),
           checked: linkEnabled,
           onChange: value => setAttributes({
             linkEnabled: value
@@ -68,8 +68,8 @@ function Edit({
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
       ...blockProps,
-      children: linkEnabled && companyUrl ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-        href: companyUrl,
+      children: linkEnabled && url ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+        href: url,
         target: "_blank",
         rel: "noopener noreferrer",
         children: company || (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('No company provided', 'pmpro-testimonials')
