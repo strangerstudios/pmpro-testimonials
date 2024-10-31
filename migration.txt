@@ -1,0 +1,57 @@
+/*
+Migrate the posts to the new post type
+testimonials-widget => pmpro_testimonial
+*/
+
+UPDATE wp_posts
+SET post_type = 'pmpro_testimonial'
+WHERE post_type = 'testimonials-widget';
+
+
+/*
+Change the metadata keys
+testimonials-widget-company => _company
+testimonials-widget-email => _email
+testimonials-widget-rating => _rating
+testimonials-widget-title => _job_title
+testimonials-widget-url => _url
+*/
+
+UPDATE wp_postmeta
+SET meta_key = '_company'
+WHERE meta_key = 'testimonials-widget-company';
+
+UPDATE wp_postmeta
+SET meta_key = '_email'
+WHERE meta_key = 'testimonials-widget-email';
+
+UPDATE wp_postmeta
+SET meta_key = '_rating'
+WHERE meta_key = 'testimonials-widget-rating';
+
+UPDATE wp_postmeta
+SET meta_key = '_job_title'
+WHERE meta_key = 'testimonials-widget-title';
+
+UPDATE wp_postmeta
+SET meta_key = '_url'
+WHERE meta_key = 'testimonials-widget-url';
+
+/*
+Take old author meta and make it the post title
+*/
+
+UPDATE wp_posts AS p
+INNER JOIN wp_postmeta AS pm ON p.ID = pm.post_id
+SET p.post_title = pm.meta_value
+WHERE pm.meta_key = 'testimonials-widget-author';
+
+
+/*
+Change widget testimonial category/tag to new
+THIS IS BEST DONE MANUALLY because testimonials widget reused post categories/tags instead of custom taxonomies
+
+* Step 1: Identify the term IDs used in the testimonials widget plugin
+* Step 2: Go to the wp_term_taxonomy table and find the respective rows
+* Step 3: Change the relevant taxonomies from "category" to "pmpro_testimonial_category" and "post_tag" to "pmpro_testimonial_tag"
+*/
