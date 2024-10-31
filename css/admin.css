@@ -1,6 +1,4 @@
 /* Empty CPT */
-.pmpro--cpt-empty { padding: 15vh 100px; text-align: center; }
-.pmpro--cpt-empty h2 { font-size: 30px; font-weight: bold; }
-.pmpro--cpt-empty a { text-decoration: none; }
-
-span.dashicons { display: inline-block; vertical-align: middle; margin-right: 3px; }
+.post-type-pmpro_testimonial .pmpro-new-install h2:before {
+	content: "\f155";
+}

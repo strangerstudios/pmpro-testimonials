@@ -246,12 +246,12 @@ add_action( 'wp', 'pmpro_testimonials_testimonial_check' );
 
 function pmpro_testimonials_get_started() {
 	?>
-	<div class="pmpro-testimonials pmpro--cpt-empty">
-		<span class="dashicons dashicons-star-filled" style="font-size: 50px; height: 50px;"></span>
-		<h2><?php esc_html_e( 'You do not have any testimonials yet', 'pmpro-testimonials' ); ?></h2>
-		<a href="<?php echo admin_url( 'post-new.php?post_type=pmpro_testimonial' ); ?>" class="button button-primary button-hero"><?php esc_html_e( 'Add a Testimonial', 'pmpro-testimonials' ); ?></a>
-		<a href="https://www.paidmembershipspro.com/add-ons/testimonials/?utm_source=plugin&utm_medium=pmpro-testimonials-admin&utm_campaign=add-ons" class="button button-hero"><?php esc_html_e( 'Read Testimonials Add On Docs', 'pmpro-testimonials' ); ?></a>
-	</div>
+	<div class="pmpro-new-install">
+		<h2><?php esc_html_e( 'Manage Testimonials', 'pmpro-testimonials' ); ?></h2>
+		<h4><?php esc_html_e( 'Capture testimonials from your PMPro members for the overall membership site or for specific membership levels.', 'pmpro-testimonials' ); ?></h4>
+		<a href="<?php echo admin_url( 'post-new.php?post_type=pmpro_testimonial' ); ?>" class="button-primary"><?php esc_html_e( 'Add a Testimonial', 'pmpro-testimonials' ); ?></a>
+		<a href="https://www.paidmembershipspro.com/add-ons/testimonials/?utm_source=plugin&utm_medium=pmpro-testimonials-admin&utm_campaign=add-ons" class="button"><?php esc_html_e( 'Read Testimonials Add On Docs', 'pmpro-testimonials' ); ?></a>
+	</div> <!-- end pmpro-new-install -->
 	<?php
 }
 

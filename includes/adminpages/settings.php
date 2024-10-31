@@ -66,6 +66,7 @@
 								'pmpro_testimonials_confirmation_message',
 								array(
 									'textarea_name' => 'pmpro_testimonials_confirmation_message',
+									'textarea_rows'	=> 3,
 								)
 							);
 							?>
