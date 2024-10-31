@@ -10,6 +10,7 @@ class PMPro_Testimonial_Display {
 	private $layout       = 'default';
 	private $style        = '';
 	private $elements     = 'all';
+	private $columns      = 1;
 
 	function __construct( $atts = array() ) {
 
@@ -67,6 +68,10 @@ class PMPro_Testimonial_Display {
 			$this->elements = $atts['elements'];
 		}
 
+		if ( ! empty( $atts['columns'] ) ) {
+			$this->columns = $atts['columns'];
+		}
+
 	}
 
 	public function get_testimonials() {
@@ -75,6 +80,8 @@ class PMPro_Testimonial_Display {
 		$args = array(
 			'post_type' => 'pmpro_testimonial',
 			'tax_query' => array(),
+			'order'     => $order,
+			'orderby'   => $orderby,
 		);
 
 		if ( ! empty( $this->testimonials ) ) {
@@ -124,7 +131,7 @@ class PMPro_Testimonial_Display {
 
 	}
 
-	public function display( $echo = tru ) {
+	public function display( $echo = true ) {
 
 		$testimonials = $this->get_testimonials();
 
@@ -132,7 +139,7 @@ class PMPro_Testimonial_Display {
 			return '';
 		}
 
-		$html = '<div class="pmpro_testimonials pmpro_testimonials__' . esc_attr( $this->layout ) . '">';
+		$html = '<div class="pmpro pmpro_testimonials pmpro_testimonials__' . esc_attr( $this->layout ) . '" style="--pmpro-testimonial-columns: ' . esc_attr( $this->columns ) . '"><div class="pmpro_section">';
 
 		foreach ( $testimonials as $testimonial ) {
 
@@ -142,7 +149,7 @@ class PMPro_Testimonial_Display {
 
 		}
 
-		$html .= '</div>';
+		$html .= '</div></div>';
 
 		if ( $echo ) {
 			echo $html;

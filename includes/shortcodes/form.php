@@ -6,7 +6,7 @@
  */
 function pmpro_testimonials_shortcode_form( $atts ) {
 	// Set default values for categories, tags, required fields, and dropdown display.
-	$atts            = shortcode_atts(
+	$atts = shortcode_atts(
 		array(
 			'categories'        => '',  // category slugs, comma-separated
 			'tags'              => '',  // tag slugs, comma-separated
@@ -17,8 +17,6 @@ function pmpro_testimonials_shortcode_form( $atts ) {
 		$atts,
 		'pmpro_testimonials_form'
 	);
-	$required_fields = array_map( 'trim', explode( ',', $atts['required_fields'] ) );
-
 	$form = new PMPro_Testimonial_Form( $atts );
 	return $form->display( false );
 

@@ -11,6 +11,12 @@
   "icon": "admin-users",
   "description": "Name from the testimonial",
   "example": {},
+  "attributes": {
+    "linkEnabled": {
+      "type": "boolean",
+      "default": false
+    }
+  },
   "supports": {
     "html": false,
     "color": {
