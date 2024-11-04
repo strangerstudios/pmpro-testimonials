@@ -1,12 +1,11 @@
 <?php
-function pmpro_testimonials_get_star( $status = '', $fill_color = 'none', $atts = array() ) {
+function pmpro_testimonials_get_star( $status = '', $star_color = 'none', $atts = array() ) {
 	$classes = array( 'pmpro_star' );
-	$fill    = '';
 	if ( $status == 'filled' ) {
 		$classes[] = 'filled';
-		$style     = 'fill: ' . esc_attr( $fill_color ) . '; stroke: ' . esc_attr( $fill_color ) . ';';
+		$style     = 'fill:' . esc_attr( $star_color ) . ';stroke: ' . esc_attr( $star_color ) . ';';
 	} else {
-		$style = 'fill:none;stroke:#CCC;';
+		$style = 'fill:none;stroke:var(--pmpro--color--border--variation);';
 	}
 	$attributes = '';
 	if ( ! empty( $atts ) && is_array( $atts ) ) {

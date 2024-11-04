@@ -83,30 +83,16 @@ class PMPro_Testimonial_Form {
 						<div class="pmpro_card">
 							<div class="pmpro_card_content">
 								<legend class="pmpro_form_legend">
-									<h2 class="pmpro_form_heading pmpro_font-large"><?php esc_html_e( 'Submit Testimonial', 'pmpro-testimonials' ); ?></h2>
+									<h2 class="pmpro_form_heading pmpro_font-large"><?php esc_html_e( 'Submit Your Testimonial', 'pmpro-testimonials' ); ?></h2>
 								</legend>
 								<div class="pmpro_form_fields">
 									<?php
-									/*
-									// Title field
-									$title_field = new PMPro_Field(
-										'testimonial_title',
-										'text',
-										array(
-											'label'        => 'Title',
-											'required'     => in_array( 'title', $this->required_fields ),
-											'showrequired' => 'label',
-										)
-									);
-									$title_field->displayAtCheckout();
-									*/
-
 									// Testimonial field
 									$title_field = new PMPro_Field(
 										'testimonial',
 										'textarea',
 										array(
-											'label'        => 'Testimonial',
+											'label'        => __( 'Testimonial', 'pmpro-testimonials' ),
 											'required'     => true,
 											'showrequired' => 'label',
 										)
@@ -133,7 +119,7 @@ class PMPro_Testimonial_Form {
 										'display_name',
 										'text',
 										array(
-											'label'        => 'Name',
+											'label'        => __( 'Name', 'pmpro-testimonials' ),
 											'required'     => true,
 											'showrequired' => 'label',
 										)
@@ -145,7 +131,7 @@ class PMPro_Testimonial_Form {
 										'job_title',
 										'text',
 										array(
-											'label'        => 'Job Title',
+											'label'        => __( 'Job Title', 'pmpro-testimonials' ),
 											'required'     => in_array( 'job_title', $this->required_fields ),
 											'showrequired' => 'label',
 										)
@@ -157,7 +143,7 @@ class PMPro_Testimonial_Form {
 										'company',
 										'text',
 										array(
-											'label'        => 'Company',
+											'label'        => __( 'Company', 'pmpro-testimonials' ),
 											'required'     => in_array( 'company', $this->required_fields ),
 											'showrequired' => 'label',
 										)
@@ -169,7 +155,7 @@ class PMPro_Testimonial_Form {
 										'user_email',
 										'text',
 										array(
-											'label'        => 'Email',
+											'label'        => __( 'Email', 'pmpro-testimonials' ),
 											'required'     => in_array( 'email', $this->required_fields ),
 											'showrequired' => 'label',
 										)
@@ -181,7 +167,7 @@ class PMPro_Testimonial_Form {
 										'url',
 										'text',
 										array(
-											'label'        => 'Website URL',
+											'label'        => __( 'URL', 'pmpro-testimonials' ),
 											'required'     => in_array( 'url', $this->required_fields ),
 											'showrequired' => 'label',
 										)
@@ -195,7 +181,7 @@ class PMPro_Testimonial_Form {
 											'testimonial_category',
 											'select',
 											array(
-												'label'   => 'Category',
+												'label'   => __( 'Category', 'pmpro-testimonials' ),
 												'options' => wp_list_pluck(
 													get_terms(
 														array(
@@ -219,7 +205,7 @@ class PMPro_Testimonial_Form {
 											'testimonial_tags',
 											'select2',
 											array(
-												'label'   => 'Tags',
+												'label'   => __( 'Tags', 'pmpro-testimonials' ),
 												'options' => wp_list_pluck(
 													get_terms(
 														array(

@@ -2,6 +2,7 @@
 class PMPro_Testimonial_Display {
 
 	private $testimonials = array();
+	private $testimonial = '';
 	private $categories   = array();
 	private $tags         = array();
 	private $limit        = 3;
@@ -13,11 +14,20 @@ class PMPro_Testimonial_Display {
 
 	function __construct( $atts = array() ) {
 
-		if ( ! empty( $atts['ids'] ) ) {
-			if ( ! is_array( $atts['ids'] ) ) {
-				$atts['ids'] = array_map( 'trim', explode( ',', $atts['ids'] ) );
+		if ( ! empty( $atts['testimonials'] ) ) {
+			if ( ! is_array( $atts['testimonials'] ) ) {
+				$atts['testimonials'] = array_map( 'trim', explode( ',', $atts['testimonials'] ) );
 			}
-			$this->testimonials = $atts['ids'];
+			$this->testimonials = $atts['testimonials'];
+		}
+
+		if ( ! empty( $atts['testimonial'] ) ) {
+			// If there is a specific testimonial, add it to the array if the array exists or create it.
+			if ( ! empty( $this->testimonials ) ) {
+				$this->testimonials[] = $atts['testimonial'];
+			} else {
+				$this->testimonials = array( $atts['testimonial'] );
+			}
 		}
 
 		if ( ! empty( $atts['categories'] ) ) {
@@ -132,11 +142,11 @@ class PMPro_Testimonial_Display {
 			return '';
 		}
 
-		$html = '<div class="pmpro_testimonials pmpro_testimonials__' . esc_attr( $this->layout ) . '">';
+		$html = '<div class="' . esc_attr( pmpro_get_element_class( 'pmpro pmpro_testimonials pmpro_testimonials__' . $this->layout . ' pmpro_testimonials__' . $this->layout ) ) . '">';
 
 		foreach ( $testimonials as $testimonial ) {
 
-			$html .= '<div class="pmpro_testimonial">';
+			$html .= '<div id="' . esc_attr( 'pmpro_testimonial-' . $testimonial->get_id() ) . '" class="' . esc_attr( pmpro_get_element_class( 'pmpro_card pmpro_testimonial', 'pmpro_testimonial-' . $testimonial->get_id() ) ) . '">';
 			$html .= $this->get_layout( $testimonial );
 			$html .= '</div>';
 

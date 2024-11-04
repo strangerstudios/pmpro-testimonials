@@ -4,9 +4,6 @@
 <?php if ( $display->should_show( 'rating' ) ) : ?>
 	<div class="pmpro_testimonial__rating">Rating: <?php echo $testimonial->get_rating(); ?></div>
 <?php endif; ?>
-<?php if ( $display->should_show( 'title' ) ) : ?>
-	<div class="pmpro_testimonial__title">Title: <?php echo $testimonial->get_title(); ?></div>
-<?php endif; ?>
 <?php if ( $display->should_show( 'testimonial' ) ) : ?>
 	<div class="pmpro_testimonial__testimonial">Testimonial: <?php echo $testimonial->get_testimonial(); ?></div>
 <?php endif; ?>

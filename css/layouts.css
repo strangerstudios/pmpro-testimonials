@@ -1,0 +1,56 @@
+/**
+ * Layout custom styles for the Paid Memberships Pro - Testimonials Add On
+ */
+.pmpro_testimonial {
+
+	blockquote, cite {
+		background: transparent;
+		border: 0;
+		box-shadow: none;
+		box-sizing: border-box;
+		color: inherit;
+		letter-spacing: normal;
+		margin: 0;
+		padding: 0;
+		font-size: inherit;
+		font-weight: inherit;
+		font-style: normal;
+		text-align: left;
+		text-shadow: none;
+		text-transform: none;
+		vertical-align: baseline;
+	}
+
+}
+
+.pmpro_testimonials__default {
+
+	.pmpro_testimonial__rating_stars {
+		margin-top: var(--pmpro--base--spacing--medium);
+	}
+
+	cite {
+		align-items: center;
+		display: flex;
+		flex-direction: row-reverse;
+		font-weight: 700;
+		gap: var(--pmpro--base--spacing--medium);
+		justify-content: flex-end;
+		margin-top: var(--pmpro--base--spacing--medium);
+
+		a {
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+
+		img {
+			border-radius: 50%;
+			height: 96px;
+			width: 96px;
+		}
+	}
+
+}

@@ -1,3 +1,13 @@
-.pmpro_star_rating { display: inline-flex; }
-.pmpro_star { width: 24px; height: 24px; fill: none; stroke: #ccc; cursor: pointer; transition: fill 0.3s; }
-.pmpro_star.filled { fill: var(--pmpro--testimonials--star); stroke: var(--pmpro--testimonials--star); }
+.pmpro_star_rating {
+	display: inline-flex;
+}
+.pmpro_star {
+	fill: none;
+	height: 24px;
+	stroke: var(--pmpro--color--border);
+	width: 24px;
+}
+.pmpro_star.filled {
+	fill: var(--pmpro--testimonials--star);
+	stroke: var(--pmpro--testimonials--star);
+}

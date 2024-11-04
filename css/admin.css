@@ -2,3 +2,8 @@
 .post-type-pmpro_testimonial .pmpro-new-install h2:before {
 	content: "\f155";
 }
+
+/* CPT single edit screen */
+#pmpro_testimonials.postbox .form-table input {
+	width: 100%;
+}

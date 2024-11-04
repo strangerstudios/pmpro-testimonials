@@ -80,7 +80,7 @@ function pmpro_testimonials_enqueue_stars( $method = 'form', $star_color = '' ) 
 	wp_enqueue_style( 'pmpro-testimonials-stars', PMPRO_TESTIMONIALS_URL . 'css/stars-' . $method . '.css', '', PMPRO_TESTIMONIALS_VERSION, 'screen' );
 	// Set custom star color CSS variable.
 	if ( empty( $star_color ) ) {
-		$star_color = get_option( 'pmpro_testimonials_star_color', '#ffd700' );
+		$star_color = empty( get_option( 'pmpro_testimonials_star_color' ) ) ? '#ffd700' : get_option( 'pmpro_testimonials_star_color' );
 	}
 	$star_css = ':root { --pmpro--testimonials--star: ' . esc_attr( $star_color ) . '; }';
 	wp_add_inline_style( 'pmpro-testimonials-stars', $star_css );

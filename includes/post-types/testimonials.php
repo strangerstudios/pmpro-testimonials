@@ -112,45 +112,45 @@ function pmpro_testimonials_meta_box() {
 	$rating    = get_post_meta( $post->ID, '_rating', true );
 	?>
 
-	<table class="wp-list-table pmpro-metabox-items">
+	<table class="form-table">
 		<tbody>
 			<tr>
-				<td>
+				<th scope="row">
 					<label for="pmpro_testimonials_job_title"><?php esc_html_e( 'Job Title', 'pmpro-testimonials' ); ?></label>
-				</td>
+				</th>
 				<td>
 					<input id="pmpro_testimonials_job_title" name="job_title" type="text" value="<?php echo esc_attr( $job_title ); ?>" />
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<th scope="row">
 					<label for="pmpro_testimonials_company"><?php esc_html_e( 'Company', 'pmpro-testimonials' ); ?></label>
-				</td>
+				</th>
 				<td>
 					<input id="pmpro_testimonials_company" name="company" type="text" value="<?php echo esc_attr( $company ); ?>" />
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<th scope="row">
 					<label for="pmpro_testimonials_email"><?php esc_html_e( 'Email', 'pmpro-testimonials' ); ?></label>
-				</td>
+				</th>
 				<td>
 					<input id="pmpro_testimonials_email" name="email" type="email" value="<?php echo esc_attr( $email ); ?>" />
-					<br /><span class="description"><?php esc_html_e( 'Used to pull in their Gravatar, but will not be shown publicly.', 'pmpro-testimonials' ); ?></span>
+					<br /><span class="description"><?php esc_html_e( "Used to optionally display the member's avatar via Gravatar (not shown publicly).", 'pmpro-testimonials' ); ?></span>
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<th scope="row">
 					<label for="pmpro_testimonials_url"><?php esc_html_e( 'URL', 'pmpro-testimonials' ); ?></label>
-				</td>
+				</th>
 				<td>
 					<input id="pmpro_testimonials_url" name="url" type="url" value="<?php echo esc_url( $url ); ?>" />
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<th scope="row">
 					<label for="pmpro_testimonials_rating"><?php esc_html_e( 'Rating', 'pmpro-testimonials' ); ?></label>
-				</td>
+				</th>
 				<td>
 					<div id="pmpro_testimonials_rating" class="pmpro_star_rating" data-rating="<?php echo esc_attr( $rating ); ?>">
 						<input type="hidden" name="rating" value="<?php echo esc_attr( $rating ); ?>" />

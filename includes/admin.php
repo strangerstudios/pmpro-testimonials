@@ -71,8 +71,8 @@ add_filter( 'plugin_action_links_' . PMPRO_TESTIMONIALS_BASENAME, 'pmpro_testimo
 function pmpro_testimonials_plugin_row_meta( $links, $file ) {
 	if ( strpos( $file, 'pmpro-testimonials.php' ) !== false ) {
 		$new_links = array(
-			'<a href="' . esc_url( 'https://www.paidmembershipspro.com/add-ons/testimonials/' ) . '" title="' . esc_attr__( 'View Documentation', 'pmpro' ) . '">' . esc_html__( 'Docs', 'pmpro-testimonials' ) . '</a>',
-			'<a href="' . esc_url( 'https://www.paidmembershipspro.com/support/' ) . '" title="' . esc_attr__( 'Visit Customer Support Forum', 'pmpro' ) . '">' . esc_html__( 'Support', 'pmpro-testimonials' ) . '</a>',
+			'<a href="' . esc_url( 'https://www.paidmembershipspro.com/add-ons/testimonials/' ) . '" title="' . esc_attr__( 'View Documentation', 'pmpro-testimonials' ) . '">' . esc_html__( 'Docs', 'pmpro-testimonials' ) . '</a>',
+			'<a href="' . esc_url( 'https://www.paidmembershipspro.com/support/' ) . '" title="' . esc_attr__( 'Visit Customer Support Forum', 'pmpro-testimonials' ) . '">' . esc_html__( 'Support', 'pmpro-testimonials' ) . '</a>',
 		);
 		$links     = array_merge( $links, $new_links );
 	}

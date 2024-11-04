@@ -24,6 +24,10 @@ class PMPro_Testimonial {
 
 	}
 
+	function get_id() {
+		return $this->id;
+	}
+
 	function get_name() {
 		return $this->title;
 	}
@@ -39,18 +43,26 @@ class PMPro_Testimonial {
 		return $this->rating;
 	}
 
-	function get_stars( $color = '' ) {
+	function get_stars() {
+		// Get the rating if it's not set.
 		if ( empty( $this->rating ) ) {
 			$this->get_rating();
 		}
-		$stars = '';
+
+		// Return empty string if no rating.
+		if ( empty( $this->rating ) ) {
+			return '';
+		}
+
+		// Build the stars.
+		$stars = '<span class="screen-reader-text">' . sprintf( __( 'Rating: %d out of 5', 'pmpro-testimonials' ), esc_html( $this->rating ) ) . '</span>';
 		for ( $i = 1; $i <= $this->rating; $i++ ) {
-			$svg    = pmpro_testimonials_get_star( 'filled', $color );
+			$svg    = pmpro_testimonials_get_star( 'filled', 'var(--pmpro--testimonials--star)' );
 			$svg    = apply_filters( 'pmpro_testimonials_star_svg', $svg );
 			$stars .= $svg;
 		}
 		for ( $i = 1; $i <= ( 5 - $this->rating ); $i++ ) {
-			$svg    = pmpro_testimonials_get_star( '', $color );
+			$svg    = pmpro_testimonials_get_star( '', 'var(--pmpro--testimonials--star)' );
 			$svg    = apply_filters( 'pmpro_testimonials_star_svg', $svg );
 			$stars .= $svg;
 		}
@@ -69,6 +81,13 @@ class PMPro_Testimonial {
 			$this->company = get_post_meta( $this->id, '_company', true );
 		}
 		return $this->company;
+	}
+
+	function get_url_raw() {
+		if ( empty( $this->url ) ) {
+			$this->url = get_post_meta( $this->id, '_url', true );
+		}
+		return $this->url;
 	}
 
 	function get_url( $linked = false, $new_window = true, $label = '' ) {
@@ -91,7 +110,15 @@ class PMPro_Testimonial {
 	}
 
 	function get_image() {
-		return 'Coming soon!';
+		// Get the featured image, then the gravatar from the email, then the default image.
+		$image = get_the_post_thumbnail( $this->id, array( 96, 96 ) );
+		if ( empty( $image ) ) {
+			$image = get_avatar( $this->email, 96 );
+		}
+		if ( empty( $image ) ) {
+			$image = '<img src="' . PMPRO_TESTIMONIALS_URL . 'images/default-avatar.png" alt />';
+		}
+		return $image;
 	}
 
 	function get_categories( $separator = ', ' ) {
