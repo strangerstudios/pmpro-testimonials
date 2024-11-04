@@ -120,6 +120,6 @@ add_shortcode( 'pmpro_testimonial_company', 'pmpro_testimonial_company_shortcode
 
 function pmpro_testimonial_url_shortcode( $atts ) {
 	$testimonial = $GLOBALS['current_pmpro_testimonial'];
-	return '<span class="pmpro_testimonial__url">' . esc_url( $testimonial->get_url() ) . '</span>';
+	return '<span class="' . esc_attr( pmpro_get_element_class( "pmpro_testimonial__url" ) ) . '">' . esc_url( $testimonial->get_url() ) . '</span>';
 }
 add_shortcode( 'pmpro_testimonial_url', 'pmpro_testimonial_url_shortcode' );

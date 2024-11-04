@@ -2,7 +2,6 @@
 class PMPro_Testimonial {
 
 	private $id;
-	private $title;
 	private $testimonial;
 	private $name;
 	private $rating = 0;
@@ -19,7 +18,7 @@ class PMPro_Testimonial {
 
 		$this->id          = intval( $id );
 		$this->post_data   = get_post( $this->id );
-		$this->title       = $this->post_data->post_title;
+		$this->name        = $this->post_data->post_title;
 		$this->testimonial = $this->post_data->post_content;
 
 	}
@@ -76,11 +75,16 @@ class PMPro_Testimonial {
 		return $this->job_title;
 	}
 
-	function get_company() {
+	function get_company( $link = false ) {
 		if ( empty( $this->company ) ) {
 			$this->company = get_post_meta( $this->id, '_company', true );
 		}
-		return $this->company;
+		if ( $link && $this->company ) {
+			$output = $this->get_url( true, true, $this->company );
+		} else {
+			$output = $this->company;
+		}
+		return $output;
 	}
 
 	function get_url_raw() {
@@ -109,16 +113,12 @@ class PMPro_Testimonial {
 		return $this->url;
 	}
 
-	function get_image() {
-		// Get the featured image, then the gravatar from the email, then the default image.
-		$image = get_the_post_thumbnail( $this->id, array( 96, 96 ) );
-		if ( empty( $image ) ) {
-			$image = get_avatar( $this->email, 96 );
+	function get_image( $size = 'thumbnail' ) {
+		if ( has_post_thumbnail( $this->id ) ) {
+			$image_id = get_post_thumbnail_id( $this->id );
+			return wp_get_attachment_image( $image_id, $size );
 		}
-		if ( empty( $image ) ) {
-			$image = '<img src="' . PMPRO_TESTIMONIALS_URL . 'images/default-avatar.png" alt />';
-		}
-		return $image;
+		return false;
 	}
 
 	function get_categories( $separator = ', ' ) {
