@@ -29,7 +29,7 @@
 		margin-top: var(--pmpro--base--spacing--medium);
 	}
 
-	cite {
+	.pmpro_testimonial__author {
 		align-items: center;
 		display: flex;
 		flex-direction: row-reverse;

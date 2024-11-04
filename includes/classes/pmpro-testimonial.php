@@ -28,7 +28,7 @@ class PMPro_Testimonial {
 	}
 
 	function get_name() {
-		return $this->title;
+		return $this->name;
 	}
 
 	function get_testimonial() {

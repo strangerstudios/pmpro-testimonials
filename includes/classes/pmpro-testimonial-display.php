@@ -86,7 +86,11 @@ class PMPro_Testimonial_Display {
 
 	public function get_testimonials() {
 
-				// Query testimonials.
+		// Set up some variables.
+		$order   = $this->order;
+		$orderby = $this->orderby;
+
+		// Query testimonials.
 		$args = array(
 			'post_type' => 'pmpro_testimonial',
 			'tax_query' => array(),
@@ -153,7 +157,7 @@ class PMPro_Testimonial_Display {
 
 		foreach ( $testimonials as $testimonial ) {
 
-			$html .= '<div id="' . esc_attr( 'pmpro_testimonial-' . $testimonial->get_id() ) . '" class="' . esc_attr( pmpro_get_element_class( 'pmpro_card pmpro_testimonial', 'pmpro_testimonial-' . $testimonial->get_id() ) ) . '">';
+			$html .= '<div id="' . esc_attr( 'pmpro_testimonial-' . $testimonial->get_id() ) . '" class="' . esc_attr( pmpro_get_element_class( 'pmpro_testimonial', 'pmpro_testimonial-' . $testimonial->get_id() ) ) . '">';
 			$html .= $this->get_layout( $testimonial );
 			$html .= '</div>';
 
