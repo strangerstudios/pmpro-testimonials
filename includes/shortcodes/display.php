@@ -5,15 +5,15 @@ function pmpro_testimonials_shortcode_display( $atts, $content = '' ) {
 	$atts = shortcode_atts(
 		array(
 			'testimonials' => '',  // ids of specific testimonials, comma-separated
-			'testimonial' => '',  // id of a specific testimonial
-			'style'	   => '',  // design style to use
+			'testimonial'  => '',  // id of a specific testimonial
+			'style'        => '',  // design style to use
 			'categories'   => '',  // category slugs, comma-separated
-			'tags'		 => '',  // tag slugs, comma-separated
-			'limit'		=> '',  // max testimonials to show
-			'order'		=> '',  // ASC/DESC
-			'orderby'	  => '',  // 'title', 'name', 'rand', 'date'
-			'layout'	  => '',  // Layout to use
-			'elements'	=> 'all',  // Elements to show, comma-separated
+			'tags'         => '',  // tag slugs, comma-separated
+			'limit'        => '',  // max testimonials to show
+			'order'        => '',  // ASC/DESC
+			'orderby'      => '',  // 'title', 'name', 'rand', 'date'
+			'layout'       => '',  // Layout to use
+			'elements'     => 'all',  // Elements to show, comma-separated
 		),
 		$atts,
 		'pmpro_testimonials_display'
@@ -30,14 +30,15 @@ function pmpro_testimonials_display_custom( $atts, $content = '' ) {
 	$atts = shortcode_atts(
 		array(
 			'testimonials' => '',  // ids of specific testimonials, comma-separated
-			'style'	   => '',  // design style to use
+			'testimonial'  => '',  // id of a specific testimonial
+			'style'        => '',  // design style to use
 			'categories'   => '',  // category slugs, comma-separated
-			'tags'		 => '',  // tag slugs, comma-separated
-			'limit'		=> '',  // max testimonials to show
-			'order'		=> '',  // ASC/DESC
-			'orderby'	  => '',  // 'title', 'name', 'rand', 'date'
-			'layout'	  => 'default',  // Layout to use
-			'elements'	=> 'all',  // Elements to show, comma-separated
+			'tags'         => '',  // tag slugs, comma-separated
+			'limit'        => '',  // max testimonials to show
+			'order'        => '',  // ASC/DESC
+			'orderby'      => '',  // 'title', 'name', 'rand', 'date'
+			'layout'       => 'default',  // Layout to use
+			'elements'     => 'all',  // Elements to show, comma-separated
 		),
 		$atts,
 		'pmpro_testimonials_display_custom'
@@ -85,7 +86,7 @@ add_shortcode( 'pmpro_testimonial_rating', 'pmpro_testimonial_rating_shortcode' 
 function pmpro_testimonial_star_rating_shortcode( $atts ) {
 	$testimonial = $GLOBALS['current_pmpro_testimonial'];
 	$html        = '<span class="' . esc_attr( pmpro_get_element_class( "pmpro_testimonial__star_rating" ) ) . '" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">';
-	$html       .= esc_html( $testimonial->get_stars() );
+	$html       .= $testimonial->get_stars();
 	$html       .= '<meta itemprop="ratingValue" content="' . esc_attr( $testimonial->get_rating() ) . '" />';
 	$html       .= '<meta itemprop="bestRating" content="5" />';
 	$html       .= '<meta itemprop="worstRating" content="1" />';
@@ -102,7 +103,7 @@ add_shortcode( 'pmpro_testimonial_content', 'pmpro_testimonial_content_shortcode
 
 function pmpro_testimonial_name_shortcode( $atts ) {
 	$testimonial = $GLOBALS['current_pmpro_testimonial'];
-	return '<span class="' . esc_attr( pmpro_get_element_class( "pmpro_testimonial__name" ) ) . '" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">' . esc_html( $name ) . '</span></span>';
+	return '<span class="' . esc_attr( pmpro_get_element_class( "pmpro_testimonial__name" ) ) . '" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">' . esc_html( $testimonial->get_name() ) . '</span></span>';
 }
 add_shortcode( 'pmpro_testimonial_name', 'pmpro_testimonial_name_shortcode' );
 
