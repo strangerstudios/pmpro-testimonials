@@ -17,6 +17,7 @@ function register_pmpro_testimonial_query_variation() {
 		'pmpro-testimonials-query-variation',
 		PMPRO_TESTIMONIALS_URL . '/blocks/src/testimonials-query/index.js',
 		array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
+		PMPRO_TESTIMONIALS_VERSION
 	);
 }
 add_action( 'enqueue_block_editor_assets', 'register_pmpro_testimonial_query_variation' );
