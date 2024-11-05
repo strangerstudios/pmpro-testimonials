@@ -26,14 +26,14 @@
 			<div class="pmpro_section_inside">
 				<table class="form-table">
 					<tr valign="top">
-						<th scope="row"><?php esc_html_e( 'Type of Confirmation', 'pmpro' ); ?></th>
+						<th scope="row"><?php esc_html_e( 'Type of Confirmation', 'pmpro-testimonials' ); ?></th>
 						<td>
 							<select name="pmpro_testimonials_confirmation_type" id="pmpro_confirmation_type">
 								<option value="message" <?php selected( $confirmation_type, 'message' ); ?>>
-									<?php esc_html_e( 'Message', 'pmpro' ); ?>
+									<?php esc_html_e( 'Message', 'pmpro-testimonials' ); ?>
 								</option>
 								<option value="redirect" <?php selected( $confirmation_type, 'redirect' ); ?>>
-									<?php esc_html_e( 'Redirect', 'pmpro' ); ?>
+									<?php esc_html_e( 'Redirect', 'pmpro-testimonials' ); ?>
 								</option>
 							</select>
 						</td>
@@ -41,14 +41,14 @@
 
 					<!-- Redirect Page (shown only if redirect is selected) -->
 					<tr valign="top" class="pmpro-redirect-page" style="display: <?php echo ( 'redirect' === $confirmation_type ) ? 'table-row' : 'none'; ?>;">
-						<th scope="row"><?php esc_html_e( 'Select Redirect Page', 'pmpro' ); ?></th>
+						<th scope="row"><?php esc_html_e( 'Select Redirect Page', 'pmpro-testimonials' ); ?></th>
 						<td>
 							<?php
 							wp_dropdown_pages(
 								array(
 									'name'              => 'pmpro_testimonials_redirect_page',
 									'selected'          => $redirect_page,
-									'show_option_none'  => __( 'Select a Page', 'pmpro' ),
+									'show_option_none'  => __( 'Select a Page', 'pmpro-testimonials' ),
 									'option_none_value' => '0',
 								)
 							);
@@ -58,7 +58,7 @@
 
 					<!-- Confirmation Message (shown only if message is selected) -->
 					<tr valign="top" class="pmpro-confirmation-message" style="display: <?php echo ( 'message' === $confirmation_type ) ? 'table-row' : 'none'; ?>;">
-						<th scope="row"><?php esc_html_e( 'Confirmation Message', 'pmpro' ); ?></th>
+						<th scope="row"><?php esc_html_e( 'Confirmation Message', 'pmpro-testimonials' ); ?></th>
 						<td>
 							<?php
 							wp_editor(
@@ -119,7 +119,7 @@
 		<?php submit_button(); ?>
 	</form>
 	<hr />
-	<p><a href="https://www.paidmembershipspro.com/add-ons/pmpro-testimonials/?utm_source=plugin&utm_medium=pmpro-testimonials-admin&utm_campaign=add-ons" target="_blank"><?php esc_html_e( 'Documentation', 'pmpro_courses' ); ?></a> | <a href="https://www.paidmembershipspro.com/support/?utm_source=plugin&utm_medium=pmpro-testimonials-admin&utm_campaign=support" target="_blank"><?php esc_html_e( 'Support', 'pmpro-testimonials' ); ?></a></p>
+	<p><a href="https://www.paidmembershipspro.com/add-ons/pmpro-testimonials/?utm_source=plugin&utm_medium=pmpro-testimonials-admin&utm_campaign=add-ons" target="_blank"><?php esc_html_e( 'Documentation', 'pmpro-testimonials' ); ?></a> | <a href="https://www.paidmembershipspro.com/support/?utm_source=plugin&utm_medium=pmpro-testimonials-admin&utm_campaign=support" target="_blank"><?php esc_html_e( 'Support', 'pmpro-testimonials' ); ?></a></p>
 
 	<script type="text/javascript">
 

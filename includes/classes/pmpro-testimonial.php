@@ -54,6 +54,7 @@ class PMPro_Testimonial {
 		}
 
 		// Build the stars.
+		// translators: %d is the rating out of 5 (i.e. 4 out of 5).
 		$stars = '<span class="screen-reader-text">' . sprintf( __( 'Rating: %d out of 5', 'pmpro-testimonials' ), esc_html( $this->rating ) ) . '</span>';
 		for ( $i = 1; $i <= $this->rating; $i++ ) {
 			$svg    = pmpro_testimonials_get_star( 'filled', 'var(--pmpro--testimonials--star)' );

@@ -59,7 +59,7 @@ function pmpro_testimonials_cpt() {
 		'pmpro_testimonial_category',
 		'pmpro_testimonial',
 		array(
-			'label'              => esc_html__( 'Categories' ),
+			'label'              => esc_html__( 'Categories', 'pmpro-testimonials' ),
 			'hierarchical'       => true,
 			'show_in_rest'       => true,
 			'public'             => false,
@@ -72,7 +72,7 @@ function pmpro_testimonials_cpt() {
 		'pmpro_testimonial_tag',
 		'pmpro_testimonial',
 		array(
-			'label'              => esc_html__( 'Tags' ),
+			'label'              => esc_html__( 'Tags', 'pmpro-testimonials' ),
 			'hierarchical'       => false,
 			'show_in_rest'       => true,
 			'public'             => false,

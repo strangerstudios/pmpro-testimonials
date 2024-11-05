@@ -10,7 +10,7 @@ function pmpro_testimonials_activation() {
 		set_transient( 'pmpro-testimonials-admin-notice', true, 5 );
 		$confirmation_message = get_option( 'pmpro_testimonials_confirmation_message' );
 		if ( empty( $confirmation_message ) ) {
-			update_option( 'pmpro_testimonials_confirmation_message', __( 'Thank you for submitting your testimonial! It will be reviewed by an administrator.' ) );
+			update_option( 'pmpro_testimonials_confirmation_message', __( 'Thank you for submitting your testimonial! It will be reviewed by an administrator.', 'pmpro-testimonials' ) );
 		}
 		$star_color = get_option( 'pmpro_testimonials_star_color' );
 		if ( empty( $star_color ) ) {
