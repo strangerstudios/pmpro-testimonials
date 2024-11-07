@@ -1,11 +1,11 @@
 <?php
-// Used for the featured image block
+// Used for the featured image block.
 function pmpro_testimonial_featured_image_fallback( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
 
 	// Only modify for 'pmpro_testimonial' post type.
 	if ( empty( $post_thumbnail_id ) && get_post_type( $post_id ) === 'pmpro_testimonial' ) {
-		$testimonial = new PMPro_Testimonial( $post_id );
-		$html = $testimonial->get_image( $size, $attr );
+		$current_testimonial = new PMPro_Testimonial( $post_id );
+		$html = $current_testimonial->get_image( $size, $attr );
 	}
 
 	return $html;

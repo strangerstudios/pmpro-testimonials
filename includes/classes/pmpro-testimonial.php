@@ -122,38 +122,33 @@ class PMPro_Testimonial {
 	function get_image( $size = 'thumbnail', $attr = '' ) {
 
 		if ( has_post_thumbnail( $this->id ) ) {
-
 			$image_id = get_post_thumbnail_id( $this->id );
 			return wp_get_attachment_image( $image_id, $size, false, $attr );
-
-		} else {
-
-			// Use gravatar as fallback.
-			$email = $this->get_email();
-			$alt   = $this->get_name();
-			$style = ( ! empty( $attr['style'] ) ) ? $attr['style'] : '';
-
-			// Generate Gravatar URL if email is available
-			if ( $email ) {
-				$gravatar_url = get_avatar_url( strtolower( trim( $email ) ) );
-				if ( $gravatar_url ) {
-					// Gravatar exists, use it
-					return '<img src="' . esc_url( $gravatar_url ) . '" alt="' . esc_attr( $alt ) . '" style="' . esc_attr( $style ) . '" />';
-				}
-			}
-
-			// If no Gravatar, look for settings fallback image.
-			$default_image_id = get_option( 'pmpro_testimonials_default_image', '' );
-			if ( $default_image_id ) {
-				return wp_get_attachment_image( $default_image_id, $size, false, $attr );
-			}
-
-			// Our internal fallback image.
-			$fallback_image_url = PMPRO_TESTIMONIALS_URL . 'images/default-user.png';
-			return '<img src="' . esc_url( $fallback_image_url ) . '" alt="' . esc_attr( $alt ) . '" style="' . esc_attr( $style ) . '" />';
-
 		}
-		return false;
+
+		// Try gravatar as fallback.
+		$email = $this->get_email();
+		$alt   = $this->get_name();
+		$style = ( ! empty( $attr['style'] ) ) ? $attr['style'] : '';
+
+		// Generate Gravatar URL if email is available.
+		if ( $email ) {
+			$gravatar_url = get_avatar_url( strtolower( trim( $email ) ) );
+			if ( $gravatar_url ) {
+				// Gravatar exists, use it.
+				return '<img src="' . esc_url( $gravatar_url ) . '" alt="' . esc_attr( $alt ) . '" style="' . esc_attr( $style ) . '" />';
+			}
+		}
+
+		// If no Gravatar, look for settings fallback image.
+		$default_image_id = get_option( 'pmpro_testimonials_default_image', '' );
+		if ( $default_image_id ) {
+			return wp_get_attachment_image( $default_image_id, $size, false, $attr );
+		}
+
+		// Our internal fallback image.
+		$fallback_image_url = PMPRO_TESTIMONIALS_URL . 'images/default-user.png';
+		return '<img src="' . esc_url( $fallback_image_url ) . '" alt="' . esc_attr( $alt ) . '" style="' . esc_attr( $style ) . '" />';
 	}
 
 	function get_categories( $separator = ', ' ) {
