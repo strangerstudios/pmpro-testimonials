@@ -61,7 +61,7 @@ class PMPro_Testimonial_Form {
 
 			// Show or return the message.
 			if ( $echo ) {
-				echo $message;
+				echo wp_kses_post( $message );
 				return;
 			} else {
 				return $message;
@@ -76,7 +76,7 @@ class PMPro_Testimonial_Form {
 				<form method="post" action="" id="pmpro_form" class="pmpro_form">
 
 					<?php if ( ! empty( $this->errors ) ) { ?>
-						<div id="pmpro_message" class="pmpro_message pmpro_error"><?php echo join( '<br>', $this->errors ); ?></div>
+						<div id="pmpro_message" class="pmpro_message pmpro_error"><?php echo wp_kses_post( join( '<br>', $this->errors ) ); ?></div>
 					<?php } ?>
 
 					<fieldset id="pmpro_testimonials_submission" class="pmpro_form_fieldset">
@@ -242,7 +242,7 @@ class PMPro_Testimonial_Form {
 		$html = ob_get_clean();
 
 		if ( $echo ) {
-			echo $html;
+			echo wp_kses_post( $html );
 		} else {
 			return $html;
 		}
