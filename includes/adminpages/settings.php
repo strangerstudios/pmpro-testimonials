@@ -47,8 +47,8 @@
 							wp_dropdown_pages(
 								array(
 									'name'              => 'pmpro_testimonials_redirect_page',
-									'selected'          => $redirect_page,
-									'show_option_none'  => __( 'Select a Page', 'pmpro-testimonials' ),
+									'selected'          => intval( $redirect_page ),
+									'show_option_none'  => esc_html__( 'Select a Page', 'pmpro-testimonials' ),
 									'option_none_value' => '0',
 								)
 							);
