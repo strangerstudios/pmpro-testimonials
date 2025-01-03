@@ -7,7 +7,7 @@
 			$stars = $testimonial->get_stars();
 			if ( ! empty( $stars ) ) : ?>
 				<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_testimonial__rating_stars' ) ); ?>" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
-					<?php echo $testimonial->get_stars(); ?>
+					<?php echo wp_kses_post( $testimonial->get_stars() ); ?>
 					<meta itemprop="ratingValue" content="<?php echo esc_attr( $testimonial->get_rating() ); ?>" />
 					<meta itemprop="bestRating" content="5" />
 					<meta itemprop="worstRating" content="1" />
@@ -16,7 +16,7 @@
 		<?php endif; ?>
 
 		<?php if ( $display->should_show( 'testimonial' ) ) : ?>
-			<div itemprop="reviewBody"><?php echo $testimonial->get_testimonial(); ?></div>
+			<div itemprop="reviewBody"><?php echo wp_kses_post( $testimonial->get_testimonial() ); ?></div>
 		<?php endif; ?>
 
 		<?php

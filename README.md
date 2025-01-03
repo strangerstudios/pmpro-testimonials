@@ -1,18 +1,22 @@
 ![](pmpro-testimonials-banner.png)
 
-# [Paid Memberships Pro - Testimonials](TBD) #
+# [Paid Memberships Pro - Testimonials](https://www.paidmembershipspro.com/add-ons/testimonials) #
 [comment]: # (Generate badges from shields.io, only works for .org plugins to get other stats etc. We'd have to create our own endpoints for Premium plugins)
 
 ![License](https://img.shields.io/badge/license-GPL--3.0%2B-red.svg?style=flat-square)
 
 ### Welcome to the Paid Memberships Pro - Testimonials GitHub Repository
 
+The Testimonials Add On creates a testimonials custom post type with options for displaying member testimonials with review schema on the frontend of your membership site.
 
+Collect testimonials via a frontend form that includes fields for the person submitting their review, a dropdown or pre-selected category, and star rating.
 
-For more information please visit [TBD](TBD)
+Submitted testimonials are held in a pending or unpublished status so that the site admin can approve the content prior to submission.
+
+For more information please visit [www.paidmembershipspro.com/add-ons/testimonials](https://www.paidmembershipspro.com/add-ons/testimonials)
 
 ## Installation ##
-For detailed installation steps, visit the [documentation](TBD) page.
+For detailed installation steps, visit the [documentation](https://www.paidmembershipspro.com/add-ons/testimonials) page.
 
 1. Download the current development ZIP file directly: `https://github.com/strangerstudios/pmpro-testimonials/archive/dev.zip`
 

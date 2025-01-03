@@ -250,7 +250,7 @@ function pmpro_testimonials_get_started() {
 		<div class="pmpro-new-install">
 			<h2><?php esc_html_e( 'Manage Testimonials', 'pmpro-testimonials' ); ?></h2>
 			<h4><?php esc_html_e( 'Capture testimonials from your PMPro members for the entire site or for specific membership levels.', 'pmpro-testimonials' ); ?></h4>
-			<a href="<?php echo admin_url( 'post-new.php?post_type=pmpro_testimonial' ); ?>" class="button-primary"><?php esc_html_e( 'Create a Testimonial', 'pmpro-testimonials' ); ?></a>
+			<a href="<?php echo esc_url_raw( admin_url( 'post-new.php?post_type=pmpro_testimonial' ) ); ?>" class="button-primary"><?php esc_html_e( 'Create a Testimonial', 'pmpro-testimonials' ); ?></a>
 			<a href="https://www.paidmembershipspro.com/add-ons/testimonials/?utm_source=plugin&utm_medium=pmpro-testimonials-admin&utm_campaign=add-ons" class="button" target="_blank"><?php esc_html_e( 'Documentation: Testimonials Add On', 'pmpro-testimonials' ); ?></a>
 		</div> <!-- end pmpro-new-install -->
 	</div> <!-- end pmpro_admin -->

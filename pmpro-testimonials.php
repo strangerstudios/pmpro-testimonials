@@ -7,7 +7,6 @@
  * Author: Paid Memberships Pro
  * Author URI: https://www.paidmembershipspro.com
  * Text Domain: pmpro-testimonials
- * Domain Path: /languages
  * License: GPL-3.0
  */
 

@@ -53,7 +53,7 @@ add_action( 'admin_notices', 'pmpro_testimonials_admin_notice' );
 function pmpro_testimonials_plugin_action_links( $links ) {
 	if ( current_user_can( 'manage_options' ) ) {
 		$new_links = array(
-			'<a href="' . esc_url( get_admin_url( null, 'admin.php?page=pmpro-testimonials-settings' ) ) . '">' . esc_html__( 'Settings', 'pmpro-testimonials' ) . '</a>',
+			'<a href="' . esc_url( get_admin_url( null, 'edit.php?post_type=pmpro_testimonial&page=pmpro-testimonials-settings' ) ) . '">' . esc_html__( 'Settings', 'pmpro-testimonials' ) . '</a>',
 		);
 
 		$links = array_merge( $new_links, $links );
