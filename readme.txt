@@ -2,7 +2,7 @@
 Contributors: strangerstudios, sccr410
 Tags: membership, pmpro, testimonials, reviews
 Requires at least: 5.4
-Tested up to: 6.6.2
+Tested up to: 6.7
 Stable tag: 0.1
 Requires PHP: 7.4
 License: GPLv3 or later
