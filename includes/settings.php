@@ -7,11 +7,23 @@
  * Add a Testimonials page for settings under the Memberships menu.
  */
 function pmpro_testimonials_settings_page() {
-	// Course settings page under Memberships menu.
+	// Testimonials settings page under Memberships menu.
 	add_submenu_page( 'pmpro-dashboard', esc_html__( 'Paid Memberships Pro Testimonials - Settings', 'pmpro-testimonials' ), esc_html__( 'Testimonial Settings', 'pmpro-testimonials' ), 'manage_options', 'pmpro-testimonials-settings', 'pmpro_testimonials_settings' );
 	add_submenu_page( 'edit.php?post_type=pmpro_testimonial', esc_html__( 'Paid Memberships Pro Testimonials - Settings', 'pmpro-testimonials' ), esc_html__( 'Settings', 'pmpro-testimonials' ), 'manage_options', 'pmpro-testimonials-settings', 'pmpro_testimonials_settings' );
 }
 add_action( 'admin_menu', 'pmpro_testimonials_settings_page' );
+
+/**
+ * Redirect admin.php?page=pmpro-testimonials-settings
+ * to edit.php?post_type=pmpro_testimonial&page=pmpro-testimonials-settings
+ */
+function pmpro_testimonials_settings_redirect() {
+	if ( empty( $_GET['post_type'] ) && isset( $_GET['page'] ) && 'pmpro-testimonials-settings' === $_GET['page'] ) {
+		wp_safe_redirect( admin_url( 'edit.php?post_type=pmpro_testimonial&page=pmpro-testimonials-settings' ) );
+		exit;
+	}
+}
+add_action( 'admin_init', 'pmpro_testimonials_settings_redirect' );
 
 /**
  * Loads the settings page layout.
