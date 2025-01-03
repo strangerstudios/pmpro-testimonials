@@ -17,7 +17,7 @@
 	<div class="pmpro_testimonial__company">Company: <?php echo esc_html( $testimonial->get_company() ); ?></div>
 <?php endif; ?>
 <?php if ( $display->should_show( 'url' ) ) : ?>
-	<div class="pmpro_testimonial__url">URL: <?php echo esc_url( $testimonial->get_url() ); ?> / <?php echo $testimonial->get_url( true, true, 'Visit website' ); ?></div>
+	<div class="pmpro_testimonial__url">URL: <?php echo esc_url( $testimonial->get_url() ); ?> / <?php echo wp_kses_post( $testimonial->get_url( true, true, 'Visit website' ) ); ?></div>
 <?php endif; ?>
 <?php if ( $display->should_show( 'categories' ) ) : ?>
 	<div class="pmpro_testimonial__categories">Cats: <?php echo esc_html( $testimonial->get_categories() ); ?></div>
