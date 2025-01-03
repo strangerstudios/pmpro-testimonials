@@ -5,7 +5,7 @@
 	cursor: pointer;
 	fill: none;
 	height: 24px;
-	stroke: var(--pmpro--color--border);
+	stroke: var(--pmpro--color--border, #777);
 	transition: fill 0.3s;
 	width: 24px;
 }

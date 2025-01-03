@@ -42,6 +42,10 @@ class PMPro_Testimonial {
 		return $this->testimonial;
 	}
 
+	function get_date() {
+		return get_the_date( 'Y-m-d', $this->id );
+	}
+
 	function get_rating() {
 		if ( empty( $this->rating ) ) {
 			$this->rating = get_post_meta( $this->id, '_rating', true );
@@ -171,6 +175,16 @@ class PMPro_Testimonial {
 			$return = join( $separator, $this->tags );
 		}
 		return $return;
+	}
+
+	function get_review_schema_name() {
+		// translators: %1$s is the site name, %d is the rating, %3$s is the reviewer name.
+		return sprintf(
+			__( '%1$s Testimonial: %2$s out of 5 stars by %3$s', 'pmpro-testimonials' ),
+			esc_html( bloginfo('name') ),
+			esc_html( $this->get_rating() ),
+			esc_html( $this->name )
+		);
 	}
 
 	public function should_show( $element ) {

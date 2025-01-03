@@ -36,7 +36,7 @@ function pmpro_testimonials_cpt() {
 		'label'               => esc_html__( 'Testimonial', 'pmpro-testimonials' ),
 		'description'         => esc_html__( 'Testimonials from members.', 'pmpro-testimonials' ),
 		'labels'              => $labels,
-		'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields' ),
+		'supports'            => array( 'title', 'editor', 'thumbnail' ),
 		'hierarchical'        => true,
 		'public'              => false,
 		'menu_icon'           => 'dashicons-format-quote',
@@ -48,7 +48,7 @@ function pmpro_testimonials_cpt() {
 		'can_export'          => true,
 		'has_archive'         => false,
 		'exclude_from_search' => true,
-		'publicly_queryable'  => true,
+		'publicly_queryable'  => false,
 		'capability_type'     => 'page',
 		'show_in_rest'        => true,
 	);
