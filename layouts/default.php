@@ -1,8 +1,8 @@
 
 <div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_card' ) ); ?>" itemscope itemtype="http://schema.org/Review">
+	<meta itemprop="datePublished" content="<?php echo esc_attr( $testimonial->get_date() ); ?>" />
+	<meta itemprop="name" content="<?php echo esc_attr( $testimonial->get_review_schema_name() ); ?>" />
 	<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_card_content' ) ); ?>">
-		<blockquote>
-
 		<?php if ( $display->should_show( 'stars' ) ) :
 			$stars = $testimonial->get_stars();
 			if ( ! empty( $stars ) ) : ?>
@@ -107,7 +107,5 @@
 				echo wp_kses( $cite_html, $allowed_html );
 			endif;
 		?>
-
-</blockquote>
 
 </div> <!-- .pmpro_card_content -->
