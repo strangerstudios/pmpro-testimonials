@@ -113,7 +113,7 @@ class PMPro_Testimonial_Form {
 
 									// Rating field (Star Rating would still require custom JavaScript)
 									echo '<div class="pmpro_form_field pmpro_form_field-required">';
-									echo '<label for="rating">' . esc_html__( 'Rating', 'pmpro-testimonials' ) . ' <span class="pmpro_asterisk"> <abbr title="Required Field">*</abbr></label>';
+									echo '<label class="' . esc_attr__( pmpro_get_element_class ( 'pmpro_form_label' ) ) . '" for="rating">' . esc_html__( 'Rating', 'pmpro-testimonials' ) . ' <span class="pmpro_asterisk"> <abbr title="Required Field">*</abbr></label>';
 									echo '<div class="pmpro_star_rating">';
 									$rating_value = isset( $_POST['rating'] ) ? intval( $_POST['rating'] ) : 0;
 									for ( $i = 1; $i <= 5; $i++ ) {
