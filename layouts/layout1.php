@@ -1,5 +1,33 @@
 <?php if ( $display->should_show( 'stars' ) ) : ?>
-	<div class="pmpro_testimonial__rating_stars">Stars: <?php echo wp_kses_post( $testimonial->get_stars() ); ?></div>
+	<?php
+		$allowed_html = [
+			'div' => [
+				'class' => [],
+				'itemprop' => [],
+				'itemscope' => [],
+				'itemtype' => [],
+			],
+			'span' => [
+				'class' => [],
+			],
+			'svg' => [
+				'style' => [],
+				'class' => [],
+				'xmlns' => [],
+				'viewBox' => [],
+				'width' => [],
+				'height' => [],
+			],
+			'polygon' => [
+				'points' => [],
+			],
+			'meta' => [
+				'itemprop' => [],
+				'content' => [],
+			],
+		];
+	?>
+	<div class="pmpro_testimonial__rating_stars">Stars: <?php echo wp_kses( $testimonial->get_stars(), $allowed_html ); ?></div>
 <?php endif; ?>
 <?php if ( $display->should_show( 'rating' ) ) : ?>
 	<div class="pmpro_testimonial__rating">Rating: <?php echo esc_html( $testimonial->get_rating() ); ?></div>
