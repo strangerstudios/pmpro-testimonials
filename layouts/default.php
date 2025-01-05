@@ -8,8 +8,33 @@
 			if ( ! empty( $stars ) ) : ?>
 				<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_testimonial__rating_stars' ) ); ?>" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
 					<?php
-						//phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped - Escaped in get_stars().
-						echo $testimonial->get_stars();
+						$allowed_html = [
+							'div' => [
+								'class' => [],
+								'itemprop' => [],
+								'itemscope' => [],
+								'itemtype' => [],
+							],
+							'span' => [
+								'class' => [],
+							],
+							'svg' => [
+								'style' => [],
+								'class' => [],
+								'xmlns' => [],
+								'viewBox' => [],
+								'width' => [],
+								'height' => [],
+							],
+							'polygon' => [
+								'points' => [],
+							],
+							'meta' => [
+								'itemprop' => [],
+								'content' => [],
+							],
+						];
+						echo wp_kses( $testimonial->get_stars(), $allowed_html );
 					?>
 					<meta itemprop="ratingValue" content="<?php echo esc_attr( $testimonial->get_rating() ); ?>" />
 					<meta itemprop="bestRating" content="5" />
