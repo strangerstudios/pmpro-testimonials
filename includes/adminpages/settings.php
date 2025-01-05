@@ -1,3 +1,10 @@
+<?php
+	// Make sure PMPro is active.
+	if ( ! defined( 'PMPRO_DIR' ) ) {
+		echo "<p>" . esc_html__( 'Please activate Paid Memberships Pro to use the Testimonials Add On.', 'pmpro-testimonials' ) . "</p>";
+		return;
+	}
+?>
 <?php require_once PMPRO_DIR . '/adminpages/admin_header.php'; ?>
 
 	<h1>

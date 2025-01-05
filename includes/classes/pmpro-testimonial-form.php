@@ -68,6 +68,18 @@ class PMPro_Testimonial_Form {
 			}
 		}
 
+		// Must be running PMPro to show the form.
+		if ( ! class_exists( 'PMProField' ) ) {
+			$message = '<div id="pmpro_testimonials_error" class="pmpro_message pmpro_error">' . esc_html__( 'Please activate Paid Memberships Pro to use this form.', 'pmpro-testimonials' ) . '</div>';
+
+			if ( $echo ) {
+				echo wp_kses_post( $message );
+				return;
+			} else {
+				return $message;
+			}
+		}
+
 		// Start the form otherwise.
 		ob_start();
 		?>
