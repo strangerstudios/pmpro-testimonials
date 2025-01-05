@@ -108,4 +108,5 @@
 			endif;
 		?>
 
-</div> <!-- .pmpro_card_content -->
+	</div> <!-- .pmpro_card_content -->
+</div> <!-- .pmpro_card -->
