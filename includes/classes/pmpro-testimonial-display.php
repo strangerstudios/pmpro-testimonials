@@ -163,7 +163,7 @@ class PMPro_Testimonial_Display {
 
 		}
 
-		$html .= '</div></div>';
+		$html .= '</div>';
 
 		if ( $echo ) {
 			echo wp_kses_post( $html );
