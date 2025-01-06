@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Paid Memberships Pro - Testimonials
  * Plugin URI: https://www.paidmembershipspro.com/add-ons/testimonials/
- * Description: Adds a testimonials CPT with options for displaying on the frontend of your membership site.
+ * Description: Collect, approve, and display member testimonials with review schema on the frontend of your membership site.
  * Version: 0.1
  * Author: Paid Memberships Pro
  * Author URI: https://www.paidmembershipspro.com
@@ -27,7 +27,6 @@ require_once PMPRO_TESTIMONIALS_DIR . '/includes/admin.php';
 require_once PMPRO_TESTIMONIALS_DIR . '/includes/settings.php';
 require_once PMPRO_TESTIMONIALS_DIR . '/includes/shortcodes/form.php';
 require_once PMPRO_TESTIMONIALS_DIR . '/includes/shortcodes/display.php';
-require_once PMPRO_TESTIMONIALS_DIR . '/includes/blocks.php';
 require_once PMPRO_TESTIMONIALS_DIR . '/includes/hooks.php';
 
 /**
