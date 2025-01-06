@@ -44,9 +44,6 @@ class PMPro_Testimonial_Form {
 
 	public function display( $echo = true ) {
 
-		// Process it here so we can change what we output based on the result.
-		$this->process();
-
 		// If we are on the success message page, show it and bail.
 		if ( isset( $_GET['testimonial_success'] ) ) {
 			$message = get_option( 'pmpro_testimonials_confirmation_message' );
