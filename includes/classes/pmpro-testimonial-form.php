@@ -77,6 +77,9 @@ class PMPro_Testimonial_Form {
 			}
 		}
 
+		// Process again to get errors.
+		$this->process();
+
 		// Start the form otherwise.
 		ob_start();
 		?>
@@ -361,16 +364,16 @@ class PMPro_Testimonial_Form {
 
 				// Confirmation message or redirect.
 				$confirmation_type = get_option( 'pmpro_testimonials_confirmation_type' );
-				if ( $confirmation_type === 'message' ) {
-					$url = add_query_arg( 'testimonial_success', 1 );
-				} else {
+				if ( $confirmation_type === 'redirect' ) {
 					$redirect_page_id = get_option( 'pmpro_testimonials_redirect_page' );
-					$url              = get_permalink( $redirect_page_id );
+					$redirect_url              = get_permalink( $redirect_page_id );
+				} else {
+					$redirect_url = add_query_arg( 'testimonial_success', 1, get_permalink() );
 				}
 
 				do_action( 'pmpro_testimonial_success' );
 
-				wp_safe_redirect( $url );
+				wp_safe_redirect( $redirect_url );
 				exit;
 			}
 		}

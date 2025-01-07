@@ -37,4 +37,4 @@ function pmpro_testimonials_process_form_submission() {
 		$form->process();
 	}
 }
-add_action( 'init', 'pmpro_testimonials_process_form_submission' );
+add_action( 'wp', 'pmpro_testimonials_process_form_submission' );
