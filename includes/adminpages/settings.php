@@ -102,10 +102,6 @@
 						</td>
 					</tr>
 
-					<?php
-					// Retrieve the saved attachment ID for the selected image
-					?>
-
 					<tr valign="top">
 						<th scope="row"><?php esc_html_e( 'Default Testimonial Image', 'pmpro-testimonials' ); ?></th>
 						<td>

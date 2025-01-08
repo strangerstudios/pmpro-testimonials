@@ -50,11 +50,11 @@ class PMPro_Testimonial_Form {
 
 			// Set a default message if one is not in the settings for some reason.
 			if ( empty( $message ) ) {
-				$message = '<p>' . __( 'Thank you for submitting your testimonial! It will be reviewed by an administrator.', 'pmpro-testimonials' ) . '</p>';
+				$message = '<p>' . __( 'Thank you for sharing your testimonial. Our team will review your submission.', 'pmpro-testimonials' ) . '</p>';
 			}
 
 			// Wrap it in PMPro classes for styling.
-			$message = '<div id="pmpro_testimonials_success" class="pmpro_message pmpro_success">' . $message . '</div>';
+			$message = '<div id="pmpro_testimonials_success" class="' . esc_attr( pmpro_get_element_class( 'pmpro_message pmpro_success' ) ) . '">' . $message . '</div>';
 
 			// Show or return the message.
 			if ( $echo ) {
@@ -67,7 +67,7 @@ class PMPro_Testimonial_Form {
 
 		// Must be running PMPro to show the form.
 		if ( ! class_exists( 'PMPro_Field' ) ) {
-			$message = '<div id="pmpro_testimonials_error" class="pmpro_message pmpro_error">' . esc_html__( 'Please activate Paid Memberships Pro to use this form.', 'pmpro-testimonials' ) . '</div>';
+			$message = '<div id="pmpro_testimonials_error" class="' . esc_attr( pmpro_get_element_class( 'pmpro_message pmpro_error', 'pmpro_testimonials_error' ) ) . '">' . esc_html__( 'Please activate Paid Memberships Pro to use this form.', 'pmpro-testimonials' ) . '</div>';
 
 			if ( $echo ) {
 				echo wp_kses_post( $message );
@@ -83,21 +83,21 @@ class PMPro_Testimonial_Form {
 		// Start the form otherwise.
 		ob_start();
 		?>
-		<div class="pmpro">
-			<div class="pmpro_section">
-				<form method="post" action="" id="pmpro_form" class="pmpro_form">
+		<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro' ) ); ?>">
+			<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_section' ) ); ?>">
+				<form method="post" action="" id="pmpro_form" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form' ) ); ?>">
 
 					<?php if ( ! empty( $this->errors ) ) { ?>
-						<div id="pmpro_message" class="pmpro_message pmpro_error"><?php echo wp_kses_post( join( '<br>', $this->errors ) ); ?></div>
+						<div id="pmpro_message" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_message pmpro_error', 'pmpro_error' ) ); ?>" role="alert"><?php echo wp_kses_post( join( '<br>', $this->errors ) ); ?></div>
 					<?php } ?>
 
-					<fieldset id="pmpro_testimonials_submission" class="pmpro_form_fieldset">
-						<div class="pmpro_card">
-							<div class="pmpro_card_content">
-								<legend class="pmpro_form_legend">
-									<h2 class="pmpro_form_heading pmpro_font-large"><?php esc_html_e( 'Submit Your Testimonial', 'pmpro-testimonials' ); ?></h2>
+					<fieldset id="pmpro_testimonials_submission" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_fieldset' ) ); ?>">
+						<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_card' ) ); ?>">
+							<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_card_content' ) ); ?>">
+								<legend class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_legend' ) ); ?>">
+									<h2 class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_heading pmpro_font-large' ) ); ?>"><?php esc_html_e( 'Submit Your Testimonial', 'pmpro-testimonials' ); ?></h2>
 								</legend>
-								<div class="pmpro_form_fields">
+								<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_fields' ) ); ?>">
 									<?php
 									// Testimonial field
 									$title_field = new PMPro_Field(
@@ -112,13 +112,16 @@ class PMPro_Testimonial_Form {
 									$title_field->displayAtCheckout();
 
 									// Rating field (Star Rating would still require custom JavaScript)
-									echo '<div class="pmpro_form_field pmpro_form_field-required">';
-									echo '<label class="' . esc_attr__( pmpro_get_element_class ( 'pmpro_form_label' ) ) . '" for="rating">' . esc_html__( 'Rating', 'pmpro-testimonials' ) . ' <span class="pmpro_asterisk"> <abbr title="Required Field">*</abbr></label>';
-									echo '<div class="pmpro_star_rating">';
+									echo '<div class="' . esc_attr( pmpro_get_element_class( 'pmpro_form_field pmpro_form_field-required' ) ) . '">';
+									echo '<label class="' . esc_attr( pmpro_get_element_class( 'pmpro_form_label' ) ) . '" for="rating">' . esc_html__( 'Rating', 'pmpro-testimonials' ) . ' <span class="' . esc_attr( pmpro_get_element_class( 'pmpro_asterisk' ) ) . '"> <abbr title="' . esc_html__( 'Required Field', 'pmpro-testimonials' ) . '">*</abbr></span></label>';
+									echo '<div class="' . esc_attr( pmpro_get_element_class( 'pmpro_star_rating' ) ) . '">';
 									$rating_value = isset( $_POST['rating'] ) ? intval( $_POST['rating'] ) : 0;
 									for ( $i = 1; $i <= 5; $i++ ) {
-										$filled = ( $i <= $rating_value ) ? 'filled' : ''; // Add 'filled' class if previously selected
-										echo '<svg data-value="' . esc_attr( $i ) . '" class="pmpro_star ' . esc_attr( $filled ) . '" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+										// Build the selectors for the star.
+										$classes = array( 'pmpro_star' );
+										$classes[] = ( $i <= $rating_value ) ? 'filled' : ''; // Add 'filled' class if previously selected
+										$class = implode( ' ', array_unique( $classes ) );
+										echo '<svg data-value="' . esc_attr( $i ) . '" class="' . esc_attr( $class ) . '" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
 											<polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27" />
 										</svg>';
 									}
@@ -267,42 +270,45 @@ class PMPro_Testimonial_Form {
 
 			// Honeypot check.
 			if ( ! empty( $_POST['first_name'] ) ) {
-				$this->errors[] = esc_html__( 'There was an error submitting this form, please try again', 'pmpro-testimonials' );
+				$this->errors[] = esc_html__( 'There was an error submitting this form. Please try again.', 'pmpro-testimonials' );
 			}
 
 			// Check if required fields are present.
-			/*
-			if ( in_array( 'title', $this->required_fields ) && empty( $_POST['testimonial_title'] ) ) {
-				$this->errors[] = esc_html__( 'Title is required', 'pmpro-testimonials' );
-			}
-			*/
+			$error_fields = array();
 			if ( empty( $_POST['testimonial'] ) ) {
-				$this->errors[] = esc_html__( 'Testimonial is required', 'pmpro-testimonials' );
+				$error_fields[] = esc_html__( 'Testimonial', 'pmpro-testimonials' );
 			}
 			if ( empty( $_POST['rating'] ) ) {
-				$this->errors[] = esc_html__( 'Rating is required', 'pmpro-testimonials' );
+				$error_fields[] = esc_html__( 'Rating', 'pmpro-testimonials' );
 			}
 			if ( in_array( 'name', $this->required_fields ) && empty( $_POST['display_name'] ) ) {
-				$this->errors[] = esc_html__( 'Name is required', 'pmpro-testimonials' );
+				$error_fields[] = esc_html__( 'Name', 'pmpro-testimonials' );
 			}
 			if ( in_array( 'email', $this->required_fields ) && empty( $_POST['email'] ) ) {
-				$this->errors[] = esc_html__( 'Email is required', 'pmpro-testimonials' );
+				$error_fields[] = esc_html__( 'Email', 'pmpro-testimonials' );
 			}
 			if ( in_array( 'job_title', $this->required_fields ) && empty( $_POST['job_title'] ) ) {
-				$this->errors[] = esc_html__( 'Job Title is required', 'pmpro-testimonials' );
+				$error_fields[] = esc_html__( 'Job Title', 'pmpro-testimonials' );
 			}
 			if ( in_array( 'company', $this->required_fields ) && empty( $_POST['company'] ) ) {
-				$this->errors[] = esc_html__( 'Company is required', 'pmpro-testimonials' );
+				$error_fields[] = esc_html__( 'Company', 'pmpro-testimonials' );
 			}
 			if ( in_array( 'url', $this->required_fields ) && empty( $_POST['url'] ) ) {
-				$this->errors[] = esc_html__( 'Website URL is required', 'pmpro-testimonials' );
+				$error_fields[] = esc_html__( 'Website URL', 'pmpro-testimonials' );
+			}
+
+			if ( ! empty( $error_fields ) ) {
+				$this->errors[] = sprintf(
+					/* translators: %s is a comma-separated list of required fields. */
+					esc_html__( 'Please complete all required fields: %s.', 'pmpro-testimonials' ),
+					esc_html( implode( ', ', $error_fields ) )
+				);
 			}
 
 			// If there are errors, show them.
 			if ( empty( $this->errors ) ) {
 
 				// Sanitize form input.
-				// $title       = sanitize_text_field( $_POST['testimonial_title'] );
 				$testimonial = sanitize_textarea_field( $_POST['testimonial'] );
 				$name        = sanitize_text_field( $_POST['display_name'] );
 				$job_title   = sanitize_text_field( $_POST['job_title'] );
