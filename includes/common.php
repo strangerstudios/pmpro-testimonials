@@ -10,7 +10,7 @@ function pmpro_testimonials_get_star( $status = '', $star_color = 'none', $atts 
 		$classes[] = 'filled';
 		$style     = 'fill:' . esc_attr( $star_color ) . ';stroke: ' . esc_attr( $star_color ) . ';';
 	} else {
-		$style = 'fill:none;stroke:var(--pmpro--color--border--variation);';
+		$style = 'fill:none;stroke:var(--pmpro--color--border,#777);';
 	}
 	$attributes = '';
 	if ( ! empty( $atts ) && is_array( $atts ) ) {
@@ -51,4 +51,3 @@ function pmpro_testimonials_allowed_star_html(){
 
 	return apply_filters( 'pmpro_testimonials_allowed_star_html', $allowed_html );
 }
-

@@ -4,10 +4,10 @@
 .pmpro_star {
 	fill: none;
 	height: 24px;
-	stroke: var(--pmpro--color--border);
+	stroke: var(--pmpro--color--border, #777);
 	width: 24px;
 }
 .pmpro_star.filled {
-	fill: var(--pmpro--testimonials--star);
-	stroke: var(--pmpro--testimonials--star);
+	fill: var(--pmpro--testimonials--star, #ffd700);
+	stroke: var(--pmpro--testimonials--star, #ffd700);
 }

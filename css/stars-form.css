@@ -11,10 +11,10 @@
 }
 .pmpro_star:hover {
 	fill: none;
-	stroke: var(--pmpro--color--border);
+	stroke: var(--pmpro--color--border, #777);
 }
 .pmpro_star.filled,
 .pmpro_star:hover {
-	fill: var(--pmpro--testimonials--star);
-	stroke: var(--pmpro--testimonials--star);
+	fill: var(--pmpro--testimonials--star, #ffd700);
+	stroke: var(--pmpro--testimonials--star, #ffd700);
 }
