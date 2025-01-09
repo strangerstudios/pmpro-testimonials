@@ -23,7 +23,7 @@
 		$testimonial_image_id  = get_option( 'pmpro_testimonials_default_image', '' );
 		$testimonial_image_url = $testimonial_image_id ? wp_get_attachment_url( $testimonial_image_id ) : PMPRO_TESTIMONIALS_URL . 'images/default-user.png';
 		?>
-		<div id="pmpro-testimonials-submission-settings" class="pmpro_section" data-visibility="show" data-activated="true">
+		<div id="pmpro-testimonials-submission-settings" class="pmpro_section" data-visibility="shown" data-activated="true">
 			<div class="pmpro_section_toggle">
 				<button class="pmpro_section-toggle-button" type="button" aria-expanded="true">
 					<span class="dashicons dashicons-arrow-up-alt2"></span>
@@ -84,7 +84,7 @@
 			</div> <!-- end pmpro_section_inside -->
 		</div> <!-- end pmpro-testimonials-submission-settings -->
 
-		<div id="pmpro-testimonials-submission-settings" class="pmpro_section" data-visibility="show" data-activated="true">
+		<div id="pmpro-testimonials-submission-settings" class="pmpro_section" data-visibility="shown" data-activated="true">
 			<div class="pmpro_section_toggle">
 				<button class="pmpro_section-toggle-button" type="button" aria-expanded="true">
 					<span class="dashicons dashicons-arrow-up-alt2"></span>
@@ -121,7 +121,7 @@
 
 		<div id="pmpro-testimonials-shortcode-examples" class="pmpro_section" data-visibility="hidden" data-activated="false">
 			<div class="pmpro_section_toggle">
-				<button class="pmpro_section-toggle-button" type="button" aria-expanded="true">
+				<button class="pmpro_section-toggle-button" type="button" aria-expanded="false">
 					<span class="dashicons dashicons-arrow-down-alt2"></span>
 					<?php esc_html_e( 'Shortcode Examples', 'pmpro-testimonials' ); ?>
 				</button>
