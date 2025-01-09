@@ -130,7 +130,10 @@ class PMPro_Testimonial {
 			return wp_get_attachment_image( $image_id, $size, false, $attr );
 		}
 
+		// Set up some defaults.
 		$default_image_id = get_option( 'pmpro_testimonials_default_image', '' );
+		$alt   = $this->get_name();
+		$style = ( ! empty( $attr['style'] ) ) ? $attr['style'] : '';
 
 		// If we have an email address, get the user's gravatar.
 		$email = $this->get_email();
@@ -142,8 +145,6 @@ class PMPro_Testimonial {
 			$default_image_url = ! empty( $default_image_src[0] ) ? $default_image_src[0] : PMPRO_TESTIMONIALS_URL . 'images/default-user.png';
 
 			// Build attributes and request the avatar.
-			$alt   = $this->get_name();
-			$style = ( ! empty( $attr['style'] ) ) ? $attr['style'] : '';
 			$gravatar_url = get_avatar_url( $email, array( 'default' => $default_image_url ) );
 			if ( $gravatar_url ) {
 				return '<img src="' . esc_url( $gravatar_url ) . '" alt="' . esc_attr( $alt ) . '" style="' . esc_attr( $style ) . '" />';
