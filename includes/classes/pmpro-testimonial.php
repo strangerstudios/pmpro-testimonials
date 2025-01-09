@@ -124,33 +124,38 @@ class PMPro_Testimonial {
 	}
 
 	function get_image( $size = 'thumbnail', $attr = '' ) {
-
+		// Use the post's featured image if available.
 		if ( has_post_thumbnail( $this->id ) ) {
 			$image_id = get_post_thumbnail_id( $this->id );
 			return wp_get_attachment_image( $image_id, $size, false, $attr );
 		}
 
-		// Try gravatar as fallback.
-		$email = $this->get_email();
-		$alt   = $this->get_name();
-		$style = ( ! empty( $attr['style'] ) ) ? $attr['style'] : '';
+		$default_image_id = get_option( 'pmpro_testimonials_default_image', '' );
 
-		// Generate Gravatar URL if email is available.
+		// If we have an email address, get the user's gravatar.
+		$email = $this->get_email();
 		if ( $email ) {
-			$gravatar_url = get_avatar_url( strtolower( trim( $email ) ) );
+			$email = strtolower( trim( $email ) );
+
+			// Use the custom or default image as the fallback.
+			$default_image_src = wp_get_attachment_image_src( $default_image_id, 'thumbnail', false );
+			$default_image_url = ! empty( $default_image_src[0] ) ? $default_image_src[0] : PMPRO_TESTIMONIALS_URL . 'images/default-user.png';
+
+			// Build attributes and request the avatar.
+			$alt   = $this->get_name();
+			$style = ( ! empty( $attr['style'] ) ) ? $attr['style'] : '';
+			$gravatar_url = get_avatar_url( $email, array( 'default' => $default_image_url ) );
 			if ( $gravatar_url ) {
-				// Gravatar exists, use it.
 				return '<img src="' . esc_url( $gravatar_url ) . '" alt="' . esc_attr( $alt ) . '" style="' . esc_attr( $style ) . '" />';
 			}
 		}
 
-		// If no Gravatar, look for settings fallback image.
-		$default_image_id = get_option( 'pmpro_testimonials_default_image', '' );
+		// Use the site's default image.
 		if ( $default_image_id ) {
 			return wp_get_attachment_image( $default_image_id, $size, false, $attr );
 		}
 
-		// Our internal fallback image.
+		// Use the plugin's default image.
 		$fallback_image_url = PMPRO_TESTIMONIALS_URL . 'images/default-user.png';
 		return '<img src="' . esc_url( $fallback_image_url ) . '" alt="' . esc_attr( $alt ) . '" style="' . esc_attr( $style ) . '" />';
 	}
