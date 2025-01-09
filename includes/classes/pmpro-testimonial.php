@@ -123,42 +123,44 @@ class PMPro_Testimonial {
 		return $this->url;
 	}
 
-	function get_image( $size = 'thumbnail', $attr = '' ) {
+	function get_image( $size = 'thumbnail', $attr = array() ) {
+		$alt = esc_attr( $this->get_name() );
+
 		// Use the post's featured image if available.
 		if ( has_post_thumbnail( $this->id ) ) {
 			$image_id = get_post_thumbnail_id( $this->id );
+			$attr['alt'] = $alt;
 			return wp_get_attachment_image( $image_id, $size, false, $attr );
 		}
 
-		// Set up some defaults.
+		// Get default image options and attributes.
 		$default_image_id = get_option( 'pmpro_testimonials_default_image', '' );
-		$alt   = $this->get_name();
-		$style = ( ! empty( $attr['style'] ) ) ? $attr['style'] : '';
+		$default_image_url = $default_image_id
+			? wp_get_attachment_image_url( $default_image_id, $size )
+			: PMPRO_TESTIMONIALS_URL . 'images/default-user.png';
 
-		// If we have an email address, get the user's gravatar.
-		$email = $this->get_email();
-		if ( $email ) {
-			$email = strtolower( trim( $email ) );
+		$style = ! empty( $attr['style'] ) ? esc_attr( $attr['style'] ) : '';
 
-			// Use the custom or default image as the fallback.
-			$default_image_src = wp_get_attachment_image_src( $default_image_id, 'thumbnail', false );
-			$default_image_url = ! empty( $default_image_src[0] ) ? $default_image_src[0] : PMPRO_TESTIMONIALS_URL . 'images/default-user.png';
-
-			// Build attributes and request the avatar.
-			$gravatar_url = get_avatar_url( $email, array( 'default' => $default_image_url ) );
+		// If the user has an email, use Gravatar.
+		if ( $email = $this->get_email() ) {
+			$gravatar_url = get_avatar_url( strtolower( trim( $email ) ), array( 'default' => $default_image_url ) );
 			if ( $gravatar_url ) {
-				return '<img src="' . esc_url( $gravatar_url ) . '" alt="' . esc_attr( $alt ) . '" style="' . esc_attr( $style ) . '" />';
+				return sprintf(
+					'<img src="%s" alt="%s" style="%s" />',
+					esc_url( $gravatar_url ),
+					$alt,
+					$style
+				);
 			}
 		}
 
-		// Use the site's default image.
-		if ( $default_image_id ) {
-			return wp_get_attachment_image( $default_image_id, $size, false, $attr );
-		}
-
-		// Use the plugin's default image.
-		$fallback_image_url = PMPRO_TESTIMONIALS_URL . 'images/default-user.png';
-		return '<img src="' . esc_url( $fallback_image_url ) . '" alt="' . esc_attr( $alt ) . '" style="' . esc_attr( $style ) . '" />';
+		// Fallback to default image.
+		return sprintf(
+			'<img src="%s" alt="%s" style="%s" />',
+			esc_url( $default_image_url ),
+			$alt,
+			$style
+		);
 	}
 
 	function get_categories( $separator = ', ' ) {
