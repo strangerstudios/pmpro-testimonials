@@ -77,6 +77,7 @@
 								)
 							);
 							?>
+							<p class="description"><?php esc_html_e( 'This message will be displayed to the member after they submit a testimonial. If you clear this field, a default system message will be displayed.', 'pmpro-testimonials' ); ?></p>
 						</td>
 					</tr>
 
