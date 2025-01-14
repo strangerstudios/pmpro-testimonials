@@ -23,7 +23,7 @@
 		$testimonial_image_id  = get_option( 'pmpro_testimonials_default_image', '' );
 		$testimonial_image_url = $testimonial_image_id ? wp_get_attachment_url( $testimonial_image_id ) : PMPRO_TESTIMONIALS_URL . 'images/default-user.png';
 		?>
-		<div id="pmpro-testimonials-submission-settings" class="pmpro_section" data-visibility="show" data-activated="true">
+		<div id="pmpro-testimonials-submission-settings" class="pmpro_section" data-visibility="shown" data-activated="true">
 			<div class="pmpro_section_toggle">
 				<button class="pmpro_section-toggle-button" type="button" aria-expanded="true">
 					<span class="dashicons dashicons-arrow-up-alt2"></span>
@@ -77,6 +77,7 @@
 								)
 							);
 							?>
+							<p class="description"><?php esc_html_e( 'This message will be displayed to the member after they submit a testimonial. If you clear this field, a default system message will be displayed.', 'pmpro-testimonials' ); ?></p>
 						</td>
 					</tr>
 
@@ -84,7 +85,7 @@
 			</div> <!-- end pmpro_section_inside -->
 		</div> <!-- end pmpro-testimonials-submission-settings -->
 
-		<div id="pmpro-testimonials-submission-settings" class="pmpro_section" data-visibility="show" data-activated="true">
+		<div id="pmpro-testimonials-submission-settings" class="pmpro_section" data-visibility="shown" data-activated="true">
 			<div class="pmpro_section_toggle">
 				<button class="pmpro_section-toggle-button" type="button" aria-expanded="true">
 					<span class="dashicons dashicons-arrow-up-alt2"></span>
@@ -111,12 +112,44 @@
 							<input type="hidden" id="pmpro_testimonials_default_image" name="pmpro_testimonials_default_image" value="<?php echo esc_attr( $testimonial_image_id ); ?>" />
 							<button type="button" class="button" id="pmpro_testimonial_image_button"><?php esc_html_e( 'Select Image', 'pmpro-testimonials' ); ?></button>
 							<button type="button" class="button" id="pmpro_testimonial_image_remove"><?php esc_html_e( 'Remove Image', 'pmpro-testimonials' ); ?></button>
+							<p class="description"><?php esc_html_e( 'Note: The image must be hosted on a publicly accessible website. Images stored locally or in development environments may not load correctly.', 'pmpro-testimonials' ); ?></p>
 						</td>
 					</tr>
 
 				</table>
 			</div> <!-- end pmpro_section_inside -->
 		</div> <!-- end pmpro-testimonials-submission-settings -->
+
+		<div id="pmpro-testimonials-shortcode-examples" class="pmpro_section" data-visibility="hidden" data-activated="false">
+			<div class="pmpro_section_toggle">
+				<button class="pmpro_section-toggle-button" type="button" aria-expanded="false">
+					<span class="dashicons dashicons-arrow-down-alt2"></span>
+					<?php esc_html_e( 'Shortcode Examples', 'pmpro-testimonials' ); ?>
+				</button>
+			</div> <!-- end pmpro_section_toggle -->
+			<div class="pmpro_section_inside" style="display: none;">
+				<p>
+					<?php esc_html_e( 'Use the following shortcode examples to display testimonials in your membership site.', 'pmpro-testimonials' ); ?>
+					<a href="<?php echo esc_url( 'https://www.paidmembershipspro.com/add-ons/testimonials/?utm_source=plugin&utm_medium=pmpro-testimonials-settings&utm_campaign=pmpro-testimonials' ); ?>" target="_blank"><?php esc_html_e( 'Refer to the documentation for a complete list of shortcode attributes and more examples.', 'pmpro-testimonials' ); ?></a>
+				</p>
+				<table class="form-table">
+					<tr valign="top">
+						<th scope="row"><?php esc_html_e( 'Display Testimonials', 'pmpro-testimonials' ); ?></th>
+						<td>
+							<code>[pmpro_testimonials_display]</code>
+							<p class="description"><?php esc_html_e( 'Displays a list of testimonials or a single testimonial. You can customize the output using shortcode attributes such as "testimonials" (IDs), "categories", "tags", "limit", and more.', 'pmpro-testimonials' ); ?></p>
+						</td>
+					</tr>
+					<tr valign="top">
+						<th scope="row"><?php esc_html_e( 'Testimonial Submission Form', 'pmpro-testimonials' ); ?></th>
+						<td>
+							<code>[pmpro_testimonials_form]</code>
+							<p class="description"><?php esc_html_e( 'Displays a form for users to submit their testimonials. Customize fields and dropdowns using attributes such as "categories", "tags", and "required_fields".', 'pmpro-testimonials' ); ?></p>
+						</td>
+					</tr>
+				</table>
+			</div> <!-- end pmpro_section_inside -->
+		</div> <!-- end pmpro-testimonials-shortcode-examples -->
 
 		<?php wp_nonce_field( 'pmpro_testimonials_settings', 'pmpro_testimonials_settings' ); ?>
 		<?php submit_button(); ?>
