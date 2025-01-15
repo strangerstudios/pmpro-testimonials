@@ -136,5 +136,23 @@
 			endif;
 		?>
 
+		<?php
+			// Get data for the itemReviewed schema.
+			$site_title = get_bloginfo('name');
+			$schema_type = 'https://schema.org/' . get_option( 'pmpro_testimonials_schema_type', 'Service' );
+			$schema_name = sprintf(
+				/* translators: %s: Site title */
+				__( '%s Membership', 'pmpro-testimonials' ),
+				get_bloginfo( 'name' )
+			);
+			$schema_description = get_option( 'pmpro_testimonials_schema_description' );
+			if ( empty( $schema_description ) ) {
+				$schema_description = __( 'Access exclusive content and benefits with our memberships.', 'pmpro-testimonials' );
+			}
+		?>
+		<div itemprop="itemReviewed" itemscope itemtype="<?php echo esc_url( $schema_type ); ?>">
+			<meta itemprop="name" content="<?php echo esc_attr( $schema_name ); ?>" />
+			<meta itemprop="description" content="<?php echo esc_attr( $schema_description ); ?>" />
+		</div>
 	</div> <!-- .pmpro_card_content -->
 </div> <!-- .pmpro_card -->
