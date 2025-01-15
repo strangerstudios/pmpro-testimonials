@@ -44,6 +44,19 @@ function pmpro_testimonials_display_custom( $atts, $content = '' ) {
 		'pmpro_testimonials_display_custom'
 	);
 
+	// Get data for the itemReviewed schema.
+	$site_title = get_bloginfo('name');
+	$schema_type = 'https://schema.org/' . get_option( 'pmpro_testimonials_schema_type', 'Service' );
+	$schema_name = sprintf(
+		/* translators: %s: Site title */
+		__( '%s Membership', 'pmpro-testimonials' ),
+		get_bloginfo( 'name' )
+	);
+	$schema_description = get_option( 'pmpro_testimonials_schema_description' );
+	if ( empty( $schema_description ) ) {
+		$schema_description = __( 'Access exclusive content and benefits with our memberships.', 'pmpro-testimonials' );
+	}
+
 	$html = '';
 	$display = new PMPro_Testimonial_Display( $atts );
 	$testimonials = $display->get_testimonials();
@@ -55,6 +68,10 @@ function pmpro_testimonials_display_custom( $atts, $content = '' ) {
 			$GLOBALS['current_pmpro_testimonial'] = $testimonial;
 			$html .= do_shortcode( $content );
 			unset( $GLOBALS['current_pmpro_testimonial'] );
+			$html .= '<div itemprop="itemReviewed" itemscope itemtype="' . esc_url( $schema_type ) . '">';
+			$html .= '<meta itemprop="name" content="' . esc_attr( $schema_name ) . '" />';
+			$html .= '<meta itemprop="description" content="' . esc_attr( $schema_description ) . '" />';
+			$html .= '</div>';
 			$html .= '</div>';
 		}
 		$html .= '</div>';
