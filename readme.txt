@@ -33,5 +33,5 @@ Please post it in the issues section of GitHub and we'll fix it as soon as we ca
 
 == Changelog ==
 
-= 0.1 - TBD =
+= 0.1 - 2025-01-15 =
 * Initial release.

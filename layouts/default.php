@@ -1,12 +1,12 @@
 
-<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_card' ) ); ?>" itemscope itemtype="http://schema.org/Review">
+<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_card' ) ); ?>" itemscope itemtype="https://schema.org/Review">
 	<meta itemprop="datePublished" content="<?php echo esc_attr( $testimonial->get_date() ); ?>" />
 	<meta itemprop="name" content="<?php echo esc_attr( $testimonial->get_review_schema_name() ); ?>" />
 	<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_card_content' ) ); ?>">
 		<?php if ( $display->should_show( 'stars' ) ) :
 			$stars = $testimonial->get_stars();
 			if ( ! empty( $stars ) ) : ?>
-				<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_testimonial__rating_stars' ) ); ?>" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+				<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_testimonial__rating_stars' ) ); ?>" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
 					<?php
 						$allowed_html = [
 							'div' => [
@@ -77,7 +77,7 @@
 			$cite_html = empty( $cite['url'] ) ? $cite_html : $cite_html . '<a href="' . $cite['url'] . '" target="_blank" rel="noopener noreferrer">';
 			$cite_html = empty( $cite['name'] ) ? $cite_html : $cite_html . '<span class="' . esc_attr( pmpro_get_element_class( "pmpro_testimonial__name" ) ) . '" itemprop="name">' . $cite['name'] . '</span>';
 			$cite_html = empty( $cite['job_title'] ) ? $cite_html : $cite_html . ', ' . '<span class="' . esc_attr( pmpro_get_element_class( "pmpro_testimonial__job_title" ) ) . '" itemprop="jobTitle">' . $cite['job_title'] . '</span>';
-			$cite_html = empty( $cite['company'] ) ? $cite_html : $cite_html . ', ' . '<span class="' . esc_attr( pmpro_get_element_class( "pmpro_testimonial__company" ) ) . '" itemprop="affiliation" itemscope itemtype="http://schema.org/Organization"><span itemprop="name">' . $cite['company'] . '</span></span>';
+			$cite_html = empty( $cite['company'] ) ? $cite_html : $cite_html . ', ' . '<span class="' . esc_attr( pmpro_get_element_class( "pmpro_testimonial__company" ) ) . '" itemprop="affiliation" itemscope itemtype="https://schema.org/Organization"><span itemprop="name">' . $cite['company'] . '</span></span>';
 			$cite_html = empty( $cite['url'] ) ? $cite_html : $cite_html . '</a>';
 			$cite_html = $cite_html . '</cite>';
 			$cite_html = empty( $cite['image'] ) ? $cite_html : $cite_html . '<span class="' . esc_attr( pmpro_get_element_class( "pmpro_testimonial__image" ) ) . '">' . $cite['image'] . '</span>';
@@ -90,7 +90,7 @@
 			 * @param array $cite The testimonial cite.
 			 * @param PMPro_Testimonial $testimonial The testimonial object.
 			 */
-			$cite_html = apply_filters( 'pmpro_testimonials_cite', '<footer class="' . pmpro_get_element_class( 'pmpro_testimonial__author' ) . '" itemprop="author" itemscope itemtype="http://schema.org/Person">' . $cite_html . '</footer>', $testimonial );
+			$cite_html = apply_filters( 'pmpro_testimonials_cite', '<footer class="' . pmpro_get_element_class( 'pmpro_testimonial__author' ) . '" itemprop="author" itemscope itemtype="https://schema.org/Person">' . $cite_html . '</footer>', $testimonial );
 
 			// Allowed HTML tags.
 			$allowed_html = array(

@@ -21,7 +21,7 @@ function pmpro_testimonials_custom_query_loop_schema_attrs( $block_content, $blo
 			'/<li(.*?)>/',
 			function ( $matches ) {
 				// Add custom attributes here
-				return '<li' . $matches[1] . ' itemscope itemtype="http://schema.org/Review">';
+				return '<li' . $matches[1] . ' itemscope itemtype="https://schema.org/Review">';
 			},
 			$block_content
 		);
