@@ -10,6 +10,7 @@ function pmpro_testimonial_wp_head() {
 		$site_url = get_bloginfo('url');
 		$schema_type = get_option( 'pmpro_testimonials_schema_type', 'Service' );
 		$schema_name = sprintf(
+			/* translators: %s: Site title */
 			__( '%s Membership', 'pmpro-testimonials' ),
 			get_bloginfo( 'name' )
 		);
@@ -17,10 +18,6 @@ function pmpro_testimonial_wp_head() {
 		if ( empty( $schema_description ) ) {
 			$schema_description = __( 'Access exclusive content and benefits with our memberships.', 'pmpro-testimonials' );
 		}
-		$product_description = sprintf(
-			__( 'Testimonials from members of %s', 'pmpro-testimonials' ),
-			get_bloginfo( 'name' )
-		);
 
 		// Output the structured data
 		echo '<script type="application/ld+json">
