@@ -186,8 +186,8 @@ class PMPro_Testimonial {
 	}
 
 	function get_review_schema_name() {
-		// translators: %1$s is the site name, %d is the rating, %3$s is the reviewer name.
 		return sprintf(
+			/* translators: %1$s is the site name, %2$s is the rating, %3$s is the reviewer name. */
 			__( '%1$s Testimonial: %2$s out of 5 stars by %3$s', 'pmpro-testimonials' ),
 			esc_html( bloginfo('name') ),
 			esc_html( $this->get_rating() ),

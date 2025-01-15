@@ -39,32 +39,27 @@ function pmpro_register_settings() {
 	register_setting( 'pmpro_testimonials_settings', 'pmpro_testimonials_confirmation_type' );
 	register_setting( 'pmpro_testimonials_settings', 'pmpro_testimonials_redirect_page' );
 	register_setting( 'pmpro_testimonials_settings', 'pmpro_testimonials_confirmation_message' );
+	register_setting( 'pmpro_testimonials_settings', 'pmpro_testimonials_schema_type' );
+	register_setting( 'pmpro_testimonials_settings', 'pmpro_testimonials_schema_description' );
 	register_setting( 'pmpro_testimonials_settings', 'pmpro_testimonials_star_color' );
 	register_setting( 'pmpro_testimonials_settings', 'pmpro_testimonials_default_image' );
 }
-
 add_action( 'admin_init', 'pmpro_register_settings' );
 
-function pmpro_testimonials_settings_save() {
-	// Check permissions.
-	if ( ! current_user_can( 'manage_options' ) ) {
-		return;
-	}
-
-	// Check if form is being submitted.
-	if ( ! isset( $_POST['pmpro_testimonials_settings'] ) || ! wp_verify_nonce( $_POST['pmpro_testimonials_settings'], 'pmpro_testimonials_settings' ) ) {
-		return;
-	}
-
-	// Save module specific settings.
-	do_action( 'pmpro_testimonials_settings_save' );
-
-}
-// add_action( 'admin_init', 'pmpro_testimonials_settings_save' );
-
-function pmpro_testimonials_save_notice() {
-	if ( isset( $_REQUEST['pmpro_testimonials_save_settings'] ) ) {
-		echo sprintf( "<div class='updated'><p>%s</p></div>", esc_html__( 'Settings saved successfully.', 'pmpro-testimonials' ) );
+/**
+ * Display a success message after saving settings.
+ */
+function pmpro_testimonials_settings_success_message() {
+	// Check if we are on the Testimonials settings page and if settings were saved.
+	if (
+		isset( $_GET['page'] ) &&
+		'pmpro-testimonials-settings' === $_GET['page'] &&
+		isset( $_GET['settings-updated'] ) &&
+		'true' === $_GET['settings-updated']
+	) {
+		echo '<div class="notice notice-success">';
+		echo '<p>' . esc_html__( 'Settings saved successfully.', 'pmpro-testimonials' ) . '</p>';
+		echo '</div>';
 	}
 }
-// add_action( 'admin_notices', 'pmpro_testimonials_save_notice', 10 );
+add_action( 'admin_notices', 'pmpro_testimonials_settings_success_message' );
