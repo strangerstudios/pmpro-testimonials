@@ -12,6 +12,16 @@ function pmpro_testimonials_activation() {
 		if ( empty( $confirmation_message ) ) {
 			update_option( 'pmpro_testimonials_confirmation_message', __( 'Thank you for sharing your testimonial. Our team will review your submission.', 'pmpro-testimonials' ) );
 		}
+		$schema_type = get_option( 'pmpro_testimonials_schema_type' );
+		if ( empty( $schema_type ) ) {
+			update_option( 'pmpro_testimonials_schema_type', 'Service' );
+		}
+
+		$schema_description = get_option( 'pmpro_testimonials_schema_description' );
+		if ( empty( $schema_description ) ) {
+			update_option( 'pmpro_testimonials_schema_description', __( 'Access exclusive content and benefits with our memberships.', 'pmpro-testimonials' ) );
+		}
+
 		$star_color = get_option( 'pmpro_testimonials_star_color' );
 		if ( empty( $star_color ) ) {
 			update_option( 'pmpro_testimonials_star_color', '#ffd700' );

@@ -1,4 +1,6 @@
 <?php
+	global $msg, $msgt;
+
 	// Make sure PMPro is active.
 	if ( ! defined( 'PMPRO_DIR' ) ) {
 		echo "<p>" . esc_html__( 'Please activate Paid Memberships Pro to use the Testimonials Add On.', 'pmpro-testimonials' ) . "</p>";
@@ -19,6 +21,8 @@
 		$confirmation_type     = get_option( 'pmpro_testimonials_confirmation_type', 'message' );
 		$redirect_page         = get_option( 'pmpro_testimonials_redirect_page', 0 );
 		$confirmation_message  = get_option( 'pmpro_testimonials_confirmation_message', '' );
+		$schema_type           = get_option( 'pmpro_testimonials_schema_type', 'Service' );
+		$schema_description    = get_option( 'pmpro_testimonials_schema_description', '' );
 		$star_color            = empty( get_option( 'pmpro_testimonials_star_color', '#ffd700' ) ) ? '#ffd700' : get_option( 'pmpro_testimonials_star_color', '#ffd700' );
 		$testimonial_image_id  = get_option( 'pmpro_testimonials_default_image', '' );
 		$testimonial_image_url = $testimonial_image_id ? wp_get_attachment_url( $testimonial_image_id ) : PMPRO_TESTIMONIALS_URL . 'images/default-user.png';
@@ -94,6 +98,34 @@
 			</div> <!-- end pmpro_section_toggle -->
 			<div class="pmpro_section_inside">
 				<table class="form-table">
+					<tr valign="top">
+						<th scope="row"><?php esc_html_e( 'Business Type', 'pmpro-testimonials' ); ?></th>
+						<td>
+							<select name="pmpro_testimonials_schema_type" id="pmpro_review_schema_type">
+								<option value="Service" <?php selected( $schema_type, 'Service' ); ?>>
+									<?php esc_html_e( 'Service', 'pmpro-testimonials' ); ?>
+								</option>
+								<option value="Organization" <?php selected( $schema_type, 'Organization' ); ?>>
+									<?php esc_html_e( 'Organization', 'pmpro-testimonials' ); ?>
+								</option>
+								<option value="EducationalOccupationalProgram" <?php selected( $schema_type, 'EducationalOccupationalProgram' ); ?>>
+									<?php esc_html_e( 'Educational/Occupational Program', 'pmpro-testimonials' ); ?>
+								</option>
+								<option value="MediaSubscription" <?php selected( $schema_type, 'MediaSubscription' ); ?>>
+									<?php esc_html_e( 'Media Subscription', 'pmpro-testimonials' ); ?>
+								</option>
+							</select>
+							<p class="description"><?php esc_html_e( 'Select the type of business or service that your testimonials are for.', 'pmpro-testimonials' ); ?></p>
+						</td>
+					</tr>
+
+					<tr valign="top">
+						<th scope="row"><?php esc_html_e( 'Short Description', 'pmpro-testimonials' ); ?></th>
+						<td>
+							<input type="text" name="pmpro_testimonials_schema_description" value="<?php echo esc_attr( $schema_description ); ?>" class="regular-text" />
+							<p class="description"><?php esc_html_e( 'A short description of the business or service that your testimonials are for. If you clear this field, a default system message will be displayed.', 'pmpro-testimonials' ); ?></p>
+						</td>
+					</tr>
 
 					<!-- Color Picker -->
 					<tr valign="top">
@@ -155,7 +187,7 @@
 		<?php submit_button(); ?>
 	</form>
 	<hr />
-	<p><a href="https://www.paidmembershipspro.com/add-ons/pmpro-testimonials/?utm_source=plugin&utm_medium=pmpro-testimonials-admin&utm_campaign=add-ons" target="_blank"><?php esc_html_e( 'Documentation', 'pmpro-testimonials' ); ?></a> | <a href="https://www.paidmembershipspro.com/support/?utm_source=plugin&utm_medium=pmpro-testimonials-admin&utm_campaign=support" target="_blank"><?php esc_html_e( 'Support', 'pmpro-testimonials' ); ?></a></p>
+	<p><a href="https://www.paidmembershipspro.com/add-ons/testimonials/?utm_source=plugin&utm_medium=pmpro-testimonials-admin&utm_campaign=add-ons" target="_blank"><?php esc_html_e( 'Documentation', 'pmpro-testimonials' ); ?></a> | <a href="https://www.paidmembershipspro.com/support/?utm_source=plugin&utm_medium=pmpro-testimonials-admin&utm_campaign=support" target="_blank"><?php esc_html_e( 'Support', 'pmpro-testimonials' ); ?></a></p>
 
 	<script type="text/javascript">
 
