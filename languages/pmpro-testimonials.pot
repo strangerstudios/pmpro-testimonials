@@ -1,0 +1,457 @@
+# Copyright (C) 2025 Paid Memberships Pro
+# This file is distributed under the GPL-3.0.
+msgid ""
+msgstr ""
+"Project-Id-Version: Paid Memberships Pro - Testimonials 0.1\n"
+"Report-Msgid-Bugs-To: info@paidmembershipspro.com\n"
+"Last-Translator: Paid Memberships Pro <info@paidmembershipspro.com>\n"
+"Language-Team: Paid Memberships Pro <info@paidmembershipspro.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-01-15T13:32:26+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: pmpro-testimonials\n"
+
+#. Plugin Name of the plugin
+#: pmpro-testimonials.php
+msgid "Paid Memberships Pro - Testimonials"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: pmpro-testimonials.php
+msgid "https://www.paidmembershipspro.com/add-ons/testimonials/"
+msgstr ""
+
+#. Description of the plugin
+#: pmpro-testimonials.php
+msgid "Collect, approve, and display member testimonials with review schema on the frontend of your membership site."
+msgstr ""
+
+#. Author of the plugin
+#: pmpro-testimonials.php
+msgid "Paid Memberships Pro"
+msgstr ""
+
+#. Author URI of the plugin
+#: pmpro-testimonials.php
+msgid "https://www.paidmembershipspro.com"
+msgstr ""
+
+#: includes/admin.php:13
+#: includes/classes/pmpro-testimonial-form.php:53
+msgid "Thank you for sharing your testimonial. Our team will review your submission."
+msgstr ""
+
+#: includes/admin.php:22
+#: includes/shortcodes/display.php:57
+#: layouts/default.php:150
+msgid "Access exclusive content and benefits with our memberships."
+msgstr ""
+
+#: includes/admin.php:44
+msgid "Thank you for activating."
+msgstr ""
+
+#: includes/admin.php:46
+msgid "Click here to add your first testimonial."
+msgstr ""
+
+#: includes/admin.php:66
+#: includes/settings.php:12
+msgid "Settings"
+msgstr ""
+
+#: includes/admin.php:84
+msgid "View Documentation"
+msgstr ""
+
+#: includes/admin.php:84
+msgid "Docs"
+msgstr ""
+
+#: includes/admin.php:85
+msgid "Visit Customer Support Forum"
+msgstr ""
+
+#: includes/admin.php:85
+#: includes/adminpages/settings.php:190
+msgid "Support"
+msgstr ""
+
+#: includes/adminpages/settings.php:6
+msgid "Please activate Paid Memberships Pro to use the Testimonials Add On."
+msgstr ""
+
+#: includes/adminpages/settings.php:13
+#: includes/post-types/testimonials.php:10
+msgid "Testimonials"
+msgstr ""
+
+#: includes/adminpages/settings.php:34
+msgid "Submission Settings"
+msgstr ""
+
+#: includes/adminpages/settings.php:40
+msgid "Type of Confirmation"
+msgstr ""
+
+#: includes/adminpages/settings.php:44
+msgid "Message"
+msgstr ""
+
+#: includes/adminpages/settings.php:47
+msgid "Redirect"
+msgstr ""
+
+#: includes/adminpages/settings.php:55
+msgid "Select Redirect Page"
+msgstr ""
+
+#: includes/adminpages/settings.php:62
+msgid "Select a Page"
+msgstr ""
+
+#: includes/adminpages/settings.php:72
+msgid "Confirmation Message"
+msgstr ""
+
+#: includes/adminpages/settings.php:84
+msgid "This message will be displayed to the member after they submit a testimonial. If you clear this field, a default system message will be displayed."
+msgstr ""
+
+#: includes/adminpages/settings.php:96
+msgid "Defaults"
+msgstr ""
+
+#: includes/adminpages/settings.php:102
+msgid "Business Type"
+msgstr ""
+
+#: includes/adminpages/settings.php:106
+msgid "Service"
+msgstr ""
+
+#: includes/adminpages/settings.php:109
+msgid "Organization"
+msgstr ""
+
+#: includes/adminpages/settings.php:112
+msgid "Educational/Occupational Program"
+msgstr ""
+
+#: includes/adminpages/settings.php:115
+msgid "Media Subscription"
+msgstr ""
+
+#: includes/adminpages/settings.php:118
+msgid "Select the type of business or service that your testimonials are for."
+msgstr ""
+
+#: includes/adminpages/settings.php:123
+msgid "Short Description"
+msgstr ""
+
+#: includes/adminpages/settings.php:126
+msgid "A short description of the business or service that your testimonials are for. If you clear this field, a default system message will be displayed."
+msgstr ""
+
+#: includes/adminpages/settings.php:132
+msgid "Star Color"
+msgstr ""
+
+#: includes/adminpages/settings.php:139
+msgid "Default Testimonial Image"
+msgstr ""
+
+#: includes/adminpages/settings.php:145
+msgid "Select Image"
+msgstr ""
+
+#: includes/adminpages/settings.php:146
+msgid "Remove Image"
+msgstr ""
+
+#: includes/adminpages/settings.php:147
+msgid "Note: The image must be hosted on a publicly accessible website. Images stored locally or in development environments may not load correctly."
+msgstr ""
+
+#: includes/adminpages/settings.php:159
+msgid "Shortcode Examples"
+msgstr ""
+
+#: includes/adminpages/settings.php:164
+msgid "Use the following shortcode examples to display testimonials in your membership site."
+msgstr ""
+
+#: includes/adminpages/settings.php:165
+msgid "Refer to the documentation for a complete list of shortcode attributes and more examples."
+msgstr ""
+
+#: includes/adminpages/settings.php:169
+msgid "Display Testimonials"
+msgstr ""
+
+#: includes/adminpages/settings.php:172
+msgid "Displays a list of testimonials or a single testimonial. You can customize the output using shortcode attributes such as \"testimonials\" (IDs), \"categories\", \"tags\", \"limit\", and more."
+msgstr ""
+
+#: includes/adminpages/settings.php:176
+msgid "Testimonial Submission Form"
+msgstr ""
+
+#: includes/adminpages/settings.php:179
+msgid "Displays a form for users to submit their testimonials. Customize fields and dropdowns using attributes such as \"categories\", \"tags\", and \"required_fields\"."
+msgstr ""
+
+#: includes/adminpages/settings.php:190
+msgid "Documentation"
+msgstr ""
+
+#: includes/adminpages/settings.php:218
+msgid "Choose Default Testimonial Image"
+msgstr ""
+
+#: includes/adminpages/settings.php:219
+msgid "Use this image"
+msgstr ""
+
+#: includes/classes/pmpro-testimonial-form.php:70
+msgid "Please activate Paid Memberships Pro to use this form."
+msgstr ""
+
+#: includes/classes/pmpro-testimonial-form.php:98
+msgid "Submit Your Testimonial"
+msgstr ""
+
+#: includes/classes/pmpro-testimonial-form.php:107
+#: includes/classes/pmpro-testimonial-form.php:279
+#: includes/post-types/testimonials.php:11
+#: includes/post-types/testimonials.php:36
+msgid "Testimonial"
+msgstr ""
+
+#: includes/classes/pmpro-testimonial-form.php:116
+#: includes/classes/pmpro-testimonial-form.php:282
+#: includes/post-types/testimonials.php:152
+msgid "Rating"
+msgstr ""
+
+#: includes/classes/pmpro-testimonial-form.php:116
+msgid "Required Field"
+msgstr ""
+
+#: includes/classes/pmpro-testimonial-form.php:137
+#: includes/classes/pmpro-testimonial-form.php:285
+msgid "Name"
+msgstr ""
+
+#: includes/classes/pmpro-testimonial-form.php:149
+#: includes/classes/pmpro-testimonial-form.php:291
+#: includes/post-types/testimonials.php:119
+msgid "Job Title"
+msgstr ""
+
+#: includes/classes/pmpro-testimonial-form.php:161
+#: includes/classes/pmpro-testimonial-form.php:294
+#: includes/post-types/testimonials.php:127
+msgid "Company"
+msgstr ""
+
+#: includes/classes/pmpro-testimonial-form.php:173
+#: includes/classes/pmpro-testimonial-form.php:288
+#: includes/post-types/testimonials.php:135
+msgid "Email"
+msgstr ""
+
+#: includes/classes/pmpro-testimonial-form.php:185
+#: includes/post-types/testimonials.php:144
+msgid "URL"
+msgstr ""
+
+#: includes/classes/pmpro-testimonial-form.php:199
+msgid "Category"
+msgstr ""
+
+#: includes/classes/pmpro-testimonial-form.php:223
+#: includes/post-types/testimonials.php:75
+msgid "Tags"
+msgstr ""
+
+#: includes/classes/pmpro-testimonial-form.php:250
+msgid "Submit"
+msgstr ""
+
+#: includes/classes/pmpro-testimonial-form.php:273
+msgid "There was an error submitting this form. Please try again."
+msgstr ""
+
+#: includes/classes/pmpro-testimonial-form.php:297
+msgid "Website URL"
+msgstr ""
+
+#. translators: %s is a comma-separated list of required fields.
+#: includes/classes/pmpro-testimonial-form.php:303
+msgid "Please complete all required fields: %s."
+msgstr ""
+
+#. translators: %d is the rating out of 5 (i.e. 4 out of 5).
+#: includes/classes/pmpro-testimonial.php:69
+msgid "Rating: %d out of 5"
+msgstr ""
+
+#. translators: %1$s is the site name, %2$s is the rating, %3$s is the reviewer name.
+#: includes/classes/pmpro-testimonial.php:191
+msgid "%1$s Testimonial: %2$s out of 5 stars by %3$s"
+msgstr ""
+
+#: includes/post-types/testimonials.php:8
+msgctxt "Post Type General Name"
+msgid "Testimonials"
+msgstr ""
+
+#: includes/post-types/testimonials.php:9
+msgctxt "Post Type Singular Name"
+msgid "Testimonial"
+msgstr ""
+
+#: includes/post-types/testimonials.php:12
+msgid "Testimonial Archives"
+msgstr ""
+
+#: includes/post-types/testimonials.php:13
+msgid "Testimonial Attributes"
+msgstr ""
+
+#: includes/post-types/testimonials.php:14
+msgid "All Testimonials"
+msgstr ""
+
+#: includes/post-types/testimonials.php:15
+#: includes/post-types/testimonials.php:16
+msgid "Add New Testimonial"
+msgstr ""
+
+#: includes/post-types/testimonials.php:17
+msgid "New Testimonial"
+msgstr ""
+
+#: includes/post-types/testimonials.php:18
+msgid "Edit Testimonial"
+msgstr ""
+
+#: includes/post-types/testimonials.php:19
+msgid "Update Testimonial"
+msgstr ""
+
+#: includes/post-types/testimonials.php:20
+msgid "View Testimonial"
+msgstr ""
+
+#: includes/post-types/testimonials.php:21
+msgid "View Testimonials"
+msgstr ""
+
+#: includes/post-types/testimonials.php:22
+msgid "Search Testimonials"
+msgstr ""
+
+#: includes/post-types/testimonials.php:23
+msgid "Testimonial not found"
+msgstr ""
+
+#: includes/post-types/testimonials.php:24
+msgid "Testimonial not found in Trash"
+msgstr ""
+
+#: includes/post-types/testimonials.php:25
+msgid "Featured Image"
+msgstr ""
+
+#: includes/post-types/testimonials.php:26
+msgid "Set testimonial featured image"
+msgstr ""
+
+#: includes/post-types/testimonials.php:27
+msgid "Remove featured image"
+msgstr ""
+
+#: includes/post-types/testimonials.php:28
+msgid "Use as testimonial featured image"
+msgstr ""
+
+#: includes/post-types/testimonials.php:29
+msgid "Insert into testimonial"
+msgstr ""
+
+#: includes/post-types/testimonials.php:30
+msgid "Uploaded to this testimonial"
+msgstr ""
+
+#: includes/post-types/testimonials.php:31
+msgid "PMPro Testimonials list"
+msgstr ""
+
+#: includes/post-types/testimonials.php:32
+msgid "Testimonials list navigation"
+msgstr ""
+
+#: includes/post-types/testimonials.php:33
+msgid "Filter Testimonials list"
+msgstr ""
+
+#: includes/post-types/testimonials.php:37
+msgid "Testimonials from members."
+msgstr ""
+
+#: includes/post-types/testimonials.php:62
+msgid "Categories"
+msgstr ""
+
+#: includes/post-types/testimonials.php:91
+msgid "Testimonial Information"
+msgstr ""
+
+#: includes/post-types/testimonials.php:139
+msgid "Used to optionally display the member's avatar via Gravatar (not shown publicly)."
+msgstr ""
+
+#: includes/post-types/testimonials.php:251
+msgid "Manage Testimonials"
+msgstr ""
+
+#: includes/post-types/testimonials.php:252
+msgid "Capture testimonials from your PMPro members for the entire site or for specific membership levels."
+msgstr ""
+
+#: includes/post-types/testimonials.php:253
+msgid "Create a Testimonial"
+msgstr ""
+
+#: includes/post-types/testimonials.php:254
+msgid "Documentation: Testimonials Add On"
+msgstr ""
+
+#: includes/post-types/testimonials.php:265
+msgid "Enter name"
+msgstr ""
+
+#: includes/settings.php:11
+#: includes/settings.php:12
+msgid "Paid Memberships Pro Testimonials - Settings"
+msgstr ""
+
+#: includes/settings.php:11
+msgid "Testimonial Settings"
+msgstr ""
+
+#: includes/settings.php:61
+msgid "Settings saved successfully."
+msgstr ""
+
+#. translators: %s: Site title
+#: includes/shortcodes/display.php:52
+#: layouts/default.php:145
+msgid "%s Membership"
+msgstr ""
