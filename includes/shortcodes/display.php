@@ -108,13 +108,13 @@ add_shortcode( 'pmpro_testimonial_star_rating', 'pmpro_testimonial_star_rating_s
 
 function pmpro_testimonial_content_shortcode( $atts ) {
 	$testimonial = $GLOBALS['current_pmpro_testimonial'];
-	return '<div class="' . esc_attr( pmpro_get_element_class( "pmpro_testimonial__testimonial" ) ) . '" itemprop="reviewBody">' . $testimonial->get_testimonial() . '</div>';
+	return '<span class="' . esc_attr( pmpro_get_element_class( "pmpro_testimonial__testimonial" ) ) . '" itemprop="reviewBody">' . $testimonial->get_testimonial() . '</span>';
 }
 add_shortcode( 'pmpro_testimonial_content', 'pmpro_testimonial_content_shortcode' );
 
 function pmpro_testimonial_image_shortcode( $atts ) {
 	$testimonial = $GLOBALS['current_pmpro_testimonial'];
-	return '<span class="' . esc_attr( pmpro_get_element_class( "pmpro_testimonial__image" ) ) . '">' . $testimonial->get_image() . '</span>';
+	return '<span class="' . esc_attr( pmpro_get_element_class( "pmpro_testimonial__image pmpro_testimonial__image_thumbnail" ) ) . '">' . $testimonial->get_image() . '</span>';
 }
 add_shortcode( 'pmpro_testimonial_image', 'pmpro_testimonial_image_shortcode' );
 

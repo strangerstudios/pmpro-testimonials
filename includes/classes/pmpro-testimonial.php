@@ -143,7 +143,7 @@ class PMPro_Testimonial {
 
 		// If the user has an email, use Gravatar.
 		if ( $email = $this->get_email() ) {
-			$gravatar_url = get_avatar_url( strtolower( trim( $email ) ), array( 'default' => $default_image_url ) );
+			$gravatar_url = get_avatar_url( strtolower( trim( $email ) ), array( 'default' => $default_image_url, 'size' => '150' ) );
 			if ( $gravatar_url ) {
 				return sprintf(
 					'<img src="%s" alt="%s" style="%s" />',
