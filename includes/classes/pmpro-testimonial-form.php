@@ -249,7 +249,15 @@ class PMPro_Testimonial_Form {
 						<?php wp_nonce_field( 'pmpro_testimonials_form', 'pmpro_testimonials_nonce' ); ?>
 						<input type="submit" name="submit" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_btn pmpro_btn-submit', 'pmpro_btn-submit' ) ); ?>" value="<?php esc_attr_e( 'Submit', 'pmpro-testimonials' ); ?>" />
 					</div>
-	
+
+					<?php if ( ! empty( $this->categories ) ) {
+						echo '<input type="hidden" name="categories" value="' . esc_attr( join( ',', $this->categories ) ) . '" />';
+					} ?>
+
+					<?php if ( ! empty( $this->tags ) ) {
+						echo '<input type="hidden" name="tags" value="' . esc_attr( join( ',', $this->tags ) ) . '" />';
+					} ?>
+
 				</form>
 			</div>
 		</div>
@@ -317,6 +325,24 @@ class PMPro_Testimonial_Form {
 				$url         = esc_url_raw( $_POST['url'] );
 				$rating      = intval( $_POST['rating'] );
 
+				$categories = array();
+				if ( ! empty( $_POST['categories'] ) ) {
+					$categories_string = sanitize_text_field( $_POST['categories'] );
+					$categories = array_map( 'trim', explode( ',', $categories_string ) );
+				} 
+				if ( isset( $_POST['testimonial_category'] ) ) {
+					$categories[] = intval( $_POST['testimonial_category'] );
+				}
+				
+				$tags = array();
+				if ( ! empty( $_POST['tags'] ) ) {
+					$tags_string = sanitize_text_field( $_POST['tags'] );
+					$tags = array_map( 'trim', explode( ',', $tags_string ) );
+				}
+				if ( isset( $_POST['testimonial_tags'] ) && is_array( $_POST['testimonial_tags'] ) ) {
+					$tags = array_merge( $tags, array_map( 'intval', $_POST['testimonial_tags'] ) );
+				}
+
 				// Split the content by new lines into paragraphs.
 				$paragraphs = explode( "\n", trim( $testimonial ) );
 
@@ -351,21 +377,11 @@ class PMPro_Testimonial_Form {
 				$post_id = wp_insert_post( $post_args );
 
 				// Set categories and tags (if provided via shortcode arguments).
-				if ( ! empty( $this->categories ) ) {
-					wp_set_object_terms( $post_id, $this->categories, 'pmpro_testimonial_category' );
+				if ( ! empty( $categories ) ) {
+					wp_set_object_terms( $post_id, $categories, 'pmpro_testimonial_category' );
 				}
-				if ( ! empty( $this->tags ) ) {
-					wp_set_object_terms( $post_id, $this->tags, 'pmpro_testimonial_tag' );
-				}
-
-				// Handle category selection from dropdown.
-				if ( isset( $_POST['testimonial_category'] ) ) {
-					wp_set_object_terms( $post_id, intval( $_POST['testimonial_category'] ), 'pmpro_testimonial_category' );
-				}
-
-				// Handle tag selection from dropdown.
-				if ( isset( $_POST['testimonial_tags'] ) && is_array( $_POST['testimonial_tags'] ) ) {
-					wp_set_object_terms( $post_id, array_map( 'intval', $_POST['testimonial_tags'] ), 'pmpro_testimonial_tag' );
+				if ( ! empty( $tags ) ) {
+					wp_set_object_terms( $post_id, $tags, 'pmpro_testimonial_tag' );
 				}
 
 				// Confirmation message or redirect.
