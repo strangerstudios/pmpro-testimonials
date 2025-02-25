@@ -326,21 +326,21 @@ class PMPro_Testimonial_Form {
 				$rating      = intval( $_POST['rating'] );
 
 				$categories = array();
-				if ( ! empty( $_POST['categories'] ) ) { // Handle passed categories from shortcode.
+				if ( ! empty( $_POST['categories'] ) ) {
 					$categories_string = sanitize_text_field( $_POST['categories'] );
 					$categories = array_map( 'trim', explode( ',', $categories_string ) );
 				} 
-				if ( isset( $_POST['testimonial_category'] ) ) { // Handle selected category from dropdown.
-					$categories[] = intval( $_POST['testimonial_category'] ); // Will only ever be one.
+				if ( isset( $_POST['testimonial_category'] ) ) {
+					$categories[] = intval( $_POST['testimonial_category'] );
 				}
 				
 				$tags = array();
-				if ( ! empty( $_POST['tags'] ) ) { // Handle passed tags from shortcode.
+				if ( ! empty( $_POST['tags'] ) ) {
 					$tags_string = sanitize_text_field( $_POST['tags'] );
 					$tags = array_map( 'trim', explode( ',', $tags_string ) );
 				}
-				if ( isset( $_POST['testimonial_tags'] ) && is_array( $_POST['testimonial_tags'] ) ) { // Handle selected category from dropdown.
-					$tags = array_merge( $tags, array_map( 'intval', $_POST['testimonial_tags'] ) ); // Can be multiple.
+				if ( isset( $_POST['testimonial_tags'] ) && is_array( $_POST['testimonial_tags'] ) ) {
+					$tags = array_merge( $tags, array_map( 'intval', $_POST['testimonial_tags'] ) );
 				}
 
 				// Split the content by new lines into paragraphs.
