@@ -83,6 +83,9 @@ add_shortcode( 'pmpro_testimonials_display_custom', 'pmpro_testimonials_display_
 
 // Individual element shortcodes
 function pmpro_testimonial_rating_shortcode( $atts ) {
+	if ( empty( $GLOBALS['current_pmpro_testimonial'] ) ) {
+		return false;
+	}
 	$testimonial = $GLOBALS['current_pmpro_testimonial'];
 	$html        = '<span class="' . esc_attr( pmpro_get_element_class( "pmpro_testimonial__rating" ) ) . '" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">';
 	$html       .= esc_html( $testimonial->get_rating() );
@@ -95,6 +98,9 @@ function pmpro_testimonial_rating_shortcode( $atts ) {
 add_shortcode( 'pmpro_testimonial_rating', 'pmpro_testimonial_rating_shortcode' );
 
 function pmpro_testimonial_star_rating_shortcode( $atts ) {
+	if ( empty( $GLOBALS['current_pmpro_testimonial'] ) ) {
+		return false;
+	}
 	$testimonial = $GLOBALS['current_pmpro_testimonial'];
 	$html        = '<span class="' . esc_attr( pmpro_get_element_class( "pmpro_testimonial__star_rating" ) ) . '" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">';
 	$html       .= $testimonial->get_stars();
@@ -107,36 +113,54 @@ function pmpro_testimonial_star_rating_shortcode( $atts ) {
 add_shortcode( 'pmpro_testimonial_star_rating', 'pmpro_testimonial_star_rating_shortcode' );
 
 function pmpro_testimonial_content_shortcode( $atts ) {
+	if ( empty( $GLOBALS['current_pmpro_testimonial'] ) ) {
+		return false;
+	}
 	$testimonial = $GLOBALS['current_pmpro_testimonial'];
 	return '<span class="' . esc_attr( pmpro_get_element_class( "pmpro_testimonial__testimonial" ) ) . '" itemprop="reviewBody">' . $testimonial->get_testimonial() . '</span>';
 }
 add_shortcode( 'pmpro_testimonial_content', 'pmpro_testimonial_content_shortcode' );
 
 function pmpro_testimonial_image_shortcode( $atts ) {
+	if ( empty( $GLOBALS['current_pmpro_testimonial'] ) ) {
+		return false;
+	}
 	$testimonial = $GLOBALS['current_pmpro_testimonial'];
 	return '<span class="' . esc_attr( pmpro_get_element_class( "pmpro_testimonial__image pmpro_testimonial__image_thumbnail" ) ) . '">' . $testimonial->get_image() . '</span>';
 }
 add_shortcode( 'pmpro_testimonial_image', 'pmpro_testimonial_image_shortcode' );
 
 function pmpro_testimonial_name_shortcode( $atts ) {
+	if ( empty( $GLOBALS['current_pmpro_testimonial'] ) ) {
+		return false;
+	}
 	$testimonial = $GLOBALS['current_pmpro_testimonial'];
 	return '<span class="' . esc_attr( pmpro_get_element_class( "pmpro_testimonial__name" ) ) . '" itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">' . esc_html( $testimonial->get_name() ) . '</span></span>';
 }
 add_shortcode( 'pmpro_testimonial_name', 'pmpro_testimonial_name_shortcode' );
 
 function pmpro_testimonial_job_title_shortcode( $atts ) {
+	if ( empty( $GLOBALS['current_pmpro_testimonial'] ) ) {
+		return false;
+	}
 	$testimonial = $GLOBALS['current_pmpro_testimonial'];
 	return '<span class="' . esc_attr( pmpro_get_element_class( "pmpro_testimonial__job_title" ) ) . '" itemprop="jobTitle">' . esc_html( $testimonial->get_job_title() ) . '</span>';
 }
 add_shortcode( 'pmpro_testimonial_job_title', 'pmpro_testimonial_job_title_shortcode' );
 
 function pmpro_testimonial_company_shortcode( $atts ) {
+	if ( empty( $GLOBALS['current_pmpro_testimonial'] ) ) {
+		return false;
+	}
 	$testimonial = $GLOBALS['current_pmpro_testimonial'];
 	return '<span class="' . esc_attr( pmpro_get_element_class( "pmpro_testimonial__company" ) ) . '" itemprop="affiliation" itemscope itemtype="https://schema.org/Organization"><span itemprop="name">' . esc_html( $testimonial->get_company() ) . '</span></span>';
 }
 add_shortcode( 'pmpro_testimonial_company', 'pmpro_testimonial_company_shortcode' );
 
 function pmpro_testimonial_url_shortcode( $atts ) {
+	if ( empty( $GLOBALS['current_pmpro_testimonial'] ) ) {
+		return false;
+	}
 	$testimonial = $GLOBALS['current_pmpro_testimonial'];
 	return '<span class="' . esc_attr( pmpro_get_element_class( "pmpro_testimonial__url" ) ) . '">' . esc_url( $testimonial->get_url() ) . '</span>';
 }
