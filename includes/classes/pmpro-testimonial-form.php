@@ -102,29 +102,37 @@ class PMPro_Testimonial_Form {
 									
 									<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_field pmpro_form_field-required pmpro_form_field-textarea', 'testimonial' ) ); ?>">
 										<label for="testimonial" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_label' ) ); ?>">
-											<?php esc_html_e( 'Testimonial', 'paid-memberships-pro' );?>
+											<?php esc_html_e( 'Testimonial', 'pmpro-testimonials' );?>
 											<span class="<?php esc_attr_e( pmpro_get_element_class( 'pmpro_asterisk' ) ); ?>"> <abbr title="<?php esc_html_e( 'Required Field', 'pmpro-testimonials' ); ?>">*</abbr></span>
 										</label>
-										<textarea name="testimonial" rows="5" cols="80" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_input pmpro_form_input-textarea', 'testimonial' ) ); ?>"><?php echo ( ( ! empty( $_POST['testimonial'] ) ) ? esc_textarea(wp_unslash($_POST['testimonial']) ) : '' );?></textarea>
+										<textarea id="testimonial" name="testimonial" rows="5" cols="80" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_input pmpro_form_input-textarea', 'testimonial' ) ); ?>"><?php echo ( ( ! empty( $_POST['testimonial'] ) ) ? esc_textarea( wp_unslash( $_POST['testimonial'] ) ) : '' );?></textarea>
 									</div>
 
 									<?php
 									// Rating field (Star Rating would still require custom JavaScript)
 									echo '<div class="' . esc_attr( pmpro_get_element_class( 'pmpro_form_field pmpro_form_field-required pmpro_form_field-rating' ) ) . '">';
 									echo '<label class="' . esc_attr( pmpro_get_element_class( 'pmpro_form_label' ) ) . '" for="rating">' . esc_html__( 'Rating', 'pmpro-testimonials' ) . ' <span class="' . esc_attr( pmpro_get_element_class( 'pmpro_asterisk' ) ) . '"> <abbr title="' . esc_html__( 'Required Field', 'pmpro-testimonials' ) . '">*</abbr></span></label>';
-									echo '<div class="' . esc_attr( pmpro_get_element_class( 'pmpro_star_rating' ) ) . '">';
+									echo '<div class="' . esc_attr( pmpro_get_element_class( 'pmpro_star_rating' ) ) . '" role="radiogroup" aria-labelledby="rating">';
 									$rating_value = isset( $_POST['rating'] ) ? intval( $_POST['rating'] ) : 0;
 									for ( $i = 1; $i <= 5; $i++ ) {
 										// Build the selectors for the star.
 										$classes = array( 'pmpro_star' );
-										$classes[] = ( $i <= $rating_value ) ? 'filled' : ''; // Add 'filled' class if previously selected
+										if ( $i <= $rating_value ) {
+											$classes[] = 'filled';
+										} 
+										if ( $i === $rating_value ) {
+											$checked = 'true';
+										} else {
+											$checked = 'false';
+										}
 										$class = implode( ' ', array_unique( $classes ) );
-										echo '<svg data-value="' . esc_attr( $i ) . '" class="' . esc_attr( $class ) . '" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+										$label = sprintf( esc_html__( '%s Star Rating', 'pmpro-testimonials' ), $i );
+										echo '<svg role="radio" aria-checked="' . esc_attr( $checked ) . '" aria-label="' . esc_attr( $label ) . '" data-value="' . esc_attr( $i ) . '" class="' . esc_attr( $class ) . '" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
 											<polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27" />
 										</svg>';
 									}
 									echo '</div>';
-									echo '<input type="hidden" name="rating" value="' . esc_attr( $rating_value ) . '">';
+									echo '<input id="rating" type="hidden" name="rating" value="' . esc_attr( $rating_value ) . '">';
 									echo '</div>';
 									?>
 
@@ -138,10 +146,10 @@ class PMPro_Testimonial_Form {
 									?>
 									<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_field pmpro_form_field-required pmpro_form_field-text', 'display_name' ) ); ?>">
 										<label for="display_name" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_label' ) ); ?>">
-											<?php esc_html_e( 'Name', 'paid-memberships-pro' );?>
+											<?php esc_html_e( 'Name', 'pmpro-testimonials' );?>
 											<span class="<?php esc_attr_e( pmpro_get_element_class( 'pmpro_asterisk' ) ); ?>"> <abbr title="<?php esc_html_e( 'Required Field', 'pmpro-testimonials' ); ?>">*</abbr></span>
 										</label>
-										<input type="text" name="display_name" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_input pmpro_form_input-text', 'display_name' ) ); ?>" value="<?php echo esc_attr( $value ); ?>" />
+										<input id="display_name" type="text" name="display_name" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_input pmpro_form_input-text', 'display_name' ) ); ?>" value="<?php echo esc_attr( $value ); ?>" />
 									</div>
 
 									<?php
@@ -149,17 +157,19 @@ class PMPro_Testimonial_Form {
 									if ( ! empty( $_POST['job_title'] ) ) {
 										$value = wp_unslash( $_POST['job_title'] );
 									}
+									$classes = array( 'pmpro_form_field', 'pmpro_form_field-text' );
 									$required = false;
 									if ( in_array( 'job_title', $this->required_fields ) ) {
 										$required = true;
+										$classes[] = 'pmpro_form_field-required';
 									}
 									?>
-									<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_field pmpro_form_field-required pmpro_form_field-text', 'job_title' ) ); ?>">
+									<div class="<?php echo esc_attr( pmpro_get_element_class( join( ' ', $classes ), 'job_title' ) ); ?>">
 										<label for="job_title" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_label' ) ); ?>">
-											<?php esc_html_e( 'Job Title', 'paid-memberships-pro' );?>
+											<?php esc_html_e( 'Job Title', 'pmpro-testimonials' );?>
 											<?php if ( $required ) { ?><span class="<?php esc_attr_e( pmpro_get_element_class( 'pmpro_asterisk' ) ); ?>"> <abbr title="<?php esc_html_e( 'Required Field', 'pmpro-testimonials' ); ?>">*</abbr></span><?php } ?>
 										</label>
-										<input type="text" name="job_title" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_input pmpro_form_input-text', 'job_title' ) ); ?>" value="<?php echo esc_attr( $value ); ?>" />
+										<input id="job_title" type="text" name="job_title" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_input pmpro_form_input-text', 'job_title' ) ); ?>" value="<?php echo esc_attr( $value ); ?>" />
 									</div>
 
 									<?php
@@ -167,17 +177,19 @@ class PMPro_Testimonial_Form {
 									if ( ! empty( $_POST['company'] ) ) {
 										$value = wp_unslash( $_POST['company'] );
 									}
+									$classes = array( 'pmpro_form_field', 'pmpro_form_field-text' );
 									$required = false;
 									if ( in_array( 'company', $this->required_fields ) ) {
 										$required = true;
+										$classes[] = 'pmpro_form_field-required';
 									}
 									?>
-									<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_field pmpro_form_field-required pmpro_form_field-text', 'company' ) ); ?>">
+									<div class="<?php echo esc_attr( pmpro_get_element_class( join( ' ', $classes ), 'company' ) ); ?>">
 										<label for="company" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_label' ) ); ?>">
-											<?php esc_html_e( 'Company', 'paid-memberships-pro' );?>
+											<?php esc_html_e( 'Company', 'pmpro-testimonials' );?>
 											<?php if ( $required ) { ?><span class="<?php esc_attr_e( pmpro_get_element_class( 'pmpro_asterisk' ) ); ?>"> <abbr title="<?php esc_html_e( 'Required Field', 'pmpro-testimonials' ); ?>">*</abbr></span><?php } ?>
 										</label>
-										<input type="text" name="company" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_input pmpro_form_input-text', 'company' ) ); ?>" value="<?php echo esc_attr( $value ); ?>" />
+										<input id="company" type="text" name="company" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_input pmpro_form_input-text', 'company' ) ); ?>" value="<?php echo esc_attr( $value ); ?>" />
 									</div>
 
 									<?php
@@ -187,18 +199,20 @@ class PMPro_Testimonial_Form {
 									} elseif ( is_user_logged_in() ) {
 										$value = $current_user->user_email;
 									}
+									$classes = array( 'pmpro_form_field', 'pmpro_form_field-email' );
 									$required = false;
 									if ( in_array( 'email', $this->required_fields ) ) {
 										$required = true;
+										$classes[] = 'pmpro_form_field-required';
 									}
 									$pmpro_email_field_type = apply_filters( 'pmpro_email_field_type', true );
 									?>
-									<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_field pmpro_form_field-required pmpro_form_field-email', 'email' ) ); ?>">
+									<div class="<?php echo esc_attr( pmpro_get_element_class( join( ' ', $classes ), 'email' ) ); ?>">
 										<label for="user_email" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_label' ) ); ?>">
-											<?php esc_html_e( 'Email', 'paid-memberships-pro' );?>
+											<?php esc_html_e( 'Email', 'pmpro-testimonials' );?>
 											<?php if ( $required ) { ?><span class="<?php esc_attr_e( pmpro_get_element_class( 'pmpro_asterisk' ) ); ?>"> <abbr title="<?php esc_html_e( 'Required Field', 'pmpro-testimonials' ); ?>">*</abbr></span><?php } ?>
 										</label>
-										<input type="<?php echo ( $pmpro_email_field_type ? 'email' : 'text' ); ?>" name="user_email" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_input pmpro_form_input-email', 'email' ) ); ?>" value="<?php echo esc_attr( $value ); ?>" />
+										<input id="user_email" type="<?php echo ( $pmpro_email_field_type ? 'email' : 'text' ); ?>" name="user_email" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_input pmpro_form_input-email', 'email' ) ); ?>" value="<?php echo esc_attr( $value ); ?>" />
 									</div>
 
 									<?php
@@ -206,17 +220,19 @@ class PMPro_Testimonial_Form {
 									if ( ! empty( $_POST['url'] ) ) {
 										$value = wp_unslash( $_POST['url'] );
 									}
+									$classes = array( 'pmpro_form_field', 'pmpro_form_field-text' );
 									$required = false;
 									if ( in_array( 'url', $this->required_fields ) ) {
 										$required = true;
+										$classes[] = 'pmpro_form_field-required';
 									}
 									?>
-									<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_field pmpro_form_field-required pmpro_form_field-text', 'url' ) ); ?>">
+									<div class="<?php echo esc_attr( pmpro_get_element_class( join( ' ', $classes ), 'url' ) ); ?>">
 										<label for="url" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_label' ) ); ?>">
-											<?php esc_html_e( 'URL', 'paid-memberships-pro' );?>
+											<?php esc_html_e( 'URL', 'pmpro-testimonials' );?>
 											<?php if ( $required ) { ?><span class="<?php esc_attr_e( pmpro_get_element_class( 'pmpro_asterisk' ) ); ?>"> <abbr title="<?php esc_html_e( 'Required Field', 'pmpro-testimonials' ); ?>">*</abbr></span><?php } ?>
 										</label>
-										<input type="url" name="url" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_input pmpro_form_input-text', 'url' ) ); ?>" value="<?php echo esc_attr( $value ); ?>" />
+										<input id="url" type="url" name="url" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_input pmpro_form_input-text', 'url' ) ); ?>" value="<?php echo esc_attr( $value ); ?>" />
 									</div>
 
 									<?php
@@ -231,17 +247,19 @@ class PMPro_Testimonial_Form {
 										);
 										if ( $categories ) {
 											$selected_category = isset( $_POST['testimonial_category'] ) ? intval( $_POST['testimonial_category'] ) : '';
+											$classes = array( 'pmpro_form_field', 'pmpro_form_field-select' );
 											$required = false;
 											if ( in_array( 'url', $this->required_fields ) ) {
 												$required = true;
+												$classes[] = 'pmpro_form_field-required';
 											}
 											?>
-											<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_field pmpro_form_field-required pmpro_form_field-select', 'url' ) ); ?>">
+											<div class="<?php echo esc_attr( pmpro_get_element_class( join( ' ', $classes ), 'testimonial_category' ) ); ?>">
 												<label for="url" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_label' ) ); ?>">
-													<?php esc_html_e( 'Category', 'paid-memberships-pro' );?>
+													<?php esc_html_e( 'Category', 'pmpro-testimonials' );?>
 													<?php if ( $required ) { ?><span class="<?php esc_attr_e( pmpro_get_element_class( 'pmpro_asterisk' ) ); ?>"> <abbr title="<?php esc_html_e( 'Required Field', 'pmpro-testimonials' ); ?>">*</abbr></span><?php } ?>
 												</label>
-												<select name="testimonial_category" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_input pmpro_form_input-select', 'url' ) ); ?>">
+												<select id="testimonial_category" name="testimonial_category" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_input pmpro_form_input-select', 'testimonial_category' ) ); ?>">
 													<?php foreach ( $categories as $category ) { ?>
 														<option value="<?php echo esc_attr( $category->term_id ); ?>" <?php selected( $selected_category, $category->term_id ); ?>><?php echo esc_html( $category->name ); ?></option>
 													<?php } ?>
@@ -261,14 +279,16 @@ class PMPro_Testimonial_Form {
 										);
 										if ( $tags ) {
 											$selected_tags = isset( $_POST['testimonial_tags'] ) ? (array) $_POST['testimonial_tags'] : array();
+											$classes = array( 'pmpro_form_field', 'pmpro_form_field-select' );
 											$required = false;
 											if ( in_array( 'tags', $this->required_fields ) ) {
 												$required = true;
+												$classes[] = 'pmpro_form_field-required';
 											}
 											?>
-											<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_field pmpro_form_field-required pmpro_form_field-select', 'testimonial_tag' ) ); ?>">
+											<div class="<?php echo esc_attr( pmpro_get_element_class( join( ' ', $classes ), 'testimonial_tag' ) ); ?>">
 												<label for="url" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_label' ) ); ?>">
-													<?php esc_html_e( 'Tags', 'paid-memberships-pro' );?>
+													<?php esc_html_e( 'Tags', 'pmpro-testimonials' );?>
 													<?php if ( $required ) { ?><span class="<?php esc_attr_e( pmpro_get_element_class( 'pmpro_asterisk' ) ); ?>"> <abbr title="<?php esc_html_e( 'Required Field', 'pmpro-testimonials' ); ?>">*</abbr></span><?php } ?>
 												</label>
 												<select id="testimonial_tags" name="testimonial_tags[]" multiple="multiple" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_input pmpro_form_input-select', 'testimonial_tag' ) ); ?>" style="width: 100%;">

@@ -109,7 +109,7 @@ function pmpro_testimonials_meta_box() {
 	$company   = get_post_meta( $post->ID, '_company', true );
 	$email     = get_post_meta( $post->ID, '_email', true );
 	$url       = get_post_meta( $post->ID, '_url', true );
-	$rating    = get_post_meta( $post->ID, '_rating', true );
+	$rating    = intval( get_post_meta( $post->ID, '_rating', true ) );
 	?>
 
 	<table class="form-table">
@@ -154,21 +154,25 @@ function pmpro_testimonials_meta_box() {
 				<td>
 					<div id="pmpro_testimonials_rating" class="pmpro_star_rating" data-rating="<?php echo esc_attr( $rating ); ?>">
 						<input type="hidden" name="rating" value="<?php echo esc_attr( $rating ); ?>" />
-						<svg class="pmpro_star" data-value="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-							<polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27" />
-						</svg>
-						<svg class="pmpro_star" data-value="2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-							<polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27" />
-						</svg>
-						<svg class="pmpro_star" data-value="3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-							<polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27" />
-						</svg>
-						<svg class="pmpro_star" data-value="4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-							<polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27" />
-						</svg>
-						<svg class="pmpro_star" data-value="5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-							<polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27" />
-						</svg>
+						<?php
+						for ( $i = 1; $i <= 5; $i++ ) {
+							// Build the selectors for the star.
+							$classes = array( 'pmpro_star' );
+							if ( $i <= $rating ) {
+								$classes[] = 'filled';
+							} 
+							if ( $i === $rating ) {
+								$checked = 'true';
+							} else {
+								$checked = 'false';
+							}
+							$class = implode( ' ', array_unique( $classes ) );
+							$label = sprintf( esc_html__( '%s Star Rating', 'pmpro-testimonials' ), $i );
+							echo '<svg role="radio" aria-checked="' . esc_attr( $checked ) . '" aria-label="' . esc_attr( $label ) . '" data-value="' . esc_attr( $i ) . '" class="' . esc_attr( $class ) . '" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+								<polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27" />
+							</svg>';
+						}
+						?>
 					</div>
 				</td>
 			</tr>
