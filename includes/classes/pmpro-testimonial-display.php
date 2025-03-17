@@ -153,7 +153,7 @@ class PMPro_Testimonial_Display {
 			return '';
 		}
 
-		$html = '<div class="' . esc_attr( pmpro_get_element_class( 'pmpro pmpro_testimonials pmpro_testimonials__' . $this->layout . ' pmpro_testimonials__' . $this->layout ) ) . '">';
+		$html = '<div class="' . esc_attr( pmpro_get_element_class( 'pmpro pmpro_testimonials pmpro_testimonials__' . $this->layout, ' pmpro_testimonials__' . $this->layout ) ) . '">';
 
 		foreach ( $testimonials as $testimonial ) {
 
