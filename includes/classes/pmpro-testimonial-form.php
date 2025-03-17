@@ -249,13 +249,13 @@ class PMPro_Testimonial_Form {
 											$selected_category = isset( $_POST['testimonial_category'] ) ? intval( $_POST['testimonial_category'] ) : '';
 											$classes = array( 'pmpro_form_field', 'pmpro_form_field-select' );
 											$required = false;
-											if ( in_array( 'url', $this->required_fields ) ) {
+											if ( in_array( 'testimonial_category', $this->required_fields ) ) {
 												$required = true;
 												$classes[] = 'pmpro_form_field-required';
 											}
 											?>
 											<div class="<?php echo esc_attr( pmpro_get_element_class( join( ' ', $classes ), 'testimonial_category' ) ); ?>">
-												<label for="url" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_label' ) ); ?>">
+												<label for="testimonial_category" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_label' ) ); ?>">
 													<?php esc_html_e( 'Category', 'pmpro-testimonials' );?>
 													<?php if ( $required ) { ?><span class="<?php esc_attr_e( pmpro_get_element_class( 'pmpro_asterisk' ) ); ?>"> <abbr title="<?php esc_html_e( 'Required Field', 'pmpro-testimonials' ); ?>">*</abbr></span><?php } ?>
 												</label>
