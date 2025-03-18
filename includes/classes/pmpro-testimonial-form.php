@@ -357,7 +357,7 @@ class PMPro_Testimonial_Form {
 			if ( empty( $_POST['rating'] ) ) {
 				$error_fields[] = esc_html__( 'Rating', 'pmpro-testimonials' );
 			}
-			if ( in_array( 'name', $this->required_fields ) && empty( $_POST['display_name'] ) ) {
+			if ( empty( $_POST['display_name'] ) ) {
 				$error_fields[] = esc_html__( 'Name', 'pmpro-testimonials' );
 			}
 			if ( in_array( 'email', $this->required_fields ) && empty( $_POST['email'] ) ) {
