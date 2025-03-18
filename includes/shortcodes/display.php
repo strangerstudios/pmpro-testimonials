@@ -1,6 +1,11 @@
 <?php
 // Shortcode for displaying testimonials
 function pmpro_testimonials_shortcode_display( $atts, $content = '' ) {
+	// Return early if PMPro is not active.
+	if ( ! defined( 'PMPRO_VERSION' ) ) {
+		return;
+	}
+
 	// Set default values for categories, tags, etc.
 	$atts = shortcode_atts(
 		array(
@@ -26,6 +31,11 @@ add_shortcode( 'pmpro_testimonials_display', 'pmpro_testimonials_shortcode_displ
 
 // Shortcode for displaying testimonials with sub shortcodes inside for custom layouts.
 function pmpro_testimonials_display_custom( $atts, $content = '' ) {
+	// Return early if PMPro is not active.
+	if ( ! defined( 'PMPRO_VERSION' ) ) {
+		return;
+	}
+
 	// Set default values for categories, tags, etc.
 	$atts = shortcode_atts(
 		array(
