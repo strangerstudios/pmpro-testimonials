@@ -22,7 +22,9 @@ function pmpro_testimonials_shortcode_form( $atts ) {
 		$atts,
 		'pmpro_testimonials_form'
 	);
+	_log( $atts, 'Testimonial form shortcode atts before new class' );
 	$form = new PMPro_Testimonial_Form( $atts );
+	_log( $form, 'Testimonial form shortcode atts after new class' );
 	return $form->display( false );
 
 }
