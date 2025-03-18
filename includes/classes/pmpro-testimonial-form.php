@@ -195,7 +195,7 @@ class PMPro_Testimonial_Form {
 									$div_classes = array( 'pmpro_form_field', 'pmpro_form_field-user_email' );
 									$input_classes = array( 'pmpro_form_input' );
 									$required = false;
-									if ( in_array( 'email', $this->required_fields ) ) {
+									if ( in_array( 'user_email', $this->required_fields ) ) {
 										$required = true;
 										$div_classes[] = 'pmpro_form_field-required';
 										$input_classes[] = 'pmpro_form_input-required';
@@ -360,7 +360,7 @@ class PMPro_Testimonial_Form {
 			if ( empty( $_POST['display_name'] ) ) {
 				$error_fields[] = esc_html__( 'Name', 'pmpro-testimonials' );
 			}
-			if ( in_array( 'email', $this->required_fields ) && empty( $_POST['email'] ) ) {
+			if ( in_array( 'user_email', $this->required_fields ) && empty( $_POST['user_email'] ) ) {
 				$error_fields[] = esc_html__( 'Email', 'pmpro-testimonials' );
 			}
 			if ( in_array( 'job_title', $this->required_fields ) && empty( $_POST['job_title'] ) ) {
