@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-01-15T13:32:26+00:00\n"
+"POT-Creation-Date: 2025-03-24T13:03:16+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: pmpro-testimonials\n"
@@ -40,12 +40,12 @@ msgid "https://www.paidmembershipspro.com"
 msgstr ""
 
 #: includes/admin.php:13
-#: includes/classes/pmpro-testimonial-form.php:53
+#: includes/classes/pmpro-testimonial-form.php:62
 msgid "Thank you for sharing your testimonial. Our team will review your submission."
 msgstr ""
 
 #: includes/admin.php:22
-#: includes/shortcodes/display.php:57
+#: includes/shortcodes/display.php:67
 #: layouts/default.php:150
 msgid "Access exclusive content and benefits with our memberships."
 msgstr ""
@@ -217,82 +217,91 @@ msgstr ""
 msgid "Use this image"
 msgstr ""
 
-#: includes/classes/pmpro-testimonial-form.php:70
-msgid "Please activate Paid Memberships Pro to use this form."
-msgstr ""
-
-#: includes/classes/pmpro-testimonial-form.php:98
+#: includes/classes/pmpro-testimonial-form.php:95
 msgid "Submit Your Testimonial"
 msgstr ""
 
-#: includes/classes/pmpro-testimonial-form.php:107
-#: includes/classes/pmpro-testimonial-form.php:279
+#: includes/classes/pmpro-testimonial-form.php:101
+#: includes/classes/pmpro-testimonial-form.php:363
 #: includes/post-types/testimonials.php:11
 #: includes/post-types/testimonials.php:36
 msgid "Testimonial"
 msgstr ""
 
-#: includes/classes/pmpro-testimonial-form.php:116
-#: includes/classes/pmpro-testimonial-form.php:282
+#: includes/classes/pmpro-testimonial-form.php:102
+#: includes/classes/pmpro-testimonial-form.php:110
+#: includes/classes/pmpro-testimonial-form.php:146
+#: includes/classes/pmpro-testimonial-form.php:168
+#: includes/classes/pmpro-testimonial-form.php:190
+#: includes/classes/pmpro-testimonial-form.php:218
+#: includes/classes/pmpro-testimonial-form.php:240
+#: includes/classes/pmpro-testimonial-form.php:269
+#: includes/classes/pmpro-testimonial-form.php:303
+msgid "Required Field"
+msgstr ""
+
+#: includes/classes/pmpro-testimonial-form.php:110
+#: includes/classes/pmpro-testimonial-form.php:366
 #: includes/post-types/testimonials.php:152
 msgid "Rating"
 msgstr ""
 
-#: includes/classes/pmpro-testimonial-form.php:116
-msgid "Required Field"
+#: includes/classes/pmpro-testimonial-form.php:125
+#: includes/post-types/testimonials.php:170
+msgid "%s Star Rating"
 msgstr ""
 
-#: includes/classes/pmpro-testimonial-form.php:137
-#: includes/classes/pmpro-testimonial-form.php:285
+#: includes/classes/pmpro-testimonial-form.php:145
+#: includes/classes/pmpro-testimonial-form.php:369
 msgid "Name"
 msgstr ""
 
-#: includes/classes/pmpro-testimonial-form.php:149
-#: includes/classes/pmpro-testimonial-form.php:291
+#: includes/classes/pmpro-testimonial-form.php:167
+#: includes/classes/pmpro-testimonial-form.php:375
 #: includes/post-types/testimonials.php:119
 msgid "Job Title"
 msgstr ""
 
-#: includes/classes/pmpro-testimonial-form.php:161
-#: includes/classes/pmpro-testimonial-form.php:294
+#: includes/classes/pmpro-testimonial-form.php:189
+#: includes/classes/pmpro-testimonial-form.php:378
 #: includes/post-types/testimonials.php:127
 msgid "Company"
 msgstr ""
 
-#: includes/classes/pmpro-testimonial-form.php:173
-#: includes/classes/pmpro-testimonial-form.php:288
+#: includes/classes/pmpro-testimonial-form.php:217
+#: includes/classes/pmpro-testimonial-form.php:372
 #: includes/post-types/testimonials.php:135
 msgid "Email"
 msgstr ""
 
-#: includes/classes/pmpro-testimonial-form.php:185
+#: includes/classes/pmpro-testimonial-form.php:239
 #: includes/post-types/testimonials.php:144
 msgid "URL"
 msgstr ""
 
-#: includes/classes/pmpro-testimonial-form.php:199
+#: includes/classes/pmpro-testimonial-form.php:268
 msgid "Category"
 msgstr ""
 
-#: includes/classes/pmpro-testimonial-form.php:223
+#: includes/classes/pmpro-testimonial-form.php:302
 #: includes/post-types/testimonials.php:75
 msgid "Tags"
 msgstr ""
 
-#: includes/classes/pmpro-testimonial-form.php:250
+#: includes/classes/pmpro-testimonial-form.php:326
 msgid "Submit"
 msgstr ""
 
-#: includes/classes/pmpro-testimonial-form.php:273
+#: includes/classes/pmpro-testimonial-form.php:357
 msgid "There was an error submitting this form. Please try again."
 msgstr ""
 
-#: includes/classes/pmpro-testimonial-form.php:297
+#: includes/classes/pmpro-testimonial-form.php:381
 msgid "Website URL"
 msgstr ""
 
 #. translators: %s is a comma-separated list of required fields.
-#: includes/classes/pmpro-testimonial-form.php:303
+#: includes/classes/pmpro-testimonial-form.php:387
 msgid "Please complete all required fields: %s."
 msgstr ""
 
@@ -417,23 +426,23 @@ msgstr ""
 msgid "Used to optionally display the member's avatar via Gravatar (not shown publicly)."
 msgstr ""
 
-#: includes/post-types/testimonials.php:251
+#: includes/post-types/testimonials.php:255
 msgid "Manage Testimonials"
 msgstr ""
 
-#: includes/post-types/testimonials.php:252
+#: includes/post-types/testimonials.php:256
 msgid "Capture testimonials from your PMPro members for the entire site or for specific membership levels."
 msgstr ""
 
-#: includes/post-types/testimonials.php:253
+#: includes/post-types/testimonials.php:257
 msgid "Create a Testimonial"
 msgstr ""
 
-#: includes/post-types/testimonials.php:254
+#: includes/post-types/testimonials.php:258
 msgid "Documentation: Testimonials Add On"
 msgstr ""
 
-#: includes/post-types/testimonials.php:265
+#: includes/post-types/testimonials.php:269
 msgid "Enter name"
 msgstr ""
 
@@ -451,7 +460,7 @@ msgid "Settings saved successfully."
 msgstr ""
 
 #. translators: %s: Site title
-#: includes/shortcodes/display.php:52
+#: includes/shortcodes/display.php:62
 #: layouts/default.php:145
 msgid "%s Membership"
 msgstr ""
