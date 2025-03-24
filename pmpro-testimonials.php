@@ -61,6 +61,12 @@ add_action( 'admin_enqueue_scripts', 'pmpro_testimonials_admin_enqueue' );
  */
 function pmpro_testimonials_frontend_enqueue() {
 	global $post;
+
+	// Return early if PMPro is not active.
+	if ( ! defined( 'PMPRO_URL' ) ) {
+		return;
+	}
+
 	if ( $post && has_shortcode( $post->post_content, 'pmpro_testimonials_form' ) ) {
 		pmpro_testimonials_enqueue_stars();
 		wp_enqueue_style( 'select2', PMPRO_URL . '/css/select2.min.css', '', '4.1.0-beta.0', 'screen' );
