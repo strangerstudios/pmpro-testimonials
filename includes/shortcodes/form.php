@@ -1,7 +1,8 @@
 <?php
 /**
  * Shortcode to output a form for submitting testimonials.
- *
+ * NOTE: The display method will process the form.
+ * 
  * @param array $atts Shortcode attributes for categories, tags, required fields, and dropdown display.
  */
 function pmpro_testimonials_shortcode_form( $atts ) {

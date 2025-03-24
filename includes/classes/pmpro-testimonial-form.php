@@ -42,6 +42,14 @@ class PMPro_Testimonial_Form {
 
 	}
 
+	/**
+	 * Display and process the testimonial form.
+	 * 
+	 * @since 0.1
+	 *
+	 * @param boolean $echo Whether to echo or return the form or success message (if form is processed.)
+	 * @return string $message|$form Returns the HTML for the confirmation message or the testimonial form.
+	 */
 	public function display( $echo = true ) {
 		global $current_user;
 
