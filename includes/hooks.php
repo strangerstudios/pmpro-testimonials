@@ -29,12 +29,3 @@ function pmpro_testimonials_custom_query_loop_schema_attrs( $block_content, $blo
 	return $block_content;
 }
 add_filter( 'render_block', 'pmpro_testimonials_custom_query_loop_schema_attrs', 10, 2 );
-
-// Process the form submission.
-function pmpro_testimonials_process_form_submission() {
-	if ( ! empty( $_POST['pmpro_testimonials_nonce'] ) ) {
-		$form = new PMPro_Testimonial_Form();
-		$form->process();
-	}
-}
-add_action( 'wp', 'pmpro_testimonials_process_form_submission' );
