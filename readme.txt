@@ -32,7 +32,7 @@ For more information please visit https://www.paidmembershipspro.com/add-ons/tes
 Please post it in the issues section of GitHub and we'll fix it as soon as we can. Thanks for helping. https://github.com/strangerstudios/pmpro-testimonials/issues
 
 == Changelog ==
-= 0.1.1 - 2025-03-24 =
+= 0.1.1 - 2025-03-31 =
 * ENHANCEMENT: Improved accessibility for the star rating and other elements.
 * BUG FIX: Fixed an issue where categories/tags were not being assigned via the shortcode.
 * BUG FIX: Resolved issues where the wrong text-domain value was being used.
