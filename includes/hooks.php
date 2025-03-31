@@ -29,3 +29,17 @@ function pmpro_testimonials_custom_query_loop_schema_attrs( $block_content, $blo
 	return $block_content;
 }
 add_filter( 'render_block', 'pmpro_testimonials_custom_query_loop_schema_attrs', 10, 2 );
+
+// Process the form submission.
+function pmpro_testimonials_process_form_submission() {
+	if ( ! empty( $_POST['pmpro_testimonials_nonce'] ) ) {
+		// Get the transient for the fields and pass it through.
+		$atts = get_transient( 'pmpro_testimonials_form_required_fields_' . get_the_ID() );
+		$form = new PMPro_Testimonial_Form( $atts );
+		$form->process();
+		
+		// Form has been processed, let's clear the transient.
+		delete_transient( 'pmpro_testimonials_form_required_fields_' . get_the_ID() );
+	}
+}
+add_action( 'wp', 'pmpro_testimonials_process_form_submission' );

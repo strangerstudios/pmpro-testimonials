@@ -23,6 +23,12 @@ function pmpro_testimonials_shortcode_form( $atts ) {
 		$atts,
 		'pmpro_testimonials_form'
 	);
+
+	// Let's save the attributes in the cache for if we process the form, for the required_fields
+	if ( ! empty( $atts['required_fields'] ) ) {
+		set_transient( 'pmpro_testimonials_form_required_fields_' . get_the_ID(), $atts, 10 * MINUTE_IN_SECONDS );
+	}
+
 	$form = new PMPro_Testimonial_Form( $atts );
 	return $form->display( false );
 
