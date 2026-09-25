@@ -2,6 +2,9 @@
 /**
  * Admin settings page for testimonials for Membership Add On.
  */
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Add a Testimonials page for settings under the Memberships menu.
@@ -18,6 +21,7 @@ add_action( 'admin_menu', 'pmpro_testimonials_settings_page' );
  * to edit.php?post_type=pmpro_testimonial&page=pmpro-testimonials-settings
  */
 function pmpro_testimonials_settings_redirect() {
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only routing to the settings page URL.
 	if ( empty( $_GET['post_type'] ) && isset( $_GET['page'] ) && 'pmpro-testimonials-settings' === $_GET['page'] ) {
 		wp_safe_redirect( admin_url( 'edit.php?post_type=pmpro_testimonial&page=pmpro-testimonials-settings' ) );
 		exit;
@@ -51,12 +55,14 @@ add_action( 'admin_init', 'pmpro_register_settings' );
  */
 function pmpro_testimonials_settings_success_message() {
 	// Check if we are on the Testimonials settings page and if settings were saved.
+	// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only check to display a notice.
 	if (
 		isset( $_GET['page'] ) &&
 		'pmpro-testimonials-settings' === $_GET['page'] &&
 		isset( $_GET['settings-updated'] ) &&
 		'true' === $_GET['settings-updated']
 	) {
+		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 		echo '<div class="notice notice-success">';
 		echo '<p>' . esc_html__( 'Settings saved successfully.', 'pmpro-testimonials' ) . '</p>';
 		echo '</div>';

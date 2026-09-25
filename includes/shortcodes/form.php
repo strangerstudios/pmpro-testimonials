@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Shortcode to output a form for submitting testimonials.
  * NOTE: The display method will also process the form.

@@ -54,6 +54,7 @@ class PMPro_Testimonial_Form {
 		global $current_user;
 
 		// If we are on the success message page, show it and bail.
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only flag to show the confirmation message.
 		if ( isset( $_GET['testimonial_success'] ) ) {
 			$message = get_option( 'pmpro_testimonials_confirmation_message' );
 
@@ -76,6 +77,8 @@ class PMPro_Testimonial_Form {
 
 		// Process again to get errors.
 		$this->process();
+
+		// phpcs:disable WordPress.Security.NonceVerification.Missing -- Only re-populates the submitted form for display; the nonce is verified in process().
 
 		// Start the form otherwise.
 		ob_start();
@@ -101,7 +104,7 @@ class PMPro_Testimonial_Form {
 											<?php esc_html_e( 'Testimonial', 'pmpro-testimonials' );?>
 											<span class="<?php esc_attr_e( pmpro_get_element_class( 'pmpro_asterisk' ) ); ?>"> <abbr title="<?php esc_html_e( 'Required Field', 'pmpro-testimonials' ); ?>">*</abbr></span>
 										</label>
-										<textarea id="testimonial" name="testimonial" rows="5" cols="80" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_input pmpro_form_input-textarea', 'testimonial' ) ); ?>" required><?php echo ( ( ! empty( $_POST['testimonial'] ) ) ? esc_textarea( wp_unslash( $_POST['testimonial'] ) ) : '' );?></textarea>
+										<textarea id="testimonial" name="testimonial" rows="5" cols="80" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_input pmpro_form_input-textarea', 'testimonial' ) ); ?>" required><?php echo ( ( ! empty( $_POST['testimonial'] ) ) ? esc_textarea( sanitize_textarea_field( wp_unslash( $_POST['testimonial'] ) ) ) : '' );?></textarea>
 									</div>
 
 									<?php
@@ -135,7 +138,7 @@ class PMPro_Testimonial_Form {
 									<?php
 									$value = '';
 									if ( ! empty( $_POST['display_name'] ) ) {
-										$value = wp_unslash( $_POST['display_name'] );
+										$value = sanitize_text_field( wp_unslash( $_POST['display_name'] ) );
 									} elseif ( is_user_logged_in() ) {
 										$value = $current_user->display_name;
 									}
@@ -151,7 +154,7 @@ class PMPro_Testimonial_Form {
 									<?php
 									$value = '';
 									if ( ! empty( $_POST['job_title'] ) ) {
-										$value = wp_unslash( $_POST['job_title'] );
+										$value = sanitize_text_field( wp_unslash( $_POST['job_title'] ) );
 									}
 									$div_classes = array( 'pmpro_form_field', 'pmpro_form_field-text', 'pmpro_form_field_job_title' );
 									$input_classes = array( 'pmpro_form_input', 'pmpro_form_input-text' );
@@ -173,7 +176,7 @@ class PMPro_Testimonial_Form {
 									<?php
 									$value = '';
 									if ( ! empty( $_POST['company'] ) ) {
-										$value = wp_unslash( $_POST['company'] );
+										$value = sanitize_text_field( wp_unslash( $_POST['company'] ) );
 									}
 									$div_classes = array( 'pmpro_form_field', 'pmpro_form_field-text', 'pmpro_form_field_company' );
 									$input_classes = array( 'pmpro_form_input', 'pmpro_form_input-text' );
@@ -195,7 +198,7 @@ class PMPro_Testimonial_Form {
 									<?php
 									$value = '';
 									if ( ! empty( $_POST['user_email'] ) ) {
-										$value = wp_unslash( $_POST['user_email'] );
+										$value = sanitize_text_field( wp_unslash( $_POST['user_email'] ) );
 									} elseif ( is_user_logged_in() ) {
 										$value = $current_user->user_email;
 									}
@@ -223,7 +226,7 @@ class PMPro_Testimonial_Form {
 									<?php
 									$value = '';
 									if ( ! empty( $_POST['url'] ) ) {
-										$value = wp_unslash( $_POST['url'] );
+										$value = sanitize_url( wp_unslash( $_POST['url'] ) );
 									}
 									$div_classes = array( 'pmpro_form_field', 'pmpro_form_field-text', 'pmpro_form_field-url' );
 									$input_classes = array( 'pmpro_form_input', 'pmpro_form_input-text' );
@@ -287,7 +290,7 @@ class PMPro_Testimonial_Form {
 											)
 										);
 										if ( $tags ) {
-											$selected_tags = isset( $_POST['testimonial_tags'] ) ? (array) $_POST['testimonial_tags'] : array();
+											$selected_tags = isset( $_POST['testimonial_tags'] ) ? array_map( 'intval', (array) $_POST['testimonial_tags'] ) : array();
 											$div_classes = array( 'pmpro_form_field', 'pmpro_form_field-select', 'pmpro_form_field-testimonial_tags' );
 											$input_classes = array( 'pmpro_form_input', 'pmpro_form_input-select' );
 											$required = false;
@@ -338,6 +341,7 @@ class PMPro_Testimonial_Form {
 			</div>
 		</div>
 		<?php
+		// phpcs:enable WordPress.Security.NonceVerification.Missing
 		$html = ob_get_clean();
 
 		if ( $echo ) {
@@ -350,7 +354,7 @@ class PMPro_Testimonial_Form {
 
 	public function process() {
 
-		if ( isset( $_POST['pmpro_testimonials_nonce'] ) && wp_verify_nonce( $_POST['pmpro_testimonials_nonce'], 'pmpro_testimonials_form' ) ) {
+		if ( isset( $_POST['pmpro_testimonials_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['pmpro_testimonials_nonce'] ) ), 'pmpro_testimonials_form' ) ) {
 
 			// Honeypot check.
 			if ( ! empty( $_POST['first_name'] ) ) {
@@ -393,6 +397,7 @@ class PMPro_Testimonial_Form {
 			if ( empty( $this->errors ) ) {
 
 				// Sanitize form input.
+				// phpcs:disable WordPress.Security.ValidatedSanitizedInput.MissingUnslash -- wp_insert_post() (including meta_input) and wp_set_object_terms() expect slashed data.
 				$testimonial = sanitize_textarea_field( $_POST['testimonial'] );
 				$name        = sanitize_text_field( $_POST['display_name'] );
 				$job_title   = sanitize_text_field( $_POST['job_title'] );
@@ -418,6 +423,8 @@ class PMPro_Testimonial_Form {
 				if ( ! empty( $_POST['testimonial_tags'] ) && is_array( $_POST['testimonial_tags'] ) ) {
 					$tags = array_merge( $tags, array_map( 'intval', $_POST['testimonial_tags'] ) );
 				}
+
+				// phpcs:enable WordPress.Security.ValidatedSanitizedInput.MissingUnslash
 
 				// Split the content by new lines into paragraphs.
 				$paragraphs = explode( "\n", trim( $testimonial ) );
