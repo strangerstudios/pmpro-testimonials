@@ -407,9 +407,10 @@ class PMPro_Testimonial_Form {
 					$categories = array_map( 'trim', explode( ',', $categories_string ) );
 
 					// Only allow existing categories so that new terms can't be created from the form.
-					$categories = array_filter( $categories, function( $category ) {
-						return term_exists( $category, 'pmpro_testimonial_category' );
-					} );
+					$categories = array_filter( array_map( function( $category ) {
+						$term = term_exists( $category, 'pmpro_testimonial_category' );
+						return $term ? (int) $term['term_id'] : 0;
+					}, $categories ) );
 				}
 				if ( isset( $_POST['testimonial_category'] ) ) {
 					$categories[] = intval( $_POST['testimonial_category'] );
@@ -421,9 +422,10 @@ class PMPro_Testimonial_Form {
 					$tags = array_map( 'trim', explode( ',', $tags_string ) );
 
 					// Only allow existing tags so that new terms can't be created from the form.
-					$tags = array_filter( $tags, function( $tag ) {
-						return term_exists( $tag, 'pmpro_testimonial_tag' );
-					} );
+					$tags = array_filter( array_map( function( $tag ) {
+						$term = term_exists( $tag, 'pmpro_testimonial_tag' );
+						return $term ? (int) $term['term_id'] : 0;
+					}, $tags ) );
 				}
 				if ( ! empty( $_POST['testimonial_tags'] ) && is_array( $_POST['testimonial_tags'] ) ) {
 					$tags = array_merge( $tags, array_map( 'intval', $_POST['testimonial_tags'] ) );
