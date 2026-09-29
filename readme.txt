@@ -2,8 +2,8 @@
 Contributors: strangerstudios, sccr410
 Tags: testimonials, reviews, paid memberships pro, pmpro
 Requires at least: 5.4
-Tested up to: 6.7
-Stable tag: 0.1.1
+Tested up to: 7.1
+Stable tag: 0.1.2
 Requires PHP: 7.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -32,6 +32,10 @@ For more information please visit https://www.paidmembershipspro.com/add-ons/tes
 Please post it in the issues section of GitHub and we'll fix it as soon as we can. Thanks for helping. https://github.com/strangerstudios/pmpro-testimonials/issues
 
 == Changelog ==
+= 0.1.2 - 2026-09-29 =
+* SECURITY: Testimonials submitted from the frontend form can now only be assigned existing categories and tags. #30 (@dparker1005)
+* SECURITY: Sanitized submitted testimonial form values when the form is redisplayed, and added direct file access protection. #29 (@dparker1005)
+
 = 0.1.1 - 2025-03-31 =
 * ENHANCEMENT: Improved accessibility for the star rating and other elements.
 * BUG FIX: Fixed an issue where categories/tags were not being assigned via the shortcode.
