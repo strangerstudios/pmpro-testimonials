@@ -1,6 +1,6 @@
 ![](pmpro-testimonials-banner.png)
 
-# [Paid Memberships Pro - Testimonials](https://www.paidmembershipspro.com/add-ons/testimonials) #
+# [Paid Memberships Pro - Testimonials](https://www.paidmembershipspro.com/add-ons/testimonials/) #
 [comment]: # (Generate badges from shields.io, only works for .org plugins to get other stats etc. We'd have to create our own endpoints for Premium plugins)
 
 ![License](https://img.shields.io/badge/license-GPL--3.0%2B-red.svg?style=flat-square)
@@ -13,10 +13,10 @@ Collect testimonials via a frontend form that includes fields for the person sub
 
 Submitted testimonials are held in a pending or unpublished status so that the site admin can approve the content prior to submission.
 
-For more information please visit [www.paidmembershipspro.com/add-ons/testimonials](https://www.paidmembershipspro.com/add-ons/testimonials)
+For more information please visit [www.paidmembershipspro.com/add-ons/testimonials/](https://www.paidmembershipspro.com/add-ons/testimonials/)
 
 ## Installation ##
-For detailed installation steps, visit the [documentation](https://www.paidmembershipspro.com/add-ons/testimonials) page.
+For detailed installation steps, visit the [documentation](https://www.paidmembershipspro.com/add-ons/testimonials/) page.
 
 1. Download the current development ZIP file directly: `https://github.com/strangerstudios/pmpro-testimonials/archive/dev.zip`
 
@@ -40,3 +40,4 @@ Here are some ways for **non-developers to contribute** to Paid Memberships Pro 
 
 1. Translate Paid Memberships Pro - Testimonials into your own [language](https://www.paidmembershipspro.com/paid-memberships-pro-in-your-language/).
 2. [Purchase a plus membership](https://www.paidmembershipspro.com/pricing) to help fund ongoing development and bug fixes.
+3. Leave an honest review for [Paid Memberships Pro - Testimonials](https://www.paidmembershipspro.com/submit-testimonial/).
