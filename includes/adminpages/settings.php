@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 	global $msg, $msgt;
 
 	// Make sure PMPro is active.

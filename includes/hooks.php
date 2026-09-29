@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 // Used for the featured image block.
 function pmpro_testimonial_featured_image_fallback( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
 
@@ -32,6 +36,7 @@ add_filter( 'render_block', 'pmpro_testimonials_custom_query_loop_schema_attrs',
 
 // Process the form submission.
 function pmpro_testimonials_process_form_submission() {
+	// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Presence check only; the nonce is verified in PMPro_Testimonial_Form::process().
 	if ( ! empty( $_POST['pmpro_testimonials_nonce'] ) ) {
 		// Get the transient for the fields and pass it through.
 		$atts = get_transient( 'pmpro_testimonials_form_required_fields_' . get_the_ID() );

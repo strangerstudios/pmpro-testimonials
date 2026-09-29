@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Register Custom Post Type for Courses
  * Hooks into init.
@@ -194,28 +198,28 @@ function pmpro_testimonials_save_meta( $post_id, $post ) {
 	}
 
 	// Verify the nonce before proceeding.
-	if ( ! isset( $_POST['pmpro_testimonials_nonce'] ) || ! wp_verify_nonce( $_POST['pmpro_testimonials_nonce'], 'pmpro_testimonials_save_meta' ) ) {
+	if ( ! isset( $_POST['pmpro_testimonials_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['pmpro_testimonials_nonce'] ) ), 'pmpro_testimonials_save_meta' ) ) {
 		return;
 	}
 
 	// Save Job Title
 	if ( isset( $_POST['job_title'] ) ) {
-		update_post_meta( $post_id, '_job_title', sanitize_text_field( $_POST['job_title'] ) );
+		update_post_meta( $post_id, '_job_title', sanitize_text_field( $_POST['job_title'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash -- update_post_meta() expects slashed data.
 	}
 
 	// Save Company
 	if ( isset( $_POST['company'] ) ) {
-		update_post_meta( $post_id, '_company', sanitize_text_field( $_POST['company'] ) );
+		update_post_meta( $post_id, '_company', sanitize_text_field( $_POST['company'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash -- update_post_meta() expects slashed data.
 	}
 
 	// Save Email
 	if ( isset( $_POST['email'] ) ) {
-		update_post_meta( $post_id, '_email', sanitize_email( $_POST['email'] ) );
+		update_post_meta( $post_id, '_email', sanitize_email( $_POST['email'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash -- update_post_meta() expects slashed data.
 	}
 
 	// Save URL
 	if ( isset( $_POST['url'] ) ) {
-		update_post_meta( $post_id, '_url', esc_url_raw( $_POST['url'] ) );
+		update_post_meta( $post_id, '_url', esc_url_raw( $_POST['url'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash -- update_post_meta() expects slashed data.
 	}
 
 	// Save Rating
@@ -232,6 +236,7 @@ add_action( 'save_post', 'pmpro_testimonials_save_meta', 10, 2 );
 function pmpro_testimonials_testimonial_check() {
 	global $pagenow;
 
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only check to show the getting started screen.
 	if ( empty( $_GET['s'] ) && $pagenow == 'edit.php' && isset( $_GET['post_type'] ) && $_GET['post_type'] == 'pmpro_testimonial' ) {
 		$query = new WP_Query(
 			array(

@@ -1,3 +1,4 @@
+<?php if ( ! defined( 'ABSPATH' ) ) { exit; } ?>
 
 <div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_card' ) ); ?>" itemscope itemtype="https://schema.org/Review">
 	<meta itemprop="datePublished" content="<?php echo esc_attr( $testimonial->get_date() ); ?>" />

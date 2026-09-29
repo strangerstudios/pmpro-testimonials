@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 // Shortcode for displaying testimonials
 function pmpro_testimonials_shortcode_display( $atts, $content = '' ) {
 	// Return early if PMPro is not active.
