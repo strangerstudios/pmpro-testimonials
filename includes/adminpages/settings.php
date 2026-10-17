@@ -118,8 +118,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 								<option value="MediaSubscription" <?php selected( $schema_type, 'MediaSubscription' ); ?>>
 									<?php esc_html_e( 'Media Subscription', 'pmpro-testimonials' ); ?>
 								</option>
+								<option value="Product" <?php selected( $schema_type, 'Product' ); ?>>
+									<?php esc_html_e( 'Product', 'pmpro-testimonials' ); ?>
+								</option>
+								<option value="Course" <?php selected( $schema_type, 'Course' ); ?>>
+									<?php esc_html_e( 'Course', 'pmpro-testimonials' ); ?>
+								</option>
+								<option value="CreativeWorkSeries" <?php selected( $schema_type, 'CreativeWorkSeries' ); ?>>
+									<?php esc_html_e( 'Creative Work Series (podcast, newsletter, video series)', 'pmpro-testimonials' ); ?>
+								</option>
 							</select>
 							<p class="description"><?php esc_html_e( 'Select the type of business or service that your testimonials are for.', 'pmpro-testimonials' ); ?></p>
+							<p class="description"><?php esc_html_e( 'Of these types, only Product, Course, and Creative Work Series are eligible for Google review stars on your own testimonials.', 'pmpro-testimonials' ); ?></p>
 						</td>
 					</tr>
 
